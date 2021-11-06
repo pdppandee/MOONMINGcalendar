@@ -1,8 +1,6 @@
 package com.example.moonmingcalendar;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +15,7 @@ public class AddUserEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_user_event);
 
-            eventName = findViewById(R.id.eventName);
+            eventName = findViewById(R.id.eventname);
             eventDetail = findViewById(R.id.eventDetail);
     }
 

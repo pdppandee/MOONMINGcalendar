@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/MOONMING/MOONMINGcalendar/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/Moonming calendar/app/src/main/res/layout/activity_main.xml" value="0.43478260869565216" />
+        <entry key="..\:/Moonming calendar/app/src/main/res/layout/add_user_event.xml" value="0.13020833333333334" />
+        <entry key="..\:/Moonming calendar/app/src/main/res/layout/show_mutelu_event.xml" value="0.2" />
         <entry key="..\:/Users/Pinprapa Prokati/StudioProjects/MOONMINGcalendar/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Windows 10/Desktop/mayy/MOONMINGcalendar/app/src/main/res/layout/activity_main.xml" value="0.2817028985507246" />
         <entry key="..\:/Users/Windows 10/Desktop/mayy/MOONMINGcalendar/app/src/main/res/layout/add_user_event.xml" value="0.36666666666666664" />
@@ -13,7 +16,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

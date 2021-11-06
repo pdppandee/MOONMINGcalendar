@@ -21,7 +21,8 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name: "
+            android:text="กิจกรรม: "
+            android:fontFamily="@font/kanit"
             android:textSize="25dp" />
 
         <EditText
@@ -43,7 +44,8 @@
             android:id="@+id/detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Detail: "
+            android:text="รายละเอียด: "
+            android:fontFamily="@font/kanit"
             android:textSize="25dp" />
 
         <EditText

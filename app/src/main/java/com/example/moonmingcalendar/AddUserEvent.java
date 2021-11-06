@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class UserEvent extends AppCompatActivity {
+public class AddUserEvent extends AppCompatActivity {
     EditText eventName, eventDetail;
 
     DBmoonming databaseHelper;

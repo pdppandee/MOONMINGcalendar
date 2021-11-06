@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ShowEventList" />
+        <activity android:name=".ShowMuteluEvent" />
     </application>
 
 </manifest>

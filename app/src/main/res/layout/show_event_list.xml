@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/btnBack"
+        android:id="@+id/elBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="back"
@@ -19,11 +19,23 @@
 
     <ListView
         android:layout_width="409dp"
-        android:layout_height="665dp"
+        android:layout_height="566dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.03" />
+
+    <Button
+        android:id="@+id/mutelu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mutelu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.871" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

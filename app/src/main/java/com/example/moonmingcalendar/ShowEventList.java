@@ -7,8 +7,11 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class ShowEventList extends AppCompatActivity{
     Button btnBack,btnMutelu;
+    FloatingActionButton fabAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +28,21 @@ public class ShowEventList extends AppCompatActivity{
                 startActivity(intent1);
             }
         });
+        fabAdd = (FloatingActionButton ) findViewById(R.id.add);
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(ShowEventList.this, AddUserEvent.class);
+                startActivity(intent2);
+            }
+        });
+
         btnBack = findViewById(R.id.elBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent2);
+                Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent3);
             }
         });
     }

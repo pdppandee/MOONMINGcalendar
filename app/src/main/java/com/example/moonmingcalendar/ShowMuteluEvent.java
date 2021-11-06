@@ -11,7 +11,7 @@ import java.util.Calendar;
 
 public class ShowMuteluEvent extends AppCompatActivity {
     Button btnBack;
-    TextView textWork,textLove,textMoney,textMercy,textBad;
+    TextView textWork,textLove,textMoney,textMercy,textBad,textDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,9 @@ public class ShowMuteluEvent extends AppCompatActivity {
         textMoney = findViewById(R.id.money);
         textMercy = findViewById(R.id.mercy);
         textBad = findViewById(R.id.bad);
+        textDate = findViewById(R.id.date);
         String day = getIntent().getExtras().getString("day");
+        textDate.setText(day);
         int dayN = dayOfWeek(day);
         if (dayN==1){
             textWork.setText("ม่วง/ดำ");

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow_light"
+    android:background="@drawable/cheese_bg"
     android:padding="20dp"
 
     >
@@ -47,7 +47,6 @@
         tools:layout_editor_absoluteX="16dp"
         android:orientation="vertical">
         <LinearLayout
-            android:id="@+id/LinearLayoutcolorshirt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="16dp"
@@ -74,6 +73,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -96,6 +97,8 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
@@ -119,6 +122,8 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
@@ -142,6 +147,8 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
@@ -166,6 +173,8 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 

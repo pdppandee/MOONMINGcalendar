@@ -26,7 +26,7 @@ public class EditUserEvent extends AppCompatActivity {
         btnSaveEditEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent saveEditEvent = new Intent(EditUserEvent.this, ShowEventList.class);
+                Intent saveEditEvent = new Intent(EditUserEvent.this, ShowUserEvent.class);
                 Toast.makeText(EditUserEvent.this, "แก้ไขเสร็จสิ้นจ้า :-D", Toast.LENGTH_SHORT).show();
                 startActivity(saveEditEvent);
             }

@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/MOONMING/MOONMINGcalendar/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/MOONMINGcalendar/app/src/main/res/layout/activity_main.xml" value="0.18489583333333334" />
+        <entry key="..\:/MOONMINGcalendar/app/src/main/res/layout/edit_user_event.xml" value="0.2" />
+        <entry key="..\:/MOONMINGcalendar/app/src/main/res/layout/show_event_list.xml" value="0.19927536231884058" />
+        <entry key="..\:/MOONMINGcalendar/app/src/main/res/layout/show_mutelu_event.xml" value="0.18489583333333334" />
+        <entry key="..\:/MOONMINGcalendar/app/src/main/res/layout/show_user_event.xml" value="0.19927536231884058" />
         <entry key="..\:/Moonming calendar/app/src/main/res/layout/activity_main.xml" value="0.43478260869565216" />
         <entry key="..\:/Moonming calendar/app/src/main/res/layout/add_user_event.xml" value="0.13020833333333334" />
         <entry key="..\:/Moonming calendar/app/src/main/res/layout/show_mutelu_event.xml" value="0.2" />

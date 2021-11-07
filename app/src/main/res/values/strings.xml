@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MOONMINGcalendar</string>
+    <string name="ulBack">กลับ</string>
+    <string name="ulDelete">ลบ</string>
+    <string name="ulEdit">แก้ไข</string>
+    <string name="eventName">TextView</string>
+    <string name="ulDate">TextView</string>
+    <string name="editNameEvent">TextView</string>
+    <string name="editueDate">TextView</string>
+    <string name="editueSave">บันทึก</string>
+    <string name="editueBack">กลับ</string>
 </resources>

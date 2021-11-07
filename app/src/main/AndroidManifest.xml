@@ -21,6 +21,8 @@
         <activity android:name=".ShowEventList" />
         <activity android:name=".ShowMuteluEvent" />
         <activity android:name=".AddUserEvent" />
+        <activity android:name=".ShowUserEvent" />
+        <activity android:name=".EditUserEvent" />
     </application>
 
 </manifest>

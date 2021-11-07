@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="enter event name"
+            android:fontFamily="@font/kanit"
             android:minHeight="48dp" />
     </LinearLayout>
 
@@ -53,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="enter event detail"
+            android:fontFamily="@font/kanit"
             android:minHeight="48dp" />
     </LinearLayout>
 

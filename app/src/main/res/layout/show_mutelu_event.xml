@@ -222,21 +222,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/mBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/kanit"
-        android:text="กลับ"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.009"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LinearLayout2"
-        app:layout_constraintVertical_bias="0.941" />
-
 
     <!--    <TextView-->
 <!--        android:id="@+id/textView3"-->

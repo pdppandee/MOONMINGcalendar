@@ -18,9 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowEventList" />
-        <activity android:name=".ShowMuteluEvent" />
-        <activity android:name=".AddUserEvent" />
+        <activity android:name=".ShowEventList"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".ShowMuteluEvent"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".AddUserEvent"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".ShowUserEvent" />
         <activity android:name=".EditUserEvent" />
     </application>

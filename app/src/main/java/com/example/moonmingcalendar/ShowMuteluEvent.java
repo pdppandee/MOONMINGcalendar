@@ -17,6 +17,7 @@ public class ShowMuteluEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_mutelu_event);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         textWork = findViewById(R.id.work);
         textLove = findViewById(R.id.love);
         textMoney = findViewById(R.id.money);
@@ -69,17 +70,6 @@ public class ShowMuteluEvent extends AppCompatActivity {
             textMercy.setText("ชมพู");
             textBad.setText("เขียว");
         }
-
-
-        btnBack = findViewById(R.id.mBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
     }
 

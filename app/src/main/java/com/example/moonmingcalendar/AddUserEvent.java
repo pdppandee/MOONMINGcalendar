@@ -14,6 +14,7 @@ public class AddUserEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_user_event);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             eventName = findViewById(R.id.eventname);
             eventDetail = findViewById(R.id.eventDetail);

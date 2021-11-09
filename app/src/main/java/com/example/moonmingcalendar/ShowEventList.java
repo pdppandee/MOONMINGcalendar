@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ShowEventList extends AppCompatActivity{
-    Button btnBack,btnMutelu;
+    Button btnMutelu;
     FloatingActionButton fabAdd;
     TextView textDate;
 
@@ -19,6 +19,7 @@ public class ShowEventList extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_event_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         textDate = findViewById(R.id.date);
         String day = getIntent().getExtras().getString("day");
         textDate.setText(day);
@@ -40,14 +41,6 @@ public class ShowEventList extends AppCompatActivity{
             }
         });
 
-        btnBack = findViewById(R.id.elBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent3);
-            }
-        });
 
 
 

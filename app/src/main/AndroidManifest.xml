@@ -24,8 +24,10 @@
             android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".AddUserEvent"
             android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".ShowUserEvent" />
-        <activity android:name=".EditUserEvent" />
+        <activity android:name=".ShowUserEvent"
+            android:parentActivityName=".ShowEventList"></activity>
+        <activity android:name=".EditUserEvent"
+            android:parentActivityName=".ShowUserEvent"></activity>
     </application>
 
 </manifest>

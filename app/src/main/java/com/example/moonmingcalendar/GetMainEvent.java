@@ -21,7 +21,7 @@ public class GetMainEvent {
         return eventLst;
     }
 
-    public ArrayList<String> getEventList(){
+    public ArrayList<String> getEventListName(){
         ArrayList<String> eventLst = new ArrayList<>();
         for (int i=0;i<arrayList.size();i++){
             if (dmy[0].equals(arrayList.get(i).getDay()) && dmy[1].equals(arrayList.get(i).getMonth())){
@@ -30,4 +30,15 @@ public class GetMainEvent {
         }
         return eventLst;
     }
+
+    public ArrayList<String> getEventListDetail(){
+        ArrayList<String> eventLst = new ArrayList<>();
+        for (int i=0;i<arrayList.size();i++){
+            if (dmy[0].equals(arrayList.get(i).getDay()) && dmy[1].equals(arrayList.get(i).getMonth())){
+                eventLst.add(arrayList.get(i).getDetail());
+            }
+        }
+        return eventLst;
+    }
+
 }

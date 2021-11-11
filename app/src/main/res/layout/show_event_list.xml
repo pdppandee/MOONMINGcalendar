@@ -61,7 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kanit"
-                android:text="  ดวงสายมู"
+                android:layout_marginLeft="30dp"
+                android:text="ดวงสายมู"
                 android:textSize="35dp" />
 
             <TextView
@@ -69,7 +70,8 @@
                 android:layout_width="302dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kanit"
-                android:text="    detail"
+                android:layout_marginLeft="30dp"
+                android:text="detail"
                 android:textSize="20dp" />
             />
         </LinearLayout>
@@ -95,7 +97,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/MTL"
-            app:layout_constraintVertical_bias="0.644" />
+            app:layout_constraintVertical_bias="0.644"
+            android:fontFamily="@font/kanit"/>
     </LinearLayout>
 
 

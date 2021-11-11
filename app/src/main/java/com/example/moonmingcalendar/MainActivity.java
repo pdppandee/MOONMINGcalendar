@@ -38,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
                 final String day = dayOfMonth+"/"+(month+1)+"/"+year;
                 textDate.setText(day);
                 GetMainEvent ShowEvent = new GetMainEvent(day);
-                String showEvent = ShowEvent.getMainActivity();
+                ArrayList<String> eventListName=ShowEvent.getEventListName();
+                ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, eventListName);
+                miniEventList.setAdapter(arrayAdapter);
 
-                if(dayOfMonth == 10) {
+                /*if(dayOfMonth == 10) {
                     ArrayList<String> arrayList = new ArrayList<>();
                     arrayList.add("Moonming Diagram");
                     arrayList.add("SE advSE Clip");
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
                     ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, arrayList);
                     miniEventList.setAdapter(arrayAdapter);
-                }
+                }*/
 
                 btnDetail = findViewById(R.id.btnDetail);
                 btnDetail.setOnClickListener(new View.OnClickListener() {

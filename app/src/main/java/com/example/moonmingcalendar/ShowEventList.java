@@ -33,11 +33,6 @@ public class ShowEventList extends AppCompatActivity{
     LinearLayout mutelu;
     ListView listView;
 
-    String[] eventName = {"วันสิ้นปี","วันขึ้นปีใหม่","วันสงกรานต์"};
-    String[] eventDetail = {"31/12","01/01","13/04"};
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,19 +45,19 @@ public class ShowEventList extends AppCompatActivity{
         //textDate.setText(day);
         int dayN = dayOfWeek(day);
         if (dayN==1){
-            textMTL.setText("    สีกาลกิณี : ฟ้า/น้ำเงิน");
+            textMTL.setText("สีกาลกิณี : ฟ้า/น้ำเงิน");
         }else if (dayN==2){
-            textMTL.setText("    สีกาลกิณี : แดง");
+            textMTL.setText("สีกาลกิณี : แดง");
         }else if (dayN==3){
-            textMTL.setText("    สีกาลกิณี : เหลือง/ขาว/เทา");
+            textMTL.setText("สีกาลกิณี : เหลือง/ขาว/เทา");
         }else if (dayN==4){
-            textMTL.setText("    สีกาลกิณี : ชมพู");
+            textMTL.setText("ีกาลกิณี : ชมพู");
         }else if (dayN==5){
-            textMTL.setText("    สีกาลกิณี : ม่วง/ดำ");
+            textMTL.setText("สีกาลกิณี : ม่วง/ดำ");
         }else if (dayN==6){
-            textMTL.setText("    สีกาลกิณี : ม่วงอ่อน");
+            textMTL.setText("สีกาลกิณี : ม่วงอ่อน");
         }else if (dayN==7){
-            textMTL.setText("    สีกาลกิณี : เขียว");
+            textMTL.setText("สีกาลกิณี : เขียว");
         }
         mutelu = findViewById(R.id.MTL);
         mutelu.setOnClickListener(new View.OnClickListener() {
@@ -83,26 +78,23 @@ public class ShowEventList extends AppCompatActivity{
             }
         });
         GetMainEvent showEvent = new GetMainEvent(day);
-        ArrayList<String> eventLst=showEvent.getEventList();
+        ArrayList<String> eventListName=showEvent.getEventListName();
+        ArrayList<String> eventListDetail=showEvent.getEventListDetail();
 
         listView=(ListView) findViewById(R.id.list);
-        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,eventLst);
-        listView.setAdapter(arrayAdapter);
-
+        MyAdapter adapter = new MyAdapter(this, eventListName, eventListDetail);
+        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String select=listView.getItemAtPosition(i).toString();
-                Intent intent = new Intent(ShowEventList.this,ShowUserEvent.class);
-                intent.putExtra("select",select);
-                startActivity(intent);
-                //dd.setText(getIntent().getStringExtra("select"));
+                String name = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(ShowEventList.this, eventListName.get(i), Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(ShowEventList.this,ShowUserEvent.class);
+                intent.putExtra("day",day);
+                startActivity(intent);*/
             }
         });
-
-
-
-
     }
 
     public int dayOfWeek(String dmyST) {
@@ -110,6 +102,39 @@ public class ShowEventList extends AppCompatActivity{
         Calendar c = Calendar.getInstance();
         c.set(Integer.parseInt(dmy[2]), Integer.parseInt(dmy[1])-1, Integer.parseInt(dmy[0]));
         return c.get(Calendar.DAY_OF_WEEK);
+    }
+
+    class MyAdapter extends ArrayAdapter<String> {
+
+        Context context;
+        ArrayList<String> rName;
+        ArrayList<String> rDetail;
+        //int rImgs[];
+
+        MyAdapter (Context c, ArrayList<String> name, ArrayList<String> detail) {
+            super(c, R.layout.event_list, R.id.eventName, name);
+            this.context = c;
+            this.rName = name;
+            this.rDetail = detail;
+            //this.rImgs = imgs;
+
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View row = layoutInflater.inflate(R.layout.event_list, parent, false);
+            //ImageView images = row.findViewById(R.id.image);
+            TextView myTitle = row.findViewById(R.id.eventName);
+            TextView myDescription = row.findViewById(R.id.eventDetail);
+
+            // now set our resources on views
+            //images.setImageResource(rImgs[position]);
+            myTitle.setText(rName.get(position));
+            myDescription.setText(rDetail.get(position));
+            return row;
+        }
     }
 
 

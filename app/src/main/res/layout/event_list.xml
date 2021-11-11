@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/eventName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/kanit"
+        android:text="eventName"
+        android:textColor="#605F63"
+        android:textSize="30dp"
+        android:layout_marginLeft="25dp"/>
+
+    <TextView
+        android:id="@+id/eventDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/kanit"
+        android:text="eventDetail"
+        android:textColor="#706F73"
+        android:textSize="20dp"
+        android:layout_marginLeft="25dp"/>
+
+</LinearLayout>

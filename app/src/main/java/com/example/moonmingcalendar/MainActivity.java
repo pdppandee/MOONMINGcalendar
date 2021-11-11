@@ -10,12 +10,14 @@ import android.widget.CalendarView;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     CalendarView mCalendar;
     Button btnDetail;
-    TextView textDate,textEvent;
-    DBmoonming mHelper;
+    TextView textDate;
+
 
 
     @Override
@@ -25,12 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
         textDate = findViewById(R.id.Date);
         mCalendar = findViewById(R.id.calendarView);
-        textEvent = findViewById(R.id.event);
+
         mCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
                 final String day = dayOfMonth+"/"+(month+1)+"/"+year;
                 textDate.setText(day);
+                GetMainEvent ShowEvent = new GetMainEvent(day);
+                String showEvent = ShowEvent.getMainActivity();
+
 
                 btnDetail = findViewById(R.id.btnDetail);
                 btnDetail.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
     }
+
 
 }

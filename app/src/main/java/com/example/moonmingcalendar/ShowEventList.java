@@ -62,7 +62,7 @@ public class ShowEventList extends AppCompatActivity{
         }else if (dayN==6){
             textMTL.setText("    สีกาลกิณี : ม่วงอ่อน");
         }else if (dayN==7){
-            textMTL.setText("    สีกาลกิณี : ขียว");
+            textMTL.setText("    สีกาลกิณี : เขียว");
         }
         mutelu = findViewById(R.id.MTL);
         mutelu.setOnClickListener(new View.OnClickListener() {
@@ -82,9 +82,11 @@ public class ShowEventList extends AppCompatActivity{
                 startActivity(intent2);
             }
         });
+        GetMainEvent showEvent = new GetMainEvent(day);
+        ArrayList<String> eventLst=showEvent.getEventList();
 
-        listView=(ListView) findViewById(R.id.eventlist);
-        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,eventName);
+        listView=(ListView) findViewById(R.id.list);
+        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,eventLst);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,9 +99,9 @@ public class ShowEventList extends AppCompatActivity{
                 //dd.setText(getIntent().getStringExtra("select"));
             }
         });
-        /*listView=(ListView) findViewById(R.id.eventlist);
-        CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(ShowEventList.this,eventName,eventDetail);
-        listView.setAdapter(customBaseAdapter);*/
+
+
+
 
     }
 
@@ -109,53 +111,7 @@ public class ShowEventList extends AppCompatActivity{
         c.set(Integer.parseInt(dmy[2]), Integer.parseInt(dmy[1])-1, Integer.parseInt(dmy[0]));
         return c.get(Calendar.DAY_OF_WEEK);
     }
-    /*public class CustomBaseAdapter extends BaseAdapter{
 
-        Context context;
-        String[] rName;
-        String[] rDetail;
-        LayoutInflater inflater;
-
-        public CustomBaseAdapter(Context ctx,String[] Name,String[] Detail){
-            this.context=ctx;
-            this.rName=Name;
-            this.rDetail=Detail;
-
-
-        }
-
-        @Override
-        public int getCount() {
-            return rName.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if(inflater==null){
-                inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            }
-            if (convertView==null){
-                convertView=inflater.inflate(R.layout.eventlist,null);
-            }
-            //convertView=LayoutInflater.from(context).inflate(R.layout.eventlist,parent,false);
-            TextView name= convertView.findViewById(R.id.eventName);
-            TextView detail= convertView.findViewById(R.id.eventDetail);
-            name.setText(rName[position]);
-            detail.setText(rDetail[position]);
-
-            return convertView;
-        }
-    }*/
 
 
 }

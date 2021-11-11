@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/moon_bg">
+    android:background="@drawable/moon_bg"
+    android:padding="20dp">
 
     <!--    <TextView
             android:id="@+id/date"
@@ -83,12 +84,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MTL">
+        app:layout_constraintTop_toBottomOf="@+id/MTL"
+        android:padding="20dp">
 
         <ListView
-            android:id="@+id/eventlist"
-            android:layout_width="match_parent"
-            android:layout_height="537dp"
+            android:id="@+id/list"
+            android:layout_width="376dp"
+            android:layout_height="528dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -6,11 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 public class DBmoonming extends SQLiteOpenHelper {
 
     private static final String TAG = "DBmoonming";
-
+    private Context context;
     public static final String TABLE_NAME = "MOONMING_table";
     public static final String COL_ID = "ID";
     public static final String COL_DAY = "day";
@@ -23,22 +24,47 @@ public class DBmoonming extends SQLiteOpenHelper {
     public static final String COL_TYPE = "type";
 
 
-    public DBmoonming(Context context) { super(context, TABLE_NAME, null, 1); }
+    public DBmoonming(Context context) {
+        super(context, TABLE_NAME, null, 1);
+        this.context = context;
+    }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_LIST_TABLE = "CREATE TABLE "+ TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_DAY + " TEXT," + COL_MONTH + " TEXT," + COL_YEAR + " TEXT,"
-                + COL_TIME + "TEXT," + COL_NAME + "TEXT," + COL_DETAILS + "TEXT," + COL_NOTIFICATION + "TEXT," + COL_TYPE + "TEXT);";
-
-        db.execSQL(CREATE_LIST_TABLE);
+//        String CREATE_EVENT_TABLE = "CREATE TABLE "+ TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_DAY + " TEXT," + COL_MONTH + " TEXT," + COL_YEAR + " TEXT,"
+//                + COL_TIME + "TEXT," + COL_NAME + "TEXT," + COL_DETAILS + "TEXT," + COL_NOTIFICATION + "TEXT," + COL_TYPE + "TEXT);";
+        String CREATE_EVENT_TABLE = "CREATE TABLE "+ TABLE_NAME + " (" + COL_ID + " INTEGER PRIMARY KEY, "
+                 + COL_NAME + "TEXT," + COL_DETAILS + "TEXT);";
+        db.execSQL(CREATE_EVENT_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int j) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+//    พดทดลอง
+    public  boolean addUserEvent(UserEvent event){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_ID,1);
+        values.put(COL_NAME, event.getEventName());
+        values.put(COL_DETAILS, event.getEventDetail());
+
+//        String insertevent = "INSERT INTO " + TABLE_NAME + "( " + COL_NAME + ", " + COL_DETAILS +") VALUES ("
+//                +event.getEventName() + ", " +event.getEventDetail() + " );" ;
+//        db.execSQL(insertevent);
+
+        long insert = db.insert(TABLE_NAME, null, values);
+
+        if(insert == -1){
+            Toast.makeText(context ,"fail" , Toast.LENGTH_SHORT ).show();
+            return false;
+        }
+        else return true;
     }
 
     public boolean addEvent(String day,String month,String year,String time,String name,String details,String notification,String type) {

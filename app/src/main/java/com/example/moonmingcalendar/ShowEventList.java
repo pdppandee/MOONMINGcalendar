@@ -2,6 +2,8 @@ package com.example.moonmingcalendar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
@@ -90,7 +92,7 @@ public class ShowEventList extends AppCompatActivity{
                 String select=listView.getItemAtPosition(i).toString();
                 String name = adapterView.getItemAtPosition(i).toString();
                 Toast.makeText(ShowEventList.this, eventListName.get(i), Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(ShowEventList.this,ShowUserEvent.class);
+                /*Intent intent = new Intent(ShowEventList.this,ShowMainEvent.class);
                 intent.putExtra("day",day);
                 startActivity(intent);*/
             }
@@ -109,14 +111,12 @@ public class ShowEventList extends AppCompatActivity{
         Context context;
         ArrayList<String> rName;
         ArrayList<String> rDetail;
-        //int rImgs[];
 
         MyAdapter (Context c, ArrayList<String> name, ArrayList<String> detail) {
             super(c, R.layout.event_list, R.id.eventName, name);
             this.context = c;
             this.rName = name;
             this.rDetail = detail;
-            //this.rImgs = imgs;
 
         }
 
@@ -125,16 +125,24 @@ public class ShowEventList extends AppCompatActivity{
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View row = layoutInflater.inflate(R.layout.event_list, parent, false);
-            //ImageView images = row.findViewById(R.id.image);
-            TextView myTitle = row.findViewById(R.id.eventName);
-            TextView myDescription = row.findViewById(R.id.eventDetail);
+            TextView name = row.findViewById(R.id.eventName);
+            TextView detail = row.findViewById(R.id.eventDetail);
 
-            // now set our resources on views
-            //images.setImageResource(rImgs[position]);
-            myTitle.setText(rName.get(position));
-            myDescription.setText(rDetail.get(position));
+            /*Typeface childFont = Typeface.createFromAsset(getAssets(), "font/kanit.ttf");
+            name.setTypeface(childFont);
+            detail.setTypeface(childFont);*/
+
+
+            //name.setTypeface(Typeface.createFromAsset(getAssets(), "kanit.ttf"));
+            //detail.setTypeface(Typeface.createFromAsset(getAssets(), "kanit.ttf"));
+
+
+            name.setText(rName.get(position));
+            detail.setText(rDetail.get(position));
             return row;
         }
+
+
     }
 
 

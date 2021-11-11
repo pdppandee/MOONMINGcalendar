@@ -8,12 +8,12 @@
         android:id="@+id/eventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/kanit"
         android:text="eventName"
         android:textColor="#605F63"
-        android:textSize="30dp"
-        android:layout_marginLeft="25dp"/>
+        android:textSize="30dp" />
 
     <TextView
         android:id="@+id/eventDetail"

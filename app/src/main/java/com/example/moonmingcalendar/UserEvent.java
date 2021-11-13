@@ -1,6 +1,7 @@
 package com.example.moonmingcalendar;
 
 public class UserEvent {
+    private int id;
     private String datetime;
     private String eventName;
     private String eventDetail;
@@ -9,6 +10,7 @@ public class UserEvent {
         this.eventDetail = eventDetail;
         this.eventName = eventName;
     }
+
 
     @Override
     public String toString() {

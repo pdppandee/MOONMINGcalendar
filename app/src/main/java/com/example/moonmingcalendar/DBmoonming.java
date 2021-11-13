@@ -47,10 +47,10 @@ public class DBmoonming extends SQLiteOpenHelper {
     }
 
 //    พดทดลอง
-    public  boolean addUserEvent(UserEvent event){
+    public  boolean addUserEvent(UserEvent event) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COL_ID,1);
+        values.put(COL_ID, 1);
         values.put(COL_NAME, event.getEventName());
         values.put(COL_DETAILS, event.getEventDetail());
 
@@ -58,13 +58,14 @@ public class DBmoonming extends SQLiteOpenHelper {
 //                +event.getEventName() + ", " +event.getEventDetail() + " );" ;
 //        db.execSQL(insertevent);
 
+
         long insert = db.insert(TABLE_NAME, null, values);
 
-        if(insert == -1){
-            Toast.makeText(context ,"fail" , Toast.LENGTH_SHORT ).show();
-            return false;
-        }
-        else return true;
+         if(insert == -1){
+             Toast.makeText(context ,"fail" , Toast.LENGTH_SHORT ).show();
+             return false;
+         }
+         else return true;
     }
 
     public boolean addEvent(String day,String month,String year,String time,String name,String details,String notification,String type) {

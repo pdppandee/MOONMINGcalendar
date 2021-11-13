@@ -79,7 +79,7 @@
                 android:textSize="25dp">
             </TextView>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/selectTimeButton"
                 android:onClick="popTimePicker"
                 android:layout_width="150dp"
@@ -87,8 +87,11 @@
                 android:layout_marginLeft="70dp"
                 android:text="เลือกเวลา"
                 android:fontFamily="@font/kanit"
+                app:strokeColor="@color/purple_dark"
+                app:strokeWidth="2dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 >
-            </Button>
+            </com.google.android.material.button.MaterialButton>
         </LinearLayout>
 
 
@@ -105,16 +108,19 @@
         android:layout_marginTop="40dp"
         >
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/addUserEventButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:strokeColor="@color/purple_dark"
+            app:strokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_weight="1"
             android:layout_gravity="right"
             android:text="เพิ่ม"
             android:fontFamily="@font/kanit"
             >
-        </Button>
+        </com.google.android.material.button.MaterialButton>
     </LinearLayout>
 
 <!--    <Button-->

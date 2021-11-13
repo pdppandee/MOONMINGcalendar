@@ -63,14 +63,16 @@
 
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#CD6C6C"
+        app:strokeColor="@color/purple_dark"
+        app:strokeWidth="2dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:fontFamily="@font/kanit"
         android:text="รายละเอียด"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/purple_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.941"

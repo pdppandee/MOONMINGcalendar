@@ -90,12 +90,15 @@
     </LinearLayout>
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/editueSave"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/kanit"
         android:text="@string/editueSave"
+        app:strokeColor="@color/purple_dark"
+        app:strokeWidth="2dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -103,12 +106,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/editueBack"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:text="@string/editueBack"
         android:fontFamily="@font/kanit"
+        app:strokeColor="@color/purple_dark"
+        app:strokeWidth="2dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"

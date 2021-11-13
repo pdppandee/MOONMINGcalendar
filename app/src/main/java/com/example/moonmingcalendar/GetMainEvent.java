@@ -8,7 +8,13 @@ public class GetMainEvent {
 
     public GetMainEvent(String day){
 //        eng
+//              1
         arrayList.add(new MainEvent("วันปีใหม่", "วันขึ้นปีใหม่สากล", "NO", "1", "1"));
+//              2
+        arrayList.add(new MainEvent("วันวาเลนไทม์", "วันวาเลนไทม์ วันแห่งความรัก", "NO", "14", "2"));
+//              12
+        arrayList.add(new MainEvent("วันคริสต์มาสอีฟ", "วันคริสต์มาสอีฟ", "NO", "25", "12"));
+        arrayList.add(new MainEvent("วันคริสต์มาส", "วันคริสต์มาส", "NO", "25", "12"));
 //        thai
 //              4
         arrayList.add(new MainEvent("วันจักรี", "วันจักรี", "NO", "6", "4"));

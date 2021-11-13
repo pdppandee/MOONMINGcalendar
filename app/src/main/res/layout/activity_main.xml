@@ -69,6 +69,7 @@
         android:layout_height="wrap_content"
         app:strokeColor="@color/purple_dark"
         app:strokeWidth="2dp"
+        app:cornerRadius="20dp"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:fontFamily="@font/kanit"
         android:text="รายละเอียด"

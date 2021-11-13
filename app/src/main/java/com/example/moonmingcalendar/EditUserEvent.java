@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,16 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EditUserEvent extends AppCompatActivity {
     Button btnSaveEditEvent,btnBackToShowUE;
-    TextView textEditEventName,textEditDate;
+    EditText textEventName, textEventDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_user_event);
-        textEditDate = findViewById(R.id.editueDate);
-        String day = getIntent().getExtras().getString("day");
-        textEditDate.setText(day);
-        textEditEventName = findViewById(R.id.editNameEvent);
+
+        textEventName = findViewById(R.id.eventname);
+        textEventDetail = findViewById(R.id.eventDetail);
 
         btnSaveEditEvent = findViewById(R.id.editueSave);
         btnSaveEditEvent.setOnClickListener(new View.OnClickListener() {

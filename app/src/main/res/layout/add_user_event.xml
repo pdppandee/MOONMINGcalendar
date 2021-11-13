@@ -25,7 +25,7 @@
 
             <TextView
                 android:id="@+id/name"
-                android:layout_width="128dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kanit"
                 android:text="กิจกรรม: "
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kanit"
-                android:hint="enter event name"
+                android:hint="กรอกชื่อกิจกรรม"
                 android:minHeight="48dp" />
         </LinearLayout>
 
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kanit"
-                android:hint="enter event detail"
+                android:hint="เพิ่มรายละเอียดของกิจกรรม"
                 android:minHeight="48dp" />
         </LinearLayout>
 
@@ -75,26 +75,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kanit"
-                android:text="วันที่: "
+                android:text="เวลา: "
                 android:textSize="25dp">
             </TextView>
 
-            <Button
-                android:id="@+id/datePickerButton"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="JAN 01 2022"
-                android:textSize="30sp"
-                android:textColor="@color/black"
-                style="?android:spinnerStyle"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toButtomOf="@+id/dateSelectTV"
-                android:layout_marginTop="5dp"
-                android:onClick="openDatePicker"
-                >
-            </Button>
 
 
         </LinearLayout>
@@ -106,14 +90,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="1dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="right">
 
             <Button
-                android:id="@+id/addUserEventdbutton"
+                android:id="@+id/addUserEventButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="add" />
+                android:text="เพิ่ม"
+                android:textSize="25dp"
+                android:fontFamily="@font/kanit" />
         </LinearLayout>
     </LinearLayout>
 

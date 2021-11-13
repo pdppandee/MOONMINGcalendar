@@ -49,11 +49,11 @@ public class AddUserEvent extends AppCompatActivity {
                     eventDetail.setText("");
                     selectTimeButton.setText("เลือกเวลา");
                 }else if(eventName.length() != 0 && eventDetail.length() != 0 && time.equals("เลือกเวลา")){
-                    toastMessage("You must select time!");
+                    toastMessage("กรุณาระบุเวลาด้วยจ้า!");
                 }
 
                 else {
-                    toastMessage("You must put something in the text field!");
+                    toastMessage("กรุณาใส่ข้อความที่ต้องการ!");
                 }
             }
         });
@@ -64,9 +64,9 @@ public class AddUserEvent extends AppCompatActivity {
         boolean insertData = pDatabaseHelper.addData(day,name,detail,noti,time);
 
         if (insertData) {
-            toastMessage("Data Successfully Inserted!");
+            toastMessage("เพิ่มกิจรรมเสร็จสิ้นจ้า :-D");
         } else {
-            toastMessage("Something went wrong");
+            toastMessage("เพิ่มกิจรรมไม่สำเร็จ ;-;");
         }
     }
 

@@ -34,6 +34,7 @@ public class GetMainEvent {
         arrayList.add(new MainEvent("วันพ่อ", "วันพ่อ", "NO", "5", "12"));
         arrayList.add(new MainEvent("วันสิ้นปี", "วันสิ้นปี", "NO", "31", "12"));
 
+
         dmy = day.split("/");
     }
     public String getMainActivity(){

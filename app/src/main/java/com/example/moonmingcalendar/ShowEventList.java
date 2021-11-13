@@ -3,9 +3,11 @@ package com.example.moonmingcalendar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,12 +37,16 @@ public class ShowEventList extends AppCompatActivity{
     LinearLayout mutelu;
     ListView listView;
 
+    DbPayHelper db;
+
+    private static final String TAG = "ShowEventList";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_event_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String day = getIntent().getExtras().getString("day");
+        db = new DbPayHelper(this);
         getSupportActionBar().setTitle(day);
         //textDate = findViewById(R.id.date);
         textMTL = findViewById(R.id.textMTLdt);
@@ -89,7 +95,8 @@ public class ShowEventList extends AppCompatActivity{
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+
                 String select=listView.getItemAtPosition(i).toString();
                 String name = adapterView.getItemAtPosition(i).toString();
                 Toast.makeText(ShowEventList.this, eventListName.get(i), Toast.LENGTH_SHORT).show();
@@ -101,6 +108,7 @@ public class ShowEventList extends AppCompatActivity{
                 startActivity(putdate2);
             }
         });
+
     }
 
     public int dayOfWeek(String dmyST) {
@@ -131,14 +139,6 @@ public class ShowEventList extends AppCompatActivity{
             View row = layoutInflater.inflate(R.layout.event_list, parent, false);
             TextView name = row.findViewById(R.id.eventName);
             TextView detail = row.findViewById(R.id.eventDetail);
-
-            /*Typeface childFont = Typeface.createFromAsset(getAssets(), "font/kanit.ttf");
-            name.setTypeface(childFont);
-            detail.setTypeface(childFont);*/
-
-
-            //name.setTypeface(Typeface.createFromAsset(getAssets(), "kanit.ttf"));
-            //detail.setTypeface(Typeface.createFromAsset(getAssets(), "kanit.ttf"));
 
 
             name.setText(rName.get(position));

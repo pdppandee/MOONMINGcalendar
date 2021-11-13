@@ -109,10 +109,10 @@ public class DbPayHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor getItemID(String day,String amount){
+    public Cursor getItemID(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " +
-                COL6 + " = '" + amount + "'"+ " AND " + COL2 + " = '" + day + "'";
+                COL3 + " = '" + name + "'";
         Cursor data = db.rawQuery(query, null);
         return data;
     }

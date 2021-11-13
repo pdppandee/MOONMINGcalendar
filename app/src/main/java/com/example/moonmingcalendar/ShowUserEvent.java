@@ -35,7 +35,6 @@ public class ShowUserEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent editUserEvent = new Intent(ShowUserEvent.this, EditUserEvent.class);
-                editUserEvent.putExtra("day", day);
                 startActivity(editUserEvent);
             }
         });

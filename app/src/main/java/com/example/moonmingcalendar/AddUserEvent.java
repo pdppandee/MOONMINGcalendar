@@ -50,4 +50,8 @@ public class AddUserEvent extends AppCompatActivity {
             });
     }
 
+    public void openDatePicker(View View){
+
+    }
+
 }

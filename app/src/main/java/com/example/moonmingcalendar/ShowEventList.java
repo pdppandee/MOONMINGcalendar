@@ -93,12 +93,9 @@ public class ShowEventList extends AppCompatActivity{
                 String select=listView.getItemAtPosition(i).toString();
                 String name = adapterView.getItemAtPosition(i).toString();
                 Toast.makeText(ShowEventList.this, eventListName.get(i), Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(ShowEventList.this,ShowMainEvent.class);
-                intent.putExtra("day",day);
-                startActivity(intent);*/
-                Intent putdate1 = new Intent(ShowEventList.this, ShowUserEvent.class);
-                putdate1.putExtra("day",day);
-                startActivity(putdate1);
+//                Intent putdate1 = new Intent(ShowEventList.this, ShowUserEvent.class);
+//                putdate1.putExtra("day",day);
+//                startActivity(putdate1);
                 Intent putdate2 = new Intent(ShowEventList.this, ShowMainEvent.class);
                 putdate2.putExtra("day", day);
                 startActivity(putdate2);

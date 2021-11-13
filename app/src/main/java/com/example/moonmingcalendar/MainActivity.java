@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
                 final String day = dayOfMonth+"/"+(month+1)+"/"+year;
-                ArrayList<String> userEvent=GetText(day);
+                ArrayList<String> userEvent=GetName(day);
                 textDate.setText(day);
                 GetMainEvent ShowEvent = new GetMainEvent(day);
                 ArrayList<String> eventListName=ShowEvent.getEventListName();
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public ArrayList GetText(String date) {
+    public ArrayList GetName(String date) {
         Cursor data = pDatabaseHelper.getEventListName(date);
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()){

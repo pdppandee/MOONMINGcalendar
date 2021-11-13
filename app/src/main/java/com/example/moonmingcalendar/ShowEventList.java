@@ -36,8 +36,7 @@ public class ShowEventList extends AppCompatActivity{
     TextView textDate, textMTL;
     LinearLayout mutelu;
     ListView listView;
-
-    DbPayHelper db;
+    DbPayHelper pDatabaseHelper;
 
     private static final String TAG = "ShowEventList";
     @Override
@@ -46,7 +45,7 @@ public class ShowEventList extends AppCompatActivity{
         setContentView(R.layout.show_event_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String day = getIntent().getExtras().getString("day");
-        db = new DbPayHelper(this);
+        pDatabaseHelper = new DbPayHelper(this);
         getSupportActionBar().setTitle(day);
         //textDate = findViewById(R.id.date);
         textMTL = findViewById(R.id.textMTLdt);
@@ -89,6 +88,17 @@ public class ShowEventList extends AppCompatActivity{
         GetMainEvent showEvent = new GetMainEvent(day);
         ArrayList<String> eventListName=showEvent.getEventListName();
         ArrayList<String> eventListDetail=showEvent.getEventListDetail();
+
+        ArrayList<String> userEventName=GetName(day);
+        ArrayList<String> userEventDetail=GetDetail(day);
+
+        for (int n=0;n<userEventName.size();n++){
+            eventListName.add(userEventName.get(n));
+        }
+        for (int n=0;n<userEventDetail.size();n++){
+            eventListDetail.add(userEventDetail.get(n));
+        }
+
 
         listView=(ListView) findViewById(R.id.list);
         MyAdapter adapter = new MyAdapter(this, eventListName, eventListDetail);
@@ -148,6 +158,42 @@ public class ShowEventList extends AppCompatActivity{
 
 
     }
+
+    public ArrayList GetName(String date) {
+        Cursor data = pDatabaseHelper.getEventListName(date);
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()){
+            listData.add(data.getString(0));
+        }
+        return listData;
+    }
+
+    public ArrayList GetDetail(String date) {
+        Cursor data = pDatabaseHelper.getEventListDetail(date);
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()){
+            listData.add(data.getString(0));
+        }
+        return listData;
+    }
+
+    /*public ArrayList GetEventDetail(String date) {
+        Cursor data = pDatabaseHelper.getEventList(date);
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()){
+            listData.add(data.getString(1));
+        }
+        return listData;
+    }
+
+    public ArrayList GetEventID(String date) {
+        Cursor data = pDatabaseHelper.getEventList(date);
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()){
+            listData.add(data.getString(0));
+        }
+        return listData;
+    }*/
 
 
 

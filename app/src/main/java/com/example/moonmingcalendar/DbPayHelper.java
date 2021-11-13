@@ -63,6 +63,14 @@ public class DbPayHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor getEventListDetail(String day){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + COL4 + " FROM " +
+                TABLE_NAME + " WHERE " + COL2+ " = '" + day + "'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
     public Cursor getData(String day){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + COL1 + "," + COL5 + "," + COL6 + " FROM " +

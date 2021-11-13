@@ -18,7 +18,6 @@ import java.util.Locale;
 public class AddUserEvent extends AppCompatActivity {
     EditText eventName, eventDetail;
     Button addUserEventButton, selectTimeButton;
-    ListView userEventListView;
     DbPayHelper pDatabaseHelper;
     int hour, minute;
 
@@ -41,13 +40,19 @@ public class AddUserEvent extends AppCompatActivity {
             public void onClick(View v) {
                 final String name = eventName.getText().toString();
                 final String detail = eventDetail.getText().toString();
+                String time = selectTimeButton.getText().toString();
                 String noti = "";
-                String time = "";
-                if (eventName.length() != 0) {
+
+                if (eventName.length() != 0 && eventDetail.length() != 0 && !time.equals("เลือกเวลา")) {
                     AddData(day,name,detail,noti,time);
                     eventName.setText("");
                     eventDetail.setText("");
-                } else {
+                    selectTimeButton.setText("เลือกเวลา");
+                }else if(eventName.length() != 0 && eventDetail.length() != 0 && time.equals("เลือกเวลา")){
+                    toastMessage("You must select time!");
+                }
+
+                else {
                     toastMessage("You must put something in the text field!");
                 }
             }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnDetail;
     TextView textDate;
     ListView miniEventList;
+    DbPayHelper pDatabaseHelper;
 
 
     @Override
@@ -30,16 +32,20 @@ public class MainActivity extends AppCompatActivity {
 
         textDate = findViewById(R.id.Date);
         mCalendar = findViewById(R.id.calendarView);
-
         miniEventList = findViewById(R.id.eventList);
+        pDatabaseHelper = new DbPayHelper(this);
 
         mCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
                 final String day = dayOfMonth+"/"+(month+1)+"/"+year;
+                ArrayList<String> userEvent=GetText(day);
                 textDate.setText(day);
                 GetMainEvent ShowEvent = new GetMainEvent(day);
                 ArrayList<String> eventListName=ShowEvent.getEventListName();
+                for(int i=0;i<userEvent.size();i++){
+                    eventListName.add(userEvent.get(i));
+                }
                 ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, eventListName);
                 miniEventList.setAdapter(arrayAdapter);
 
@@ -56,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
+    public ArrayList GetText(String date) {
+        Cursor data = pDatabaseHelper.getEventListName(date);
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()){
+            listData.add(data.getString(0));
+        }
+        return listData;
+    }
 }

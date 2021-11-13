@@ -1,24 +1,21 @@
 package com.example.moonmingcalendar;
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
+
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Calendar;
-
 public class AddUserEvent extends AppCompatActivity {
     EditText eventName, eventDetail;
     Button addUserEventButton;
     ListView userEventListView;
-    DBmoonming databaseHelper;
+    DbPayHelper pDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,27 +27,41 @@ public class AddUserEvent extends AppCompatActivity {
         eventDetail = findViewById(R.id.eventDetail);
         userEventListView = findViewById(R.id.userEventListView);
         addUserEventButton = findViewById(R.id.addUserEventButton);
+        pDatabaseHelper = new DbPayHelper(this);
+
+        String day = getIntent().getExtras().getString("day");
 
         addUserEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserEvent event1;
-                try {
-                    event1 = new UserEvent(eventName.getText().toString(), eventDetail.getText().toString());
-                    Toast.makeText(getApplicationContext(), event1.toString(), Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    event1 = new UserEvent("error", "error");
+                final String name = eventName.getText().toString();
+                final String detail = eventDetail.getText().toString();
+                String noti = "";
+                String time = "";
+                if (eventName.length() != 0) {
+                    AddData(day,name,detail,noti,time);
+                    eventName.setText("");
+                    eventDetail.setText("");
+                } else {
+                    toastMessage("You must put something in the text field!");
                 }
-//                    UserEvent event1 = new UserEvent(eventName.getText().toString(), eventDetail.getText().toString());
-
-
-                databaseHelper = new DBmoonming(getApplicationContext());
-
-                boolean success = databaseHelper.addUserEvent(event1);
-
-                Toast.makeText(getApplicationContext(), "Success " + success, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    public void AddData(String day,String name,String detail,String noti,String time) {
+        boolean insertData = pDatabaseHelper.addData(day,name,detail,noti,time);
+
+        if (insertData) {
+            toastMessage("Data Successfully Inserted!");
+        } else {
+            toastMessage("Something went wrong");
+        }
+    }
+
+    private void toastMessage(String message) {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
 }

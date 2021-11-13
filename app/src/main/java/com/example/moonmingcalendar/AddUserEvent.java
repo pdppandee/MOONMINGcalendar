@@ -30,7 +30,6 @@ public class AddUserEvent extends AppCompatActivity {
 
         eventName = findViewById(R.id.eventname);
         eventDetail = findViewById(R.id.eventDetail);
-        userEventListView = findViewById(R.id.userEventListView);
         addUserEventButton = findViewById(R.id.addUserEventButton);
         selectTimeButton = findViewById(R.id.selectTimeButton);
         pDatabaseHelper = new DbPayHelper(this);

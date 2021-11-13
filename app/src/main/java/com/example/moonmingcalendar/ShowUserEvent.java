@@ -26,6 +26,7 @@ public class ShowUserEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent backToShowEventList = new Intent(ShowUserEvent.this, ShowEventList.class);
+                backToShowEventList.putExtra("day",day);
                 startActivity(backToShowEventList);
             }
         });

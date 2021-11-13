@@ -109,13 +109,17 @@ public class ShowEventList extends AppCompatActivity{
 
                 String select=listView.getItemAtPosition(i).toString();
                 String name = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(ShowEventList.this, eventListName.get(i), Toast.LENGTH_SHORT).show();
-//                Intent putdate1 = new Intent(ShowEventList.this, ShowUserEvent.class);
-//                putdate1.putExtra("day",day);
-//                startActivity(putdate1);
-                Intent putdate2 = new Intent(ShowEventList.this, ShowMainEvent.class);
-                putdate2.putExtra("day", day);
-                startActivity(putdate2);
+
+                if(userEventName.contains(eventListName.get(i))){
+                    Intent intent1 = new Intent(ShowEventList.this, ShowMainEvent.class);
+                    intent1.putExtra("day",day);
+                    startActivity(intent1);
+                }else {
+                    Intent intent2 = new Intent(ShowEventList.this, ShowUserEvent.class);
+                    intent2.putExtra("day",day);
+                    startActivity(intent2);
+                }
+
             }
         });
 
@@ -176,25 +180,5 @@ public class ShowEventList extends AppCompatActivity{
         }
         return listData;
     }
-
-    /*public ArrayList GetEventDetail(String date) {
-        Cursor data = pDatabaseHelper.getEventList(date);
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()){
-            listData.add(data.getString(1));
-        }
-        return listData;
-    }
-
-    public ArrayList GetEventID(String date) {
-        Cursor data = pDatabaseHelper.getEventList(date);
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()){
-            listData.add(data.getString(0));
-        }
-        return listData;
-    }*/
-
-
 
 }

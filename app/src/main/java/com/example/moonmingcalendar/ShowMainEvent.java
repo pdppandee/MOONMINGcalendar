@@ -12,10 +12,10 @@ public class ShowMainEvent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_user_event);
+        setContentView(R.layout.show_main_event);
         textMainEventName = findViewById(R.id.maineventname);
         textMainEventDate = findViewById(R.id.date);
         String day = getIntent().getExtras().getString("day");
-        textMainEventDate.setText(day);
+        //textMainEventDate.setText(day);
     }
 }

@@ -15,7 +15,7 @@
         android:fontFamily="@font/kanit_extralight_italic"
         android:textColor="@color/purple_light"
         android:textSize="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/LinearLayout1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
         <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="373dp"
-            android:layout_height="365dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/LinearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.421"

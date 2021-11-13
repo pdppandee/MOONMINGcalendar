@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/dateSelectTv"
@@ -79,29 +79,30 @@
                 android:textSize="25dp">
             </TextView>
 
-
-
+            <Button
+                android:id="@+id/selectTimeButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="เลือกเวลา"
+                android:fontFamily="@font/kanit"
+                >
+            </Button>
         </LinearLayout>
 
 
-
-        <LinearLayout
+        <Button
+            android:id="@+id/addUserEventButton"
+            android:onClick="popTimePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="1dp"
-            android:orientation="horizontal"
-            android:layout_gravity="right">
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:layout_marginTop="400dp"
+            android:text="เพิ่ม"
+            android:fontFamily="@font/kanit" >
+        </Button>
 
-            <Button
-                android:id="@+id/addUserEventButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="เพิ่ม"
-                android:textSize="25dp"
-                android:fontFamily="@font/kanit" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

@@ -2,20 +2,25 @@ package com.example.moonmingcalendar;
 
 
 
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class AddUserEvent extends AppCompatActivity {
     EditText eventName, eventDetail;
-    Button addUserEventButton;
+    Button addUserEventButton, selectTimeButton;
     ListView userEventListView;
     DbPayHelper pDatabaseHelper;
+    int hour, minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,7 @@ public class AddUserEvent extends AppCompatActivity {
         eventDetail = findViewById(R.id.eventDetail);
         userEventListView = findViewById(R.id.userEventListView);
         addUserEventButton = findViewById(R.id.addUserEventButton);
+        selectTimeButton = findViewById(R.id.selectTimeButton);
         pDatabaseHelper = new DbPayHelper(this);
 
         String day = getIntent().getExtras().getString("day");
@@ -62,6 +68,29 @@ public class AddUserEvent extends AppCompatActivity {
 
     private void toastMessage(String message) {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+    public void popTimePicker(View view)
+    {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
+        {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+            {
+                hour = selectedHour;
+                minute = selectedMinute;
+                String time = makeTimeString(hour, minute);
+                selectTimeButton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
+            }
+        };
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
+        timePickerDialog.setTitle("เลือกเวลา");
+        timePickerDialog.show();
+    }
+
+    private String makeTimeString(int hour, int minute){
+        return hour + " : " + minute;
     }
 
 }

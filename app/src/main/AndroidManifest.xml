@@ -28,6 +28,8 @@
             android:parentActivityName=".ShowEventList"></activity>
         <activity android:name=".EditUserEvent"
             android:parentActivityName=".ShowUserEvent"></activity>
+        <activity android:name=".ShowMainEvent"
+            android:parentActivityName=".ShowMainEvent"></activity>
     </application>
 
 </manifest>

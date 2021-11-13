@@ -9,4 +9,6 @@
     <string name="editueDate">TextView</string>
     <string name="editueSave">บันทึก</string>
     <string name="editueBack">กลับ</string>
+    <string name="maineventname">TextView</string>
+    <string name="maineventdate">TextView</string>
 </resources>

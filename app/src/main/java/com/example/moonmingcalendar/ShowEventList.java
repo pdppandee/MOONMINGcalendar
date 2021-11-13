@@ -95,6 +95,12 @@ public class ShowEventList extends AppCompatActivity{
                 /*Intent intent = new Intent(ShowEventList.this,ShowMainEvent.class);
                 intent.putExtra("day",day);
                 startActivity(intent);*/
+                Intent putdate1 = new Intent(ShowEventList.this, ShowUserEvent.class);
+                putdate1.putExtra("day",day);
+                startActivity(putdate1);
+                Intent putdate2 = new Intent(ShowEventList.this, ShowMainEvent.class);
+                putdate2.putExtra("day", day);
+                startActivity(putdate2);
             }
         });
     }

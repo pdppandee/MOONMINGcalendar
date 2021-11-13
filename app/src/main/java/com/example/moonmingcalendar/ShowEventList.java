@@ -111,11 +111,11 @@ public class ShowEventList extends AppCompatActivity{
                 String name = adapterView.getItemAtPosition(i).toString();
 
                 if(userEventName.contains(eventListName.get(i))){
-                    Intent intent1 = new Intent(ShowEventList.this, ShowMainEvent.class);
+                    Intent intent1 = new Intent(ShowEventList.this, ShowUserEvent.class);
                     intent1.putExtra("day",day);
                     startActivity(intent1);
                 }else {
-                    Intent intent2 = new Intent(ShowEventList.this, ShowUserEvent.class);
+                    Intent intent2 = new Intent(ShowEventList.this, ShowMainEvent.class);
                     intent2.putExtra("day",day);
                     startActivity(intent2);
                 }

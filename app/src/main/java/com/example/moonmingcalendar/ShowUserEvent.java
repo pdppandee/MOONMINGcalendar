@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ShowUserEvent extends AppCompatActivity {
     Button btnUlBack,btnUlEdit,btnUlDelete;
-    TextView textEventName,textDate;
+    TextView textEventName,textDate, textEventDetail, textTime;
     DbPayHelper pDatabaseHelper;
 
     @Override
@@ -26,18 +26,9 @@ public class ShowUserEvent extends AppCompatActivity {
         pDatabaseHelper = new DbPayHelper(this);
         String[] data = GetData(id);
         textEventName.setText(data[0]);
+        textEventDetail = findViewById(R.id.eventDetail);
 
-
-
-        btnUlBack = findViewById(R.id.ueBack);
-        btnUlBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent backToShowEventList = new Intent(ShowUserEvent.this, ShowEventList.class);
-                backToShowEventList.putExtra("day",day);
-                startActivity(backToShowEventList);
-            }
-        });
+        btnUlBack = findViewById(R.id.ueDelete);
 
         btnUlEdit = findViewById(R.id.ueEdit);
         btnUlEdit.setOnClickListener(new View.OnClickListener() {

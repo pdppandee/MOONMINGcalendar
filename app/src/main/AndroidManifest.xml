@@ -21,13 +21,13 @@
         <activity android:name=".ShowEventList"
             android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".ShowMuteluEvent"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".ShowMuteluEvent"></activity>
         <activity android:name=".AddUserEvent"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".AddUserEvent"></activity>
         <activity android:name=".ShowUserEvent"
-            android:parentActivityName=".ShowEventList"></activity>
-        <activity android:name=".EditUserEvent"
             android:parentActivityName=".ShowUserEvent"></activity>
+        <activity android:name=".EditUserEvent"
+            android:parentActivityName=".EditUserEvent"></activity>
         <activity android:name=".ShowMainEvent"
             android:parentActivityName=".ShowMainEvent"></activity>
     </application>

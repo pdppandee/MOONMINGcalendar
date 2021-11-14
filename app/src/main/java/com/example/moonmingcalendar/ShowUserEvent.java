@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-
 public class ShowUserEvent extends AppCompatActivity {
     Button btnUlBack,btnUlEdit,btnUlDelete;
     TextView textEventName,textDate;
@@ -20,7 +18,7 @@ public class ShowUserEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_user_event);
-        textDate = findViewById(R.id.eventDate);
+        textDate = findViewById(R.id.editeventDate);
         String day = getIntent().getExtras().getString("day");
         String id = getIntent().getExtras().getString("userID");
         textDate.setText(day);
@@ -28,6 +26,7 @@ public class ShowUserEvent extends AppCompatActivity {
         pDatabaseHelper = new DbPayHelper(this);
         String[] data = GetData(id);
         textEventName.setText(data[0]);
+
 
 
         btnUlBack = findViewById(R.id.ueBack);
@@ -45,6 +44,8 @@ public class ShowUserEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent editUserEvent = new Intent(ShowUserEvent.this, EditUserEvent.class);
+                editUserEvent.putExtra("day",day);
+                editUserEvent.putExtra("userID",id);
                 startActivity(editUserEvent);
             }
         });

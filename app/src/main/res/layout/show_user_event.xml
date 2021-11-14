@@ -70,7 +70,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/eventDate"
+        android:id="@+id/editeventDate"
         android:layout_width="373dp"
         android:layout_height="46dp"
         android:fontFamily="@font/kanit"

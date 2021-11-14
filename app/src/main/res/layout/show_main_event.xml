@@ -23,6 +23,7 @@
             android:id="@+id/maineventname"
             android:layout_width="match_parent"
             android:layout_height="53dp"
+            android:fontFamily="@font/kanit"
             android:text="@string/maineventname"
             android:textSize="26sp" />
 
@@ -44,26 +45,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/maineventnameLayout"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="50dp">
 
         <TextView
             android:id="@+id/maineventdetail"
             android:layout_width="match_parent"
             android:layout_height="53dp"
             android:text="@string/maineventname"
+            android:fontFamily="@font/kanit"
             android:textSize="26sp" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="26sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

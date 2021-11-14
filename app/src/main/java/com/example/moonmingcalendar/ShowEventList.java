@@ -55,25 +55,25 @@ public class ShowEventList extends AppCompatActivity{
         int dayN = dayOfWeek(day);
         if (dayN==1){
             textMTL.setText("สีกาลกิณี : ฟ้า/น้ำเงิน");
-            //image.setImageResource(R.drawable.sun);
+            image.setImageResource(R.drawable.asun);
         }else if (dayN==2){
             textMTL.setText("สีกาลกิณี : แดง");
-            //image.setImageResource(R.drawable.mon);
+            image.setImageResource(R.drawable.amon);
         }else if (dayN==3){
             textMTL.setText("สีกาลกิณี : เหลือง/ขาว/เทา");
-            //image.setImageResource(R.drawable.tue);
+            image.setImageResource(R.drawable.atue);
         }else if (dayN==4){
             textMTL.setText("ีกาลกิณี : ชมพู");
-            //image.setImageResource(R.drawable.wed);
+            image.setImageResource(R.drawable.awed);
         }else if (dayN==5){
             textMTL.setText("สีกาลกิณี : ม่วง/ดำ");
-            //image.setImageResource(R.drawable.thu);
+            image.setImageResource(R.drawable.athu);
         }else if (dayN==6){
             textMTL.setText("สีกาลกิณี : ม่วงอ่อน");
-            //image.setImageResource(R.drawable.fri);
+            image.setImageResource(R.drawable.afri);
         }else if (dayN==7){
             textMTL.setText("สีกาลกิณี : เขียว");
-            //image.setImageResource(R.drawable.sat);
+            image.setImageResource(R.drawable.asat);
         }
         mutelu = findViewById(R.id.MTL);
         mutelu.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +129,7 @@ public class ShowEventList extends AppCompatActivity{
                 }else {
                     Intent intent2 = new Intent(ShowEventList.this, ShowMainEvent.class);
                     intent2.putExtra("day",day);
+                    intent2.putExtra("position",i);
                     startActivity(intent2);
                 }
 
@@ -171,8 +172,6 @@ public class ShowEventList extends AppCompatActivity{
             detail.setText(rDetail.get(position));
             return row;
         }
-
-
     }
 
     public ArrayList GetName(String date) {

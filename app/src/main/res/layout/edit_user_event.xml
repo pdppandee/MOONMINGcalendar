@@ -67,33 +67,82 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/editDate"
-            style="?android:spinnerStyle"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:fontFamily="@font/kanit"
-            android:onClick="openDatePicker"
-            android:text="date"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
 
-        <TimePicker
+            <TextView
+                android:id="@+id/dateSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit"
+                android:text="วันที่: "
+                android:textSize="25dp">
+            </TextView>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/editDate"
+                android:onClick="openDatePicker"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="เลือกวันที่"
+                android:fontFamily="@font/kanit"
+                app:strokeColor="@color/purple_dark"
+                app:strokeWidth="2dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:cornerRadius="20dp"
+                >
+            </com.google.android.material.button.MaterialButton>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="164dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="-30dp"
-            android:layout_weight="1"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            android:timePickerMode="spinner">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
 
-        </TimePicker>
+            <TextView
+                android:id="@+id/dateSelectTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit"
+                android:text="เวลา: "
+                android:textSize="25dp">
+            </TextView>
 
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/eventTime"
+                android:onClick="popTimePicker"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="เลือกเวลา"
+                android:fontFamily="@font/kanit"
+                app:strokeColor="@color/purple_dark"
+                app:strokeWidth="2dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:cornerRadius="20dp"
+                >
+            </com.google.android.material.button.MaterialButton>
+        </LinearLayout>
 
+<!--        <TimePicker-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="164dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginHorizontal="-30dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:scaleX="0.7"-->
+<!--            android:scaleY="0.7"-->
+<!--            android:timePickerMode="spinner">-->
 
-
+<!--        </TimePicker>-->
 
     </LinearLayout>
 

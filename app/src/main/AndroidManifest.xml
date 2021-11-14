@@ -23,12 +23,9 @@
             android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".ShowMuteluEvent"
             android:parentActivityName=".ShowMuteluEvent"></activity>
-        <activity android:name=".AddUserEvent"
-            android:parentActivityName=".AddUserEvent"></activity>
-        <activity android:name=".ShowUserEvent"
-            android:parentActivityName=".ShowUserEvent"></activity>
-        <activity android:name=".EditUserEvent"
-            android:parentActivityName=".EditUserEvent"></activity>
+        <activity android:name=".AddUserEvent"></activity>
+        <activity android:name=".ShowUserEvent"></activity>
+        <activity android:name=".EditUserEvent"></activity>
         <activity android:name=".ShowMainEvent"
             android:parentActivityName=".ShowMainEvent"></activity>
         <receiver android:name=".Notifications"

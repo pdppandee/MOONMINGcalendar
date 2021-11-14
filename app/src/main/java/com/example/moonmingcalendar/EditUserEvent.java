@@ -2,6 +2,7 @@ package com.example.moonmingcalendar;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,11 +11,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class EditUserEvent extends AppCompatActivity {
     Button btnSaveEditEvent, btnBack,timeButton;
@@ -22,6 +25,7 @@ public class EditUserEvent extends AppCompatActivity {
     DbPayHelper pDatabaseHelper;
     private DatePickerDialog datePickerDialog;
     private Button dateBtn;
+    int hour, minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +40,8 @@ public class EditUserEvent extends AppCompatActivity {
         textEventName.setText(data[0]);
         textEventDetail = findViewById(R.id.eventDetail);
         textEventDetail.setText(data[1]);
-        //timeButton = findViewById(R.id.TimeButton);
-        //timeButton.setText(data[3]);
+        timeButton = findViewById(R.id.eventTime);
+        timeButton.setText(data[3]);
         
         initDatePicker();
         dateBtn = findViewById(R.id.editDate);
@@ -50,8 +54,10 @@ public class EditUserEvent extends AppCompatActivity {
                 String newName = textEventName.getText().toString();
                 String newDetail = textEventDetail.getText().toString();
                 String newDate = dateBtn.getText().toString();
+                String newTime = timeButton.getText().toString();
                 pDatabaseHelper.updateName(newName,id,data[0]);
                 pDatabaseHelper.updateDetail(newDetail,id,data[1]);
+                pDatabaseHelper.updateTime(newTime,id,data[3]);
                 pDatabaseHelper.updateDate(newDate,id,data[4]);
                 toastMessage("แก้ไขเสร็จสิ้นจ้า :-D");
             }
@@ -109,6 +115,29 @@ public class EditUserEvent extends AppCompatActivity {
 
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void popTimePicker(View view)
+    {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
+        {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+            {
+                hour = selectedHour;
+                minute = selectedMinute;
+                String time = makeTimeString(hour, minute);
+                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
+            }
+        };
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
+        timePickerDialog.setTitle("เลือกเวลา");
+        timePickerDialog.show();
+    }
+
+    private String makeTimeString(int hour, int minute){
+        return hour + " : " + minute;
     }
 
 

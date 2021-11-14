@@ -117,6 +117,16 @@ public class DbPayHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
+    public void updateTime(String newTime, String id, String oldTime){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_NAME + " SET " + COL6 +
+                " = '" + newTime + "' WHERE " + COL1 + " = '" + id + "'" +
+                " AND " + COL6 + " = '" + oldTime + "'";
+        Log.d(TAG, "updateName: query: " + query);
+        Log.d(TAG, "updateName: Setting name to " + newTime);
+        db.execSQL(query);
+    }
+
 
 
 

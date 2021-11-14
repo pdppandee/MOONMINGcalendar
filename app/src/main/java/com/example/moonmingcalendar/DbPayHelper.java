@@ -128,7 +128,7 @@ public class DbPayHelper extends SQLiteOpenHelper {
 
 
 
-    public void updateName(String newName, int id, String oldName){
+    public void updateName(String newName, String id, String oldName){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE " + TABLE_NAME + " SET " + COL6 +
                 " = '" + newName + "' WHERE " + COL1 + " = '" + id + "'" +

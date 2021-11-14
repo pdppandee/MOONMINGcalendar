@@ -13,10 +13,10 @@ public class DbPayHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "list_table";
     private static final String COL1 = "ID";
     private static final String COL2 = "day";
-    private static final String COL3 = "month";
-    private static final String COL4 = "year";
-    private static final String COL5 = "type";
-    private static final String COL6 = "amount";
+    private static final String COL3 = "name";
+    private static final String COL4 = "detail";
+    private static final String COL5 = "noti";
+    private static final String COL6 = "time";
 
     public DbPayHelper(Context context) {
         super(context, TABLE_NAME, null, 1);
@@ -71,10 +71,18 @@ public class DbPayHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor getData(String day){
+    public Cursor getEventID(String day,String name){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL1 + "," + COL5 + "," + COL6 + " FROM " +
-                TABLE_NAME + " WHERE " + COL2+ " = '" + day + "'";
+        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " +
+                COL2 + " = '" + day +  "'" + " AND " + COL3 + " = '" + name + "'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+    public Cursor getData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + COL3 + "," + COL4 + "," + COL5 + "," + COL6 + " FROM " +
+                TABLE_NAME + " WHERE " + COL1+ " = '" + id + "'";
         Cursor data = db.rawQuery(query, null);
         return data;
     }
@@ -117,13 +125,7 @@ public class DbPayHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor getItemID(String name){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " +
-                COL3 + " = '" + name + "'";
-        Cursor data = db.rawQuery(query, null);
-        return data;
-    }
+
 
 
     public void updateName(String newName, int id, String oldName){

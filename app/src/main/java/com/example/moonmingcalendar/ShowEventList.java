@@ -37,6 +37,7 @@ public class ShowEventList extends AppCompatActivity{
     LinearLayout mutelu;
     ListView listView;
     DbPayHelper pDatabaseHelper;
+    ImageView image;
 
     private static final String TAG = "ShowEventList";
     @Override
@@ -50,21 +51,29 @@ public class ShowEventList extends AppCompatActivity{
         //textDate = findViewById(R.id.date);
         textMTL = findViewById(R.id.textMTLdt);
         //textDate.setText(day);
+        image = findViewById(R.id.imageMTL);
         int dayN = dayOfWeek(day);
         if (dayN==1){
             textMTL.setText("สีกาลกิณี : ฟ้า/น้ำเงิน");
+            //image.setImageResource(R.drawable.sun);
         }else if (dayN==2){
             textMTL.setText("สีกาลกิณี : แดง");
+            //image.setImageResource(R.drawable.mon);
         }else if (dayN==3){
             textMTL.setText("สีกาลกิณี : เหลือง/ขาว/เทา");
+            //image.setImageResource(R.drawable.tue);
         }else if (dayN==4){
             textMTL.setText("ีกาลกิณี : ชมพู");
+            //image.setImageResource(R.drawable.wed);
         }else if (dayN==5){
             textMTL.setText("สีกาลกิณี : ม่วง/ดำ");
+            //image.setImageResource(R.drawable.thu);
         }else if (dayN==6){
             textMTL.setText("สีกาลกิณี : ม่วงอ่อน");
+            //image.setImageResource(R.drawable.fri);
         }else if (dayN==7){
             textMTL.setText("สีกาลกิณี : เขียว");
+            //image.setImageResource(R.drawable.sat);
         }
         mutelu = findViewById(R.id.MTL);
         mutelu.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +109,7 @@ public class ShowEventList extends AppCompatActivity{
         }
 
 
+
         listView=(ListView) findViewById(R.id.list);
         MyAdapter adapter = new MyAdapter(this, eventListName, eventListDetail);
         listView.setAdapter(adapter);
@@ -112,7 +122,9 @@ public class ShowEventList extends AppCompatActivity{
 
                 if(userEventName.contains(eventListName.get(i))){
                     Intent intent1 = new Intent(ShowEventList.this, ShowUserEvent.class);
+                    String userID = GetID(day,eventListName.get(i));
                     intent1.putExtra("day",day);
+                    intent1.putExtra("userID",userID);
                     startActivity(intent1);
                 }else {
                     Intent intent2 = new Intent(ShowEventList.this, ShowMainEvent.class);
@@ -180,5 +192,14 @@ public class ShowEventList extends AppCompatActivity{
         }
         return listData;
     }
+
+    public String GetID(String date,String name) {
+        Cursor data = pDatabaseHelper.getEventID(date,name);
+        data.moveToFirst();
+        String id = data.getString(0);
+        return id;
+    }
+
+
 
 }

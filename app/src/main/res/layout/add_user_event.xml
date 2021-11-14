@@ -135,7 +135,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/editBack"
+        android:id="@+id/addBack"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="90dp"
         android:layout_height="wrap_content"

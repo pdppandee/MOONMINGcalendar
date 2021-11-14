@@ -1,5 +1,6 @@
 package com.example.moonmingcalendar;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -27,6 +28,9 @@ public class ShowUserEvent extends AppCompatActivity {
         String[] data = GetData(id);
         textEventName.setText(data[0]);
         textEventDetail = findViewById(R.id.eventDetail);
+        textEventDetail.setText(data[1]);
+        textTime = findViewById(R.id.eventTime);
+        textTime.setText(data[3]);
 
         btnUlBack = findViewById(R.id.ueDelete);
 

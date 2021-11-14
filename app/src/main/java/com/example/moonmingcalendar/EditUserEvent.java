@@ -13,8 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EditUserEvent extends AppCompatActivity {
     Button btnSaveEditEvent,btnBackToShowUE;
-    EditText textEventName, textEventDetail;
-    TextView textEventDate;
+    EditText textEventName, textEventDetail, textEventDate;
     DbPayHelper pDatabaseHelper;
 
     @Override

@@ -97,6 +97,29 @@ public class DbPayHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
+    public void updateName(String newName, String id, String oldName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_NAME + " SET " + COL3 +
+                " = '" + newName + "' WHERE " + COL1 + " = '" + id + "'" +
+                " AND " + COL3 + " = '" + oldName + "'";
+        Log.d(TAG, "updateName: query: " + query);
+        Log.d(TAG, "updateName: Setting name to " + newName);
+        db.execSQL(query);
+    }
+
+    public void updateDetail(String newDetail, String id, String oldDetail){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_NAME + " SET " + COL4 +
+                " = '" + newDetail + "' WHERE " + COL1 + " = '" + id + "'" +
+                " AND " + COL4 + " = '" + oldDetail + "'";
+        Log.d(TAG, "updateName: query: " + query);
+        Log.d(TAG, "updateName: Setting name to " + newDetail);
+        db.execSQL(query);
+    }
+
+
+
+
 
     public void deleteName(int id, String name){
         SQLiteDatabase db = this.getWritableDatabase();

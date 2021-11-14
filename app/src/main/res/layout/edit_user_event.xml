@@ -8,8 +8,6 @@
     android:background="@drawable/cheese_bg"
     android:padding="20dp">
 
-
-
     <LinearLayout
         android:id="@+id/LinearLayoutinfo"
         android:layout_width="match_parent"
@@ -22,27 +20,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/editeventDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/kanit"
-                android:text="@string/ulDate"
-                android:textSize="23sp"
-                android:gravity="center_horizontal"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:orientation="horizontal">
-
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -51,7 +31,7 @@
                 tools:ignore="MissingClass"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/eventName"
+                    android:id="@+id/eventname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="กิจกรรม"
@@ -85,13 +65,14 @@
                     >
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/dateSelectTv"
@@ -102,30 +83,57 @@
                 android:textSize="25dp">
             </TextView>
 
+            <!--<DatePicker-->
+            <!--    android:layout_width="match_parent"-->
+            <!--    android:layout_height="match_parent"-->
+            <!--    android:timePickerMode="spinner">-->
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/TimeButton"
+                android:onClick="popTimePicker"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="เลือกเวลา"
+                android:fontFamily="@font/kanit"
+                app:strokeColor="@color/purple_dark"
+                app:strokeWidth="2dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:cornerRadius="20dp"
+                >
+            </com.google.android.material.button.MaterialButton>
         </LinearLayout>
 
 
 
+        <!--</TimePicker>-->
 
     </LinearLayout>
 
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/editueSave"
-        android:layout_width="90dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/kanit"
-        android:text="@string/editueSave"
-        app:strokeColor="@color/purple_dark"
-        app:strokeWidth="2dp"
-        app:cornerRadius="20dp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/LinearLayoutinfo"
+        tools:layout_editor_absoluteX="20dp"
+        android:layout_marginTop="40dp"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editueSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:strokeColor="@color/purple_dark"
+            app:strokeWidth="2dp"
+            app:cornerRadius="20dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:text="บันทึก"
+            android:fontFamily="@font/kanit"
+            >
+        </com.google.android.material.button.MaterialButton>
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/editBack"

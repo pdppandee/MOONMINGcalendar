@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EditUserEvent extends AppCompatActivity {
-    Button btnSaveEditEvent, btnBack;
+    Button btnSaveEditEvent, btnBack,timeButton;
     EditText textEventName, textEventDetail, textEventDate;
     DbPayHelper pDatabaseHelper;
 
@@ -21,28 +21,34 @@ public class EditUserEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_user_event);
 
-        textEventDate =  findViewById(R.id.editeventDate);
+        //textEventDate =  findViewById(R.id.editeventDate);
         String date = getIntent().getExtras().getString("day");
         String id = getIntent().getExtras().getString("userID");
-        textEventDate.setText(date);
+        //textEventDate.setText(date);
         textEventName = findViewById(R.id.eventname);
         pDatabaseHelper = new DbPayHelper(this);
         String[] data = GetData(id);
-        //textEventName.setText(data[0]);
+        textEventName.setText(data[0]);
         textEventDetail = findViewById(R.id.eventDetail);
-        //textEventDetail.setText(data[1]);
+        textEventDetail.setText(data[1]);
+        timeButton = findViewById(R.id.TimeButton);
+        timeButton.setText(data[3]);
 
         btnSaveEditEvent = findViewById(R.id.editueSave);
         btnSaveEditEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newDate = textEventDate.getText().toString();
+                /*String newDate = textEventDate.getText().toString();
                 if(!newDate.equals(data[0])){
                     pDatabaseHelper.updateDate(newDate,id,date);
                     toastMessage("แก้ไขเสร็จสิ้นจ้า :-D");
                 }else{
                     toastMessage("You must enter a data");
-                }
+                }*/
+                String newName = textEventName.getText().toString();
+                String newDetail = textEventDetail.getText().toString();
+                pDatabaseHelper.updateName(newName,id,data[0]);
+                pDatabaseHelper.updateDetail(newDetail,id,data[1]);
             }
         });
 
@@ -70,6 +76,8 @@ public class EditUserEvent extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
+
+
 
 
 }

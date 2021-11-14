@@ -87,54 +87,13 @@ public class DbPayHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor getAmount(String day){
+    public void updateDate(String newDate, String id, String oldDate){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL5 + "," + COL6 + " FROM " + TABLE_NAME + " WHERE " +
-                COL2 + " = '" + day + "'";
-        Cursor data = db.rawQuery(query, null);
-        return data;
-    }
-
-    public Cursor getTotalMonth(String month){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL1 + "," + COL6 + " FROM " +
-                TABLE_NAME + " WHERE " + COL3+ " = '" + month + "'";
-        Cursor data = db.rawQuery(query, null);
-        return data;
-    }
-
-    public Cursor getType(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL5 + " FROM " +TABLE_NAME ;
-        Cursor data = db.rawQuery(query, null);
-        return data;
-    }
-
-    public Cursor getMonthYear(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL3 + " FROM " +TABLE_NAME + " ORDER BY " + COL3 + " ASC";
-        Cursor data = db.rawQuery(query, null);
-        return data;
-    }
-
-    public Cursor getDataMonth(String month){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL5 + "," + COL6 + " FROM " + TABLE_NAME +
-                " WHERE " + COL3+ " = '" + month + "'";
-        Cursor data = db.rawQuery(query, null);
-        return data;
-    }
-
-
-
-
-    public void updateName(String newName, String id, String oldName){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE " + TABLE_NAME + " SET " + COL6 +
-                " = '" + newName + "' WHERE " + COL1 + " = '" + id + "'" +
-                " AND " + COL6 + " = '" + oldName + "'";
+        String query = "UPDATE " + TABLE_NAME + " SET " + COL2 +
+                " = '" + newDate + "' WHERE " + COL1 + " = '" + id + "'" +
+                " AND " + COL2 + " = '" + oldDate + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting name to " + newName);
+        Log.d(TAG, "updateName: Setting name to " + newDate);
         db.execSQL(query);
     }
 

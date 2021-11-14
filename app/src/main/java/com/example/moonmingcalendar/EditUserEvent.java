@@ -22,23 +22,32 @@ public class EditUserEvent extends AppCompatActivity {
         setContentView(R.layout.edit_user_event);
 
         textEventDate =  findViewById(R.id.editeventDate);
-        String day = getIntent().getExtras().getString("day");
+        String date = getIntent().getExtras().getString("day");
         String id = getIntent().getExtras().getString("userID");
-        textEventDate.setText(day);
+        textEventDate.setText(date);
         textEventName = findViewById(R.id.eventname);
         pDatabaseHelper = new DbPayHelper(this);
         String[] data = GetData(id);
-        textEventName.setText(data[0]);
+        //textEventName.setText(data[0]);
         textEventDetail = findViewById(R.id.eventDetail);
-        textEventDetail.setText(data[1]);
+        //textEventDetail.setText(data[1]);
 
         btnSaveEditEvent = findViewById(R.id.editueSave);
         btnSaveEditEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent saveEditEvent = new Intent(EditUserEvent.this, ShowUserEvent.class);
-                Toast.makeText(EditUserEvent.this, "แก้ไขเสร็จสิ้นจ้า :-D", Toast.LENGTH_SHORT).show();
-                startActivity(saveEditEvent);
+                String newDate = textEventDate.getText().toString();
+                if(!newDate.equals(data[0])){
+                    pDatabaseHelper.updateDate(newDate,id,date);
+                    toastMessage("Data Successfully Edit!");
+                }else{
+                    toastMessage("You must enter a data");
+                }
+
+
+                //Intent saveEditEvent = new Intent(EditUserEvent.this, ShowUserEvent.class);
+                //toastMessage("แก้ไขเสร็จสิ้นจ้า :-D");
+                //startActivity(saveEditEvent);
             }
         });
 
@@ -51,10 +60,9 @@ public class EditUserEvent extends AppCompatActivity {
         return data;
     }
 
-    public String[] updateName(String newName, String id, String oldName) {
-        Cursor cursor = pDatabaseHelper.getData(id);
-        cursor.moveToFirst();
-        String[] data = {cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3)};
-        return data;
+    private void toastMessage(String message){
+        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
+
+
 }

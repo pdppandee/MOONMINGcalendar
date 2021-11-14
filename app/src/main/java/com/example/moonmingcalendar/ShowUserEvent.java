@@ -32,7 +32,15 @@ public class ShowUserEvent extends AppCompatActivity {
         textTime = findViewById(R.id.eventTime);
         textTime.setText(data[3]);
 
-        btnUlBack = findViewById(R.id.ueDelete);
+        btnUlBack = findViewById(R.id.ueBack);
+        btnUlBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent showuserevent = new Intent(ShowUserEvent.this, ShowEventList.class);
+                showuserevent.putExtra("day",day);
+                startActivity(showuserevent);
+            }
+        });
 
         btnUlEdit = findViewById(R.id.ueEdit);
         btnUlEdit.setOnClickListener(new View.OnClickListener() {

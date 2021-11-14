@@ -1,18 +1,18 @@
 package com.example.moonmingcalendar;
 
 
-
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.moonmingcalendar.databinding.ActivityMainBinding;
 
 import java.util.Locale;
 
@@ -22,11 +22,20 @@ public class AddUserEvent extends AppCompatActivity {
     DbPayHelper pDatabaseHelper;
     int hour, minute;
 
+    private ActivityMainBinding binding;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_user_event);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        createNotificationChannel();
+
+
 
         eventName = findViewById(R.id.eventname);
         eventDetail = findViewById(R.id.eventDetail);
@@ -67,6 +76,9 @@ public class AddUserEvent extends AppCompatActivity {
                 startActivity(showeventlist);
             }
         });
+    }
+
+    private void createNotificationChannel() {
     }
 
 

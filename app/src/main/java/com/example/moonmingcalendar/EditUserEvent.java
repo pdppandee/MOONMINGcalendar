@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EditUserEvent extends AppCompatActivity {
-    Button btnSaveEditEvent;
+    Button btnSaveEditEvent, btnBack;
     EditText textEventName, textEventDetail, textEventDate;
     DbPayHelper pDatabaseHelper;
 
@@ -39,15 +39,22 @@ public class EditUserEvent extends AppCompatActivity {
                 String newDate = textEventDate.getText().toString();
                 if(!newDate.equals(data[0])){
                     pDatabaseHelper.updateDate(newDate,id,date);
-                    toastMessage("Data Successfully Edit!");
+                    toastMessage("แก้ไขเสร็จสิ้นจ้า :-D");
                 }else{
                     toastMessage("You must enter a data");
                 }
+            }
+        });
 
 
-                //Intent saveEditEvent = new Intent(EditUserEvent.this, ShowUserEvent.class);
-                //toastMessage("แก้ไขเสร็จสิ้นจ้า :-D");
-                //startActivity(saveEditEvent);
+        btnBack = findViewById(R.id.editBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent saveEditEvent = new Intent(EditUserEvent.this, ShowUserEvent.class);
+                saveEditEvent.putExtra("day",date);
+                saveEditEvent.putExtra("userID",id);
+                startActivity(saveEditEvent);
             }
         });
 

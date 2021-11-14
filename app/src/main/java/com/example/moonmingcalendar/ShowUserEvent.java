@@ -22,7 +22,7 @@ public class ShowUserEvent extends AppCompatActivity {
         textDate = findViewById(R.id.editeventDate);
         String day = getIntent().getExtras().getString("day");
         String id = getIntent().getExtras().getString("userID");
-        textDate.setText(day);
+
         textEventName = findViewById(R.id.eventName);
         pDatabaseHelper = new DbPayHelper(this);
         String[] data = GetData(id);
@@ -31,6 +31,7 @@ public class ShowUserEvent extends AppCompatActivity {
         textEventDetail.setText(data[1]);
         textTime = findViewById(R.id.eventTime);
         textTime.setText(data[3]);
+        textDate.setText(data[4]);
 
         btnUlBack = findViewById(R.id.ueBack);
         btnUlBack.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +67,7 @@ public class ShowUserEvent extends AppCompatActivity {
     public String[] GetData(String id) {
         Cursor cursor = pDatabaseHelper.getData(id);
         cursor.moveToFirst();
-        String[] data = {cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3)};
+        String[] data = {cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4)};
         return data;
     }
 }

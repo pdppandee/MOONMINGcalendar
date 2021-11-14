@@ -81,7 +81,7 @@ public class DbPayHelper extends SQLiteOpenHelper {
 
     public Cursor getData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL3 + "," + COL4 + "," + COL5 + "," + COL6 + " FROM " +
+        String query = "SELECT " + COL3 + "," + COL4 + "," + COL5 + "," + COL6 +  "," + COL2 + " FROM " +
                 TABLE_NAME + " WHERE " + COL1+ " = '" + id + "'";
         Cursor data = db.rawQuery(query, null);
         return data;

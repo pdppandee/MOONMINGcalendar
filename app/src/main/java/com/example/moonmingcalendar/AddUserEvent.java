@@ -3,6 +3,7 @@ package com.example.moonmingcalendar;
 
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,7 @@ import java.util.Locale;
 
 public class AddUserEvent extends AppCompatActivity {
     EditText eventName, eventDetail;
-    Button addUserEventButton, selectTimeButton;
+    Button addUserEventButton, selectTimeButton, btnBack;
     DbPayHelper pDatabaseHelper;
     int hour, minute;
 
@@ -55,6 +56,15 @@ public class AddUserEvent extends AppCompatActivity {
                 else {
                     toastMessage("กรุณาใส่ข้อความที่ต้องการ!");
                 }
+            }
+        });
+        btnBack = findViewById(R.id.addBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent showeventlist = new Intent(AddUserEvent.this, ShowEventList.class);
+                showeventlist.putExtra("day",day);
+                startActivity(showeventlist);
             }
         });
     }

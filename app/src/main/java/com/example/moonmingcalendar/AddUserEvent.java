@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.moonmingcalendar.databinding.ActivityMainBinding;
+//import com.example.moonmingcalendar.databinding.ActivityMainBinding;
 
 import java.util.Locale;
 
@@ -22,7 +22,7 @@ public class AddUserEvent extends AppCompatActivity {
     DbPayHelper pDatabaseHelper;
     int hour, minute;
 
-    private ActivityMainBinding binding;
+    //private ActivityMainBinding binding;
 
 
     @Override
@@ -31,9 +31,9 @@ public class AddUserEvent extends AppCompatActivity {
         setContentView(R.layout.add_user_event);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        /*binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        createNotificationChannel();
+        createNotificationChannel();*/
 
 
 

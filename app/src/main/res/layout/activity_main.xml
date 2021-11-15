@@ -64,6 +64,7 @@
         android:layout_width="369dp"
         android:layout_height="191dp"
         android:layout_marginBottom="20dp"
+        android:backgroundTint="#F6F5F5"
         app:layout_constraintBottom_toTopOf="@+id/btnDetail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.619"
@@ -79,6 +80,7 @@
                 android:id="@+id/eventList"
                 android:layout_width="match_parent"
                 android:layout_height="177dp"
+                android:backgroundTint="#FBF9F9"
                 android:fontFamily="@font/kanit"
                 android:smoothScrollbar="true">
 

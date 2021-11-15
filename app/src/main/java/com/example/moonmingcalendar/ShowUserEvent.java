@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,13 +56,20 @@ public class ShowUserEvent extends AppCompatActivity {
         });
 
         btnUlDelete = findViewById(R.id.ueDelete);
-        /**btnUlDelete.setOnClickListener(new View.OnClickListener() {
+        btnUlDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(ShowUserEvent.this, ShowEventList.class);
-                startActivity(intent3);
+                pDatabaseHelper.deleteDate(id,data[4]);
+                pDatabaseHelper.deleteName(id,data[0]);
+                pDatabaseHelper.deleteDetail(id,data[1]);
+                pDatabaseHelper.deleteTime(id,data[3]);
+                Intent showEventList = new Intent(ShowUserEvent.this, ShowEventList.class);
+                showEventList.putExtra("day",day);
+                startActivity(showEventList);
+                Toast.makeText(ShowUserEvent.this, "ลบเสร็จสิ้นจ้า :-D", Toast.LENGTH_SHORT).show();
             }
-        });**/
+
+        });
     }
 
     public String[] GetData(String id) {

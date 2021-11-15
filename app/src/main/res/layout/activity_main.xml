@@ -42,45 +42,49 @@
             app:layout_constraintVertical_bias="0.527" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@id/LinearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/LinearLayout1"
-        android:background="@color/white60"
-
-        >
-
-        <ListView
-            android:id="@+id/eventList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:smoothScrollbar="true"
-            android:fontFamily="@font/kanit">
-
-        </ListView>
-
-    </LinearLayout>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnDetail"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:strokeColor="@color/purple_dark"
-        app:strokeWidth="2dp"
-        app:cornerRadius="20dp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:fontFamily="@font/kanit"
         android:text="รายละเอียด"
         android:textColor="@color/purple_dark"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LinearLayout2"
-        app:layout_constraintVertical_bias="0.976"
+        app:strokeColor="@color/purple_dark"
+        app:strokeWidth="2dp"
         tools:ignore="TextContrastCheck" />
+
+    <ScrollView
+        android:id="@+id/eventlist"
+        android:layout_width="369dp"
+        android:layout_height="191dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnDetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinearLayout1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/eventList"
+                android:layout_width="match_parent"
+                android:layout_height="177dp"
+                android:fontFamily="@font/kanit"
+                android:smoothScrollbar="true">
+
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

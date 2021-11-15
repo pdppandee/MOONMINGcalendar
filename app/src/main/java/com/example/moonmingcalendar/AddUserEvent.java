@@ -22,7 +22,7 @@ public class AddUserEvent extends AppCompatActivity {
     DbPayHelper pDatabaseHelper;
     int hour, minute;
 
-    //private ActivityMainBinding binding;
+    // private ActivityMainBinding binding;
 
 
     @Override

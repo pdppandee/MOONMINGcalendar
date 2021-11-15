@@ -1,7 +1,6 @@
 package com.example.moonmingcalendar;
 
 
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,18 +11,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-//import com.example.moonmingcalendar.databinding.ActivityMainBinding;
-
-import java.util.Locale;
+import com.example.moonmingcalendar.databinding.ActivityMainBinding;
 
 public class AddUserEvent extends AppCompatActivity {
     EditText eventName, eventDetail;
     Button addUserEventButton, selectTimeButton, btnBack;
     DbPayHelper pDatabaseHelper;
-//    TimePicker timePicker;
+    TimePicker timePicker;
     int hour, minute;
 
-    // private ActivityMainBinding binding;
+    private ActivityMainBinding binding;
 
 
     @Override
@@ -32,9 +29,9 @@ public class AddUserEvent extends AppCompatActivity {
         setContentView(R.layout.add_user_event);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        createNotificationChannel();*/
+//        binding = ActivityMainBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
+//        createNotificationChannel();
 
 
 
@@ -43,7 +40,7 @@ public class AddUserEvent extends AppCompatActivity {
         addUserEventButton = findViewById(R.id.addUserEventButton);
         selectTimeButton = findViewById(R.id.selectTimeBtn);
         pDatabaseHelper = new DbPayHelper(this);
-//        timePicker = findViewById(R.id.timePicker);
+        timePicker = findViewById(R.id.timePicker);
 
         String day = getIntent().getExtras().getString("day");
 
@@ -52,8 +49,8 @@ public class AddUserEvent extends AppCompatActivity {
             public void onClick(View v) {
                 final String name = eventName.getText().toString();
                 final String detail = eventDetail.getText().toString();
-                String time = selectTimeButton.getText().toString();
-                //String timeSelected = makeTimeString(hour, minute);
+//                String time = selectTimeButton.getText().toString();
+                String time = makeTimeString(hour, minute);
                 String noti = "";
 
                 if (eventName.length() != 0 && eventDetail.length() != 0 && !time.equals("เลือกเวลา")) {
@@ -71,14 +68,14 @@ public class AddUserEvent extends AppCompatActivity {
             }
         });
 
-//        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-//            @Override
-//            public void onTimeChanged(TimePicker timePicker, int selectedHour, int selectedMinute) {
-//                hour = selectedHour;
-//                minute = selectedMinute;
-//                String timeSelected = makeTimeString(hour, minute);
-//            }
-//        });
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                hour = selectedHour;
+                minute = selectedMinute;
+                String timeSelected = makeTimeString(hour, minute);
+            }
+        });
 
 
         btnBack = findViewById(R.id.addBack);
@@ -110,24 +107,24 @@ public class AddUserEvent extends AppCompatActivity {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
-    public void popTimePicker(View view)
-    {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
-        {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
-            {
-                hour = selectedHour;
-                minute = selectedMinute;
-                String time = makeTimeString(hour, minute);
-                selectTimeButton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
-            }
-        };
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
-        timePickerDialog.setTitle("เลือกเวลา");
-        timePickerDialog.show();
-    }
+//    public void popTimePicker(View view)
+//    {
+//        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
+//        {
+//            @Override
+//            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+//            {
+//                hour = selectedHour;
+//                minute = selectedMinute;
+//                String time = makeTimeString(hour, minute);
+//                selectTimeButton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
+//            }
+//        };
+//
+//        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
+//        timePickerDialog.setTitle("เลือกเวลา");
+//        timePickerDialog.show();
+//    }
 
     private String makeTimeString(int hour, int minute){
         return hour + " : " + minute;

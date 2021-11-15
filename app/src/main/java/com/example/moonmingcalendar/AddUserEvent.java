@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.moonmingcalendar.databinding.ActivityMainBinding;
 
+import java.util.Locale;
+
 public class AddUserEvent extends AppCompatActivity {
     EditText eventName, eventDetail;
     Button addUserEventButton, selectTimeButton, btnBack;
@@ -50,7 +52,7 @@ public class AddUserEvent extends AppCompatActivity {
                 final String name = eventName.getText().toString();
                 final String detail = eventDetail.getText().toString();
 //                String time = selectTimeButton.getText().toString();
-                String time = makeTimeString(hour, minute);
+                String time = String.format(Locale.getDefault(), "%02d:%02d",hour, minute);
                 String noti = "";
 
                 if (eventName.length() != 0 && eventDetail.length() != 0 && !time.equals("เลือกเวลา")) {

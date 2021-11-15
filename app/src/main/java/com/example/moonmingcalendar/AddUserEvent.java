@@ -37,6 +37,9 @@ public class AddUserEvent extends AppCompatActivity {
 
 
 
+
+
+
         eventName = findViewById(R.id.eventname);
         eventDetail = findViewById(R.id.eventDetail);
         addUserEventButton = findViewById(R.id.addUserEventButton);

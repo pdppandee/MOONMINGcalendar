@@ -73,4 +73,12 @@ public class GetMainEvent {
         return eventLst;
     }
 
+    public ArrayList<String> getEventListN(){
+        ArrayList<String> eventLst = new ArrayList<>();
+        for (int i=0;i<arrayList.size();i++){
+            eventLst.add("");
+        }
+        return eventLst;
+    }
+
 }

@@ -20,7 +20,7 @@ public class ShowMainEvent extends AppCompatActivity {
         setContentView(R.layout.show_main_event);
         textMainEventName = findViewById(R.id.maineventname);
         textMainEventDetail = findViewById(R.id.maineventdetail);
-        textMainEventDate = findViewById(R.id.date);
+        textMainEventDate = findViewById(R.id.maineventdete);
 
         String day = getIntent().getExtras().getString("day");
         int position = getIntent().getExtras().getInt("position");
@@ -31,7 +31,7 @@ public class ShowMainEvent extends AppCompatActivity {
 
         textMainEventName.setText(eventName);
         textMainEventDetail.setText(eventDetail);
-        //textMainEventDate.setText(day);
+        textMainEventDate.setText(day);
     }
 
 //    public void lunarPhaseCal(){

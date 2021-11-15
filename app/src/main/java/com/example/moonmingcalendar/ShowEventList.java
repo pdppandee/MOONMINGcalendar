@@ -96,7 +96,7 @@ public class ShowEventList extends AppCompatActivity{
         });
         GetMainEvent showEvent = new GetMainEvent(day);
         ArrayList<String> eventListName=showEvent.getEventListName();
-        ArrayList<String> eventListDetail=showEvent.getEventListDetail();
+        ArrayList<String> eventListDetail=showEvent.getEventListN();
 
         ArrayList<String> userEventName=GetName(day);
         ArrayList<String> userEventDetail=GetDetail(day);

@@ -104,8 +104,8 @@ public class ShowEventList extends AppCompatActivity{
         for (int n=0;n<userEventName.size();n++){
             eventListName.add(userEventName.get(n));
         }
-        for (int n=0;n<userEventDetail.size();n++){
-            eventListDetail.add(userEventDetail.get(n));
+        for (int d=0;d<userEventDetail.size();d++){
+            eventListDetail.add(userEventDetail.get(d));
         }
 
 

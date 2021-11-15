@@ -76,7 +76,9 @@ public class GetMainEvent {
     public ArrayList<String> getEventListN(){
         ArrayList<String> eventLst = new ArrayList<>();
         for (int i=0;i<arrayList.size();i++){
-            eventLst.add("");
+            if (dmy[0].equals(arrayList.get(i).getDay()) && dmy[1].equals(arrayList.get(i).getMonth())){
+                eventLst.add("");
+            }
         }
         return eventLst;
     }

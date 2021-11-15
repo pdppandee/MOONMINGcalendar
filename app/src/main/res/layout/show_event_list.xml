@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/event"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/moon_bg"
@@ -60,8 +61,8 @@
                 android:id="@+id/textMTL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/kanit"
                 android:layout_marginLeft="30dp"
+                android:fontFamily="@font/kanit"
                 android:text="ดวงสายมู"
                 android:textSize="35dp" />
 
@@ -69,8 +70,8 @@
                 android:id="@+id/textMTLdt"
                 android:layout_width="302dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/kanit"
                 android:layout_marginLeft="30dp"
+                android:fontFamily="@font/kanit"
                 android:text="detail"
                 android:textSize="20dp" />
             />
@@ -78,30 +79,29 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="413dp"
-        android:layout_height="548dp"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:id="@+id/eventlist"
+        android:layout_width="366dp"
+        android:layout_height="397dp"
+        app:layout_constraintBottom_toTopOf="@+id/add"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.644"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MTL"
-        android:padding="20dp">
+        app:layout_constraintVertical_bias="0.137">
 
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="376dp"
-            android:layout_height="528dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/MTL"
-            app:layout_constraintVertical_bias="0.644"
-            android:fontFamily="@font/kanit"/>
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="397dp"
+                android:fontFamily="@font/kanit" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

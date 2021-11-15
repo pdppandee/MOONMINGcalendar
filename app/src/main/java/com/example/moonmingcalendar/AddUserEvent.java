@@ -20,6 +20,7 @@ public class AddUserEvent extends AppCompatActivity {
     EditText eventName, eventDetail;
     Button addUserEventButton, selectTimeButton, btnBack;
     DbPayHelper pDatabaseHelper;
+//    TimePicker timePicker;
     int hour, minute;
 
     // private ActivityMainBinding binding;
@@ -40,8 +41,9 @@ public class AddUserEvent extends AppCompatActivity {
         eventName = findViewById(R.id.eventname);
         eventDetail = findViewById(R.id.eventDetail);
         addUserEventButton = findViewById(R.id.addUserEventButton);
-        selectTimeButton = findViewById(R.id.selectTimeButton);
+        selectTimeButton = findViewById(R.id.selectTimeBtn);
         pDatabaseHelper = new DbPayHelper(this);
+//        timePicker = findViewById(R.id.timePicker);
 
         String day = getIntent().getExtras().getString("day");
 
@@ -51,6 +53,7 @@ public class AddUserEvent extends AppCompatActivity {
                 final String name = eventName.getText().toString();
                 final String detail = eventDetail.getText().toString();
                 String time = selectTimeButton.getText().toString();
+                //String timeSelected = makeTimeString(hour, minute);
                 String noti = "";
 
                 if (eventName.length() != 0 && eventDetail.length() != 0 && !time.equals("เลือกเวลา")) {
@@ -67,6 +70,17 @@ public class AddUserEvent extends AppCompatActivity {
                 }
             }
         });
+
+//        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+//            @Override
+//            public void onTimeChanged(TimePicker timePicker, int selectedHour, int selectedMinute) {
+//                hour = selectedHour;
+//                minute = selectedMinute;
+//                String timeSelected = makeTimeString(hour, minute);
+//            }
+//        });
+
+
         btnBack = findViewById(R.id.addBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

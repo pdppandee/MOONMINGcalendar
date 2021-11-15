@@ -83,13 +83,15 @@
                 android:textSize="25dp">
             </TextView>
 
-<!--          <TimePicker-->
+<!--            <TimePicker-->
+<!--                android:id="@+id/timePicker"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
-<!--              android:timePickerMode="spinner"></TimePicker>-->
+<!--                android:timePickerMode="spinner">-->
+<!--            </TimePicker>-->
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/selectTimeButton"
+                android:id="@+id/selectTimeBtn"
                 android:onClick="popTimePicker"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
@@ -103,9 +105,6 @@
                 >
             </com.google.android.material.button.MaterialButton>
         </LinearLayout>
-
-
-
 
 
     </LinearLayout>
@@ -142,27 +141,10 @@
             android:text="เพิ่ม"
             app:cornerRadius="20dp"
             app:strokeColor="@color/purple_dark"
-            app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
-
+            app:strokeWidth="2dp">
+        </com.google.android.material.button.MaterialButton>
 
     </LinearLayout>
-
-
-
-
-
-<!--    <Button-->
-<!--        android:id="@+id/addUserEventdbutton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="3dp"-->
-<!--        android:clickable="true"-->
-<!--        android:text="เพิ่ม"-->
-<!--        android:fontFamily="@font/kanit"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/LinearLayoutinfo" />-->
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

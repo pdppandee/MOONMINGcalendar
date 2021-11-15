@@ -1,6 +1,8 @@
 package com.example.moonmingcalendar;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -59,14 +61,20 @@ public class ShowUserEvent extends AppCompatActivity {
         btnUlDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pDatabaseHelper.deleteDate(id,data[4]);
-                pDatabaseHelper.deleteName(id,data[0]);
-                pDatabaseHelper.deleteDetail(id,data[1]);
-                pDatabaseHelper.deleteTime(id,data[3]);
-                Intent showEventList = new Intent(ShowUserEvent.this, ShowEventList.class);
-                showEventList.putExtra("day",day);
-                startActivity(showEventList);
-                Toast.makeText(ShowUserEvent.this, "ลบเสร็จสิ้นจ้า :-D", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ShowUserEvent.this);
+                builder.setMessage("ยืนยันการลบกิจกรรม").setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        pDatabaseHelper.deleteData(id);
+                        Intent showEventList = new Intent(ShowUserEvent.this, ShowEventList.class);
+                        showEventList.putExtra("day",day);
+                        startActivity(showEventList);
+                        Toast.makeText(ShowUserEvent.this, "ลบเสร็จสิ้นจ้า :-D", Toast.LENGTH_SHORT).show();
+                    }
+                }).setNegativeButton("ยกเลิก",null);
+                AlertDialog alert = builder.create();
+                alert.show();
+
             }
 
         });

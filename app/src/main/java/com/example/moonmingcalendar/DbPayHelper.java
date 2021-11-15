@@ -127,44 +127,14 @@ public class DbPayHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-
-    public void deleteDate(String id, String date){
+    public void deleteData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "DELETE FROM " + TABLE_NAME + " WHERE "
-                + COL1 + " = '" + id + "'" +
-                " AND " + COL2 + " = '" + date + "'";
-        Log.d(TAG, "deleteName: query: " + query);
-        Log.d(TAG, "deleteName: Deleting " + date + " from database.");
-        db.execSQL(query);
-    }
-
-    public void deleteName(String id, String name){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + TABLE_NAME + " WHERE "
-                + COL1 + " = '" + id + "'" +
-                " AND " + COL3 + " = '" + name + "'";
-        Log.d(TAG, "deleteName: query: " + query);
-        Log.d(TAG, "deleteName: Deleting " + name + " from database.");
-        db.execSQL(query);
-    }
-
-    public void deleteDetail(String id, String detail){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + TABLE_NAME + " WHERE "
-                + COL1 + " = '" + id + "'" +
-                " AND " + COL4 + " = '" + detail + "'";
+                + COL1 + " = '" + id + "'" ;
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting name to " + detail);
+        Log.d(TAG, "updateName: Setting name to " + id);
         db.execSQL(query);
     }
 
-    public void deleteTime(String id, String time){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + TABLE_NAME + " WHERE "
-                + COL1 + " = '" + id + "'" +
-                " AND " + COL6 + " = '" + time + "'";
-        Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting name to " + time);
-        db.execSQL(query);
-    }
+
 }

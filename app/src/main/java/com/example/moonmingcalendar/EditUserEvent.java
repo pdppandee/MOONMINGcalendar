@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,19 +15,24 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 import java.util.Locale;
 
 public class EditUserEvent extends AppCompatActivity {
-    Button btnSaveEditEvent, btnBack,timeButton;
+    Button btnSaveEditEvent, btnBack;
+            //, timeButton;
     EditText textEventName, textEventDetail;
     DbPayHelper pDatabaseHelper;
+    TimePicker editTimePicker;
+    DatePicker editDatePicker;
     private DatePickerDialog datePickerDialog;
     private Button dateBtn;
     int hour, minute;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +46,21 @@ public class EditUserEvent extends AppCompatActivity {
         textEventName.setText(data[0]);
         textEventDetail = findViewById(R.id.eventDetail);
         textEventDetail.setText(data[1]);
-        timeButton = findViewById(R.id.eventTime);
-        timeButton.setText(data[3]);
-        
+        editDatePicker = findViewById(R.id.datePicker);
+        editTimePicker = findViewById(R.id.timePicker);
+
+//        String[] datearr = data[3].split("/");
+//        Integer initday = Integer.parseInt(datearr[0]);
+//        Integer initmonth = Integer.parseInt(datearr[1]);
+//        Integer inityear = Integer.parseInt(datearr[2]);
+
+//        timeButton = findViewById(R.id.eventTime);
+//        timeButton.setText(data[3]);
+
+        String[] timearr = data[4].split(":");
+        Integer inithour = Integer.parseInt(timearr[0]);
+        Integer initminute = Integer.parseInt(timearr[1]);
+
         initDatePicker();
         dateBtn = findViewById(R.id.editDate);
         dateBtn.setText(data[4]);
@@ -53,8 +71,10 @@ public class EditUserEvent extends AppCompatActivity {
             public void onClick(View view) {
                 String newName = textEventName.getText().toString();
                 String newDetail = textEventDetail.getText().toString();
+                //
                 String newDate = dateBtn.getText().toString();
-                String newTime = timeButton.getText().toString();
+//                String newTime = timeButton.getText().toString();
+                String newTime = makeTimeString(hour, minute);
                 pDatabaseHelper.updateName(newName,id,data[0]);
                 pDatabaseHelper.updateDetail(newDetail,id,data[1]);
                 pDatabaseHelper.updateTime(newTime,id,data[3]);
@@ -75,7 +95,24 @@ public class EditUserEvent extends AppCompatActivity {
             }
         });
 
+//        editDatePicker.init(inityear, initmonth, initday, null);
+//        editDatePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+//            @Override
+//            public void onDateChanged(DatePicker editDatePicker, int i, int i1, int i2) {
+//
+//            }
+//        });
+        editTimePicker.setHour(inithour);
+        editTimePicker.setMinute(initminute);
+        editTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker editTimePicker, int selectedHour, int selectedMinute) {
+                hour = selectedHour;
+                minute = selectedMinute;
+            }
+        });
     }
+
 
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -83,7 +120,6 @@ public class EditUserEvent extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month=month+1;
                 String date = makeDateString(day,month,year);
-                dateBtn.setText(date);
             }
         };
 
@@ -117,30 +153,27 @@ public class EditUserEvent extends AppCompatActivity {
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
 
-    public void popTimePicker(View view)
-    {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
-        {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
-            {
-                hour = selectedHour;
-                minute = selectedMinute;
-                String time = makeTimeString(hour, minute);
-                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
-            }
-        };
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
-        timePickerDialog.setTitle("เลือกเวลา");
-        timePickerDialog.show();
-    }
+//    public void popTimePicker(View view)
+//    {
+//        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
+//        {
+//            @Override
+//            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+//            {
+//                hour = selectedHour;
+//                minute = selectedMinute;
+//                String time = makeTimeString(hour, minute);
+//                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
+//            }
+//        };
+//
+//        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
+//        timePickerDialog.setTitle("เลือกเวลา");
+//        timePickerDialog.show();
+//    }
 
     private String makeTimeString(int hour, int minute){
         return hour + " : " + minute;
     }
-
-
-
 
 }

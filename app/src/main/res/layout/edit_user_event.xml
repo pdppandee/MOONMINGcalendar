@@ -124,26 +124,26 @@
                 android:textSize="25dp">
             </TextView>
 
-<!--            <com.google.android.material.button.MaterialButton-->
-<!--                android:id="@+id/eventTime"-->
-<!--                android:onClick="popTimePicker"-->
-<!--                android:layout_width="150dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="70dp"-->
-<!--                android:text="เลือกเวลา"-->
-<!--                android:fontFamily="@font/kanit"-->
-<!--                app:strokeColor="@color/purple_dark"-->
-<!--                app:strokeWidth="2dp"-->
-<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--                app:cornerRadius="20dp"-->
-<!--                >-->
-<!--            </com.google.android.material.button.MaterialButton>-->
-            <TimePicker
-                android:id="@+id/timePicker"
-                android:layout_width="match_parent"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/eventTime"
+                android:onClick="popTimePicker"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:timePickerMode="spinner">
-            </TimePicker>
+                android:layout_marginLeft="70dp"
+                android:text="เลือกเวลา"
+                android:fontFamily="@font/kanit"
+                app:strokeColor="@color/purple_dark"
+                app:strokeWidth="2dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:cornerRadius="20dp"
+                >
+            </com.google.android.material.button.MaterialButton>
+<!--            <TimePicker-->
+<!--                android:id="@+id/timePicker"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:timePickerMode="spinner">-->
+<!--            </TimePicker>-->
 
         </LinearLayout>
 

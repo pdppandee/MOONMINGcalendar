@@ -3,6 +3,7 @@ package com.example.moonmingcalendar;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -65,16 +66,25 @@ public class EditUserEvent extends AppCompatActivity {
         btnSaveEditEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newName = textEventName.getText().toString();
-                String newDetail = textEventDetail.getText().toString();
-                String newDate = dateBtn.getText().toString();
-                String newTime = timeButton.getText().toString();
-//                String newTime = makeTimeString(hour, minute);
-                pDatabaseHelper.updateName(newName,id,data[0]);
-                pDatabaseHelper.updateDetail(newDetail,id,data[1]);
-                pDatabaseHelper.updateTime(newTime,id,data[3]);
-                pDatabaseHelper.updateDate(newDate,id,data[4]);
-                toastMessage("แก้ไขเสร็จสิ้นจ้า :-D");
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditUserEvent.this);
+                builder.setMessage("ยืนยันการแก้ไขกิจกรรม").setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String newName = textEventName.getText().toString();
+                        String newDetail = textEventDetail.getText().toString();
+                        String newDate = dateBtn.getText().toString();
+                        String newTime = timeButton.getText().toString();
+//                      String newTime = makeTimeString(hour, minute);
+                        pDatabaseHelper.updateName(newName,id,data[0]);
+                        pDatabaseHelper.updateDetail(newDetail,id,data[1]);
+                        pDatabaseHelper.updateTime(newTime,id,data[3]);
+                        pDatabaseHelper.updateDate(newDate,id,data[4]);
+                        toastMessage("แก้ไขเสร็จสิ้นจ้า :-D");
+                    }
+                }).setNegativeButton("ยกเลิก",null);
+                AlertDialog alert = builder.create();
+                alert.show();
+
             }
         });
 

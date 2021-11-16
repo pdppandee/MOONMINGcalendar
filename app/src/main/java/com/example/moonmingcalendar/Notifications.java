@@ -23,7 +23,7 @@ public class Notifications extends BroadcastReceiver {
 //        PendingIntent pendingIntent = PendingIntent.getActivity(context,0, intentadduserevent,0);
 
 
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(context,"channelID")
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(context,channelID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle(intent.getStringExtra(titleExtra))
                 .setContentText(intent.getStringExtra(contentText))

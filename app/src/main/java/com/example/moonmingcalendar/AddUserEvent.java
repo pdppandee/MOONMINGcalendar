@@ -119,15 +119,15 @@ public class AddUserEvent extends AppCompatActivity {
         );
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Long time = getTime();
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+//        alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent);
 
-        Toast.makeText(getApplicationContext(),"ตั้งแจ้งเตือน", Toast.LENGTH_SHORT).show();
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            alarmManager.setExactAndAllowWhileIdle(
-//                    AlarmManager.RTC_WAKEUP, time, pendingIntent
-//
-//            );
-//        }
+        Toast.makeText(getApplicationContext(),"ตั้งแจ้งเตือน" + time, Toast.LENGTH_SHORT).show();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            alarmManager.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP, time, pendingIntent
+
+            );
+        }
 //        showAlert(time, title, content);
 
     }
@@ -138,8 +138,12 @@ public class AddUserEvent extends AppCompatActivity {
 //    }
 
     private Long getTime() {
-        Integer minute = binding.timePicker.getCurrentMinute();
-        Integer hours = binding.timePicker.getCurrentHour();
+//        Integer minute = null;
+//        Integer hours = null;
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+//            minute = binding.timePicker.getMinute();
+//            hours = binding.timePicker.getHour();
+//        }
         String date = getIntent().getExtras().getString("day");
         String[] datearr = date.split("/");
         Integer day = Integer.parseInt(datearr[0]);
@@ -147,7 +151,7 @@ public class AddUserEvent extends AppCompatActivity {
         Integer year = Integer.parseInt(datearr[2]);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day, hours, minute);
+        calendar.set(year, month, day, hour, minute);
         return calendar.getTimeInMillis();
     }
 

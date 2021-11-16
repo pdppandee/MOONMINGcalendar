@@ -90,19 +90,27 @@
                 android:timePickerMode="spinner">
             </TimePicker>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="vertical">
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/selectTimeBtn"
-                android:onClick="popTimePicker"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:text="เลือกเวลา"
-                android:fontFamily="@font/kanit"
-                app:strokeColor="@color/purple_dark"
-                app:strokeWidth="2dp"
+                android:id="@+id/openNoti"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit"
+                android:onClick="popTimePicker"
+                android:text="แจ้งเตือน"
                 app:cornerRadius="20dp"
-                >
+                android:layout_gravity="right"
+                app:strokeColor="@color/purple_dark"
+                app:strokeWidth="2dp">
+
             </com.google.android.material.button.MaterialButton>
         </LinearLayout>
 
@@ -145,6 +153,8 @@
         </com.google.android.material.button.MaterialButton>
 
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

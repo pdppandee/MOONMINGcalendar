@@ -1,6 +1,5 @@
 package com.example.moonmingcalendar;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
@@ -32,8 +30,7 @@ public class EditUserEvent extends AppCompatActivity {
     private Button dateBtn;
     int hour, minute;
 
-    @SuppressLint("WrongViewCast")
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +69,6 @@ public class EditUserEvent extends AppCompatActivity {
             public void onClick(View view) {
                 String newName = textEventName.getText().toString();
                 String newDetail = textEventDetail.getText().toString();
-                //
                 String newDate = dateBtn.getText().toString();
                 String newTime = timeButton.getText().toString();
 //                String newTime = makeTimeString(hour, minute);

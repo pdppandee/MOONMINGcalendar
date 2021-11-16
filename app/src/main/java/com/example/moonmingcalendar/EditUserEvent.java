@@ -74,8 +74,8 @@ public class EditUserEvent extends AppCompatActivity {
                 String newDetail = textEventDetail.getText().toString();
                 //
                 String newDate = dateBtn.getText().toString();
-//                String newTime = timeButton.getText().toString();
-                String newTime = makeTimeString(hour, minute);
+                String newTime = timeButton.getText().toString();
+//                String newTime = makeTimeString(hour, minute);
                 pDatabaseHelper.updateName(newName,id,data[0]);
                 pDatabaseHelper.updateDetail(newDetail,id,data[1]);
                 pDatabaseHelper.updateTime(newTime,id,data[3]);

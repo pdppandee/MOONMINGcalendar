@@ -73,19 +73,14 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
                 String time = String.format(Locale.getDefault(), "%02d:%02d",hour, minute);
                 String noti = "";
 
-                if (eventName.length() != 0 && eventDetail.length() != 0 && !time.equals("เลือกเวลา")) {
+                if (eventName.length() != 0 && eventDetail.length() != 0) {
                     AddData(day,name,detail,noti,time);
                     eventName.setText("");
                     eventDetail.setText("");
                     if(addNotiisChecked){
                         onClick(addNotiChkBox);
                     }
-        //      selectTimeButton.setText("เลือกเวลา");
-                }else if(eventName.length() != 0 && eventDetail.length() != 0 && time.equals("เลือกเวลา")){
-                    toastMessage("กรุณาระบุเวลาด้วยจ้า!");
-                }
-
-                else {
+                }else {
                     toastMessage("กรุณาใส่ข้อความที่ต้องการ!");
                 }
 

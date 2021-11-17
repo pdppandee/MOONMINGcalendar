@@ -2,12 +2,8 @@ package com.example.moonmingcalendar;
 
 
 import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,12 +13,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.moonmingcalendar.databinding.AddUserEventBinding;
-
 import java.util.Calendar;
 import java.util.Locale;
 
-public class AddUserEvent extends AppCompatActivity {
+public class AddUserEvent extends AppCompatActivity implements View.OnClickListener {
     EditText eventName, eventDetail;
     Button addUserEventButton, selectTimeButton, btnBack;
     DbPayHelper pDatabaseHelper;
@@ -30,7 +24,8 @@ public class AddUserEvent extends AppCompatActivity {
     int hour, minute;
 
 
-    private AddUserEventBinding binding;
+//    private AddUserEventBinding binding;
+
 
 
     @Override
@@ -39,23 +34,25 @@ public class AddUserEvent extends AppCompatActivity {
         setContentView(R.layout.add_user_event);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        binding = AddUserEventBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+//        binding = AddUserEventBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
 
-        createNotificationChannel();
+//        createNotificationChannel();
 
-        binding.openNoti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    scheduleNotification();
-            }
-        });
+//        binding.openNoti.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+////                scheduleNotification();
+//            }
+//        });
 
         eventName = findViewById(R.id.eventname);
         eventDetail = findViewById(R.id.eventDetail);
         addUserEventButton = findViewById(R.id.addUserEventButton);
         pDatabaseHelper = new DbPayHelper(this);
         timePicker = findViewById(R.id.timePicker);
+        findViewById(R.id.openNoti).setOnClickListener(this);
 
         String day = getIntent().getExtras().getString("day");
 
@@ -104,75 +101,6 @@ public class AddUserEvent extends AppCompatActivity {
         });
     }
 
-    private void scheduleNotification() {
-        Intent intent = new Intent(getApplicationContext(), Notifications.class);
-        String title = binding.eventname.getText().toString();
-        String content = binding.eventDetail.getText().toString();
-        Notifications noti = new Notifications();
-
-        intent.putExtra(noti.getTitleExtra(), title);
-        intent.putExtra(noti.getContentText() , content);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(
-          getApplicationContext(), noti.getNotificationID(),intent,
-                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
-        );
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Long time = getTime();
-//        alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent);
-
-        Toast.makeText(getApplicationContext(),"ตั้งแจ้งเตือน" + time, Toast.LENGTH_SHORT).show();
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            alarmManager.setExactAndAllowWhileIdle(
-                    AlarmManager.RTC_WAKEUP, time, pendingIntent
-
-            );
-        }
-//        showAlert(time, title, content);
-
-    }
-
-//    private void showAlert(Long time, String title, String content) {
-//        Date date = new Date(time);
-//
-//    }
-
-    private Long getTime() {
-//        Integer minute = null;
-//        Integer hours = null;
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-//            minute = binding.timePicker.getMinute();
-//            hours = binding.timePicker.getHour();
-//        }
-        String date = getIntent().getExtras().getString("day");
-        String[] datearr = date.split("/");
-        Integer day = Integer.parseInt(datearr[0]);
-        Integer month = Integer.parseInt(datearr[1]);
-        Integer year = Integer.parseInt(datearr[2]);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day, hour, minute);
-        return calendar.getTimeInMillis();
-    }
-
-    private void createNotificationChannel() {
-        Notifications noti = new Notifications();
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name = "Notif Channel";
-            String desc = "desc";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel(noti.getChannelID(),name,importance);
-            channel.setDescription(desc);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-
-    }
-
-
     public void AddData(String day,String name,String detail,String noti,String time) {
         boolean insertData = pDatabaseHelper.addData(day,name,detail,noti,time);
 
@@ -186,7 +114,81 @@ public class AddUserEvent extends AppCompatActivity {
     private void toastMessage(String message) {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
+// ------------------------------test noti-----------------------------------------------
+//    private void scheduleNotification() {
+//        Intent intent = new Intent(getApplicationContext(), Notifications.class);
+//        String title = binding.eventname.getText().toString();
+//        String content = binding.eventDetail.getText().toString();
+//        Notifications noti = new Notifications();
+//
+//        intent.putExtra(noti.getTitleExtra(), title);
+//        intent.putExtra(noti.getContentText() , content);
+//
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+//          getApplicationContext(), noti.getNotificationID(),intent,
+//                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+//        );
+//        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//        Long time = getTime();
+////        alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+//        alarmManager.set(AlarmManager.RTC_WAKEUP, time,pendingIntent);
+//
+//        Toast.makeText(getApplicationContext(),"ตั้งแจ้งเตือน" + time, Toast.LENGTH_SHORT).show();
+////        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+////            alarmManager.setExactAndAllowWhileIdle(
+////                    AlarmManager.RTC_WAKEUP, time, pendingIntent
+////
+////            );
+////        }
+//////        showAlert(time, title, content);
+//
+//    }
+//
+////    private void showAlert(Long time, String title, String content) {
+////        Date date = new Date(time);
+////
+////    }
+//
+//    private Long getTime() {
+////        Integer minute = null;
+////        Integer hours = null;
+////        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+////            minute = binding.timePicker.getMinute();
+////            hours = binding.timePicker.getHour();
+////        }
+//        int hr = binding.timePicker.getCurrentHour();
+//        int min = binding.timePicker.getCurrentMinute();
+//        String date = getIntent().getExtras().getString("day");
+//        String[] datearr = date.split("/");
+//        Integer day = Integer.parseInt(datearr[0]);
+//        Integer month = Integer.parseInt(datearr[1]);
+//        Integer year = Integer.parseInt(datearr[2]);
+//
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(year, month, day, hr, min);
+//        return calendar.getTimeInMillis();
+//    }
+//
+//    private void createNotificationChannel() {
+//        Notifications noti = new Notifications();
+//
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+//            CharSequence name = "Notif Channel";
+//            String desc = "desc";
+//            int importance = NotificationManager.IMPORTANCE_HIGH;
+//            NotificationChannel channel = new NotificationChannel(noti.getChannelID(),name,importance);
+//            channel.setDescription(desc);
+//
+//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//
+//
+//    }
 
+
+
+// ------------------------------test poptimepicker mp-----------------------------------------------
 //    public void popTimePicker(View view)
 //    {
 //        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
@@ -210,4 +212,52 @@ public class AddUserEvent extends AppCompatActivity {
         return hour + " : " + minute;
     }
 
+    private  int notificationID = 1;
+    @Override
+    public void onClick(View v) {
+        eventName = findViewById(R.id.eventname);
+        timePicker = findViewById(R.id.timePicker);
+
+//        Set noti& message
+        Intent intent = new Intent(getApplicationContext(), Notifications.class);
+        intent.putExtra("notificationID", notificationID);
+        intent.putExtra("message", eventName.getText().toString());
+
+//        PendingIntent
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(
+                getApplicationContext(),0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+
+//        AlarmManager
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        switch (v.getId()){
+            case  R.id.openNoti:
+                int hr = timePicker.getCurrentHour();
+                int min = timePicker.getCurrentMinute();
+
+//                Create TIme
+                Calendar startTime = Calendar.getInstance();
+                startTime.set(Calendar.HOUR_OF_DAY, hr);
+                startTime.set(Calendar.MINUTE,min);
+               startTime.set(Calendar.SECOND, 0);
+               long alarmStartTime = startTime.getTimeInMillis();
+
+//               Set Alarm
+                alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+
+                Toast.makeText(this,"สำเร็จ", Toast.LENGTH_SHORT).show();
+                break;
+
+
+
+            case R.id.addUserEventButton:
+//                cancle Alarm เดะมาแก้ปุ่มน้า
+                alarmManager.cancel(alarmIntent);
+                Toast.makeText(this,"อิตาบ้า",Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+
+
+    }
 }

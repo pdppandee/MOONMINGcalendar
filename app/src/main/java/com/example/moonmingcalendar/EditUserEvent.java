@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -20,10 +21,11 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class EditUserEvent extends AppCompatActivity {
-    Button btnSaveEditEvent, btnBack, timeButton;
+    Button btnSaveEditEvent, btnBack, timeButton, btnSetTime;
+    TextView showTime;
     EditText textEventName, textEventDetail;
     DbPayHelper pDatabaseHelper;
-//    TimePicker editTimePicker;
+    TimePicker editTimePicker;
 //    DatePicker editDatePicker;
     private DatePickerDialog datePickerDialog;
     private Button dateBtn;
@@ -44,15 +46,15 @@ public class EditUserEvent extends AppCompatActivity {
         textEventDetail = findViewById(R.id.eventDetail);
         textEventDetail.setText(data[1]);
 //        editDatePicker = findViewById(R.id.datePicker);
-//        editTimePicker = findViewById(R.id.timePicker);
+        editTimePicker = findViewById(R.id.timePicker);
 
 //        String[] datearr = data[3].split("/");
 //        Integer initday = Integer.parseInt(datearr[0]);
 //        Integer initmonth = Integer.parseInt(datearr[1]);
 //        Integer inityear = Integer.parseInt(datearr[2]);
 
-        timeButton = findViewById(R.id.eventTime);
-        timeButton.setText(data[3]);
+//        timeButton = findViewById(R.id.eventTime);
+//        timeButton.setText(data[3]);
 
 //        String[] timearr = data[4].split(":");
 //        Integer inithour = Integer.parseInt(timearr[0]);
@@ -62,6 +64,18 @@ public class EditUserEvent extends AppCompatActivity {
         initDatePicker();
         dateBtn = findViewById(R.id.editDate);
         dateBtn.setText(data[4]);
+
+        showTime = findViewById(R.id.oldTime);
+        btnSetTime = findViewById(R.id.setTime);
+        showTime.setText(data[3]);
+
+        btnSetTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String time = String.format(Locale.getDefault(), "%02d:%02d",hour, minute);
+                showTime.setText(time);
+            }
+        });
 
 
         btnSaveEditEvent = findViewById(R.id.editueSave);
@@ -76,7 +90,8 @@ public class EditUserEvent extends AppCompatActivity {
                         String newName = textEventName.getText().toString();
                         String newDetail = textEventDetail.getText().toString();
                         String newDate = dateBtn.getText().toString();
-                        String newTime = timeButton.getText().toString();
+                        String newTime = showTime.getText().toString();
+                        //String newTime = timeButton.getText().toString();
 //                      String newTime = makeTimeString(hour, minute);
                         pDatabaseHelper.updateName(newName,id,data[0]);
                         pDatabaseHelper.updateDetail(newDetail,id,data[1]);
@@ -112,13 +127,14 @@ public class EditUserEvent extends AppCompatActivity {
 //        });
 //        editTimePicker.setHour(inithour);
 //        editTimePicker.setMinute(initminute);
-//        editTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-//            @Override
-//            public void onTimeChanged(TimePicker editTimePicker, int selectedHour, int selectedMinute) {
-//                hour = selectedHour;
-//                minute = selectedMinute;
-//            }
-//        });
+
+        editTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker editTimePicker, int selectedHour, int selectedMinute) {
+                hour = selectedHour;
+                minute = selectedMinute;
+            }
+        });
     }
 
 

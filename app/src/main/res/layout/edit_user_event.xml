@@ -124,30 +124,48 @@
                 android:textSize="25dp">
             </TextView>
 
+            <TextView
+                android:id="@+id/oldTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit"
+                android:layout_marginLeft="20dp"
+                android:text="TextView"
+                android:textSize="25dp" />
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/eventTime"
-                android:onClick="popTimePicker"
+                android:id="@+id/setTime"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:text="เลือกเวลา"
+                android:layout_marginLeft="35dp"
                 android:fontFamily="@font/kanit"
-                app:strokeColor="@color/purple_dark"
-                app:strokeWidth="2dp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:text="เลือกเวลา"
                 app:cornerRadius="20dp"
-                >
-            </com.google.android.material.button.MaterialButton>
-<!--            <TimePicker-->
-<!--                android:id="@+id/timePicker"-->
-<!--                android:layout_width="match_parent"-->
+                app:strokeColor="@color/purple_dark"
+                app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/eventTime"-->
+<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                android:layout_width="150dp"-->
 <!--                android:layout_height="wrap_content"-->
-<!--                android:timePickerMode="spinner">-->
-<!--            </TimePicker>-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                android:fontFamily="@font/kanit"-->
+<!--                android:onClick="popTimePicker"-->
+<!--                android:text="เลือกเวลา"-->
+<!--                app:cornerRadius="20dp"-->
+<!--                app:strokeColor="@color/purple_dark"-->
+<!--                app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>-->
 
         </LinearLayout>
 
-<!--        <TimePicker-->
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"></TimePicker>
+
+        <!--        <TimePicker-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="164dp"-->
 <!--            android:layout_gravity="center"-->
@@ -162,13 +180,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/LinearLayoutinfo"
-        tools:layout_editor_absoluteX="20dp"
-        android:layout_marginTop="20dp"
-        >
+        tools:layout_editor_absoluteX="20dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/editueSave"
@@ -196,7 +214,6 @@
             app:strokeWidth="2dp" />
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

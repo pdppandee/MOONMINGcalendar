@@ -71,6 +71,8 @@ public class DbPayHelper extends SQLiteOpenHelper {
         return data;
     }
 
+
+
     public Cursor getEventID(String day,String name){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " +

@@ -130,6 +130,8 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+
     public void addNoti(Boolean noti){
 
     }

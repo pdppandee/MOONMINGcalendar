@@ -64,7 +64,8 @@
         android:layout_width="369dp"
         android:layout_height="191dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="#F6F5F5"
+        android:backgroundTint="#B2FAF9F9"
+        android:foregroundTint="#B2F6F5F5"
         app:layout_constraintBottom_toTopOf="@+id/btnDetail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.619"
@@ -74,18 +75,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:backgroundTint="@color/white60"
+            android:orientation="vertical">
 
             <ListView
                 android:id="@+id/eventList"
                 android:layout_width="match_parent"
                 android:layout_height="177dp"
-                android:backgroundTint="#FBF9F9"
-                android:fontFamily="@font/kanit"
-                android:smoothScrollbar="true"
+                android:backgroundTint="@color/white60"
+                android:backgroundTintMode="multiply"
 
-                >
+                android:cacheColorHint="@color/white60"
+                android:divider="@color/white60"
+                android:fontFamily="@font/kanit"
+                android:foregroundTint="@color/white60"
+                android:listSelector="@color/white60"
+                android:smoothScrollbar="true">
 
             </ListView>
         </LinearLayout>

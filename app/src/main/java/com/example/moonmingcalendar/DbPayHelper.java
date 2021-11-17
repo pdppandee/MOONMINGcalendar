@@ -15,7 +15,7 @@ public class DbPayHelper extends SQLiteOpenHelper {
     private static final String COL2 = "day";
     private static final String COL3 = "name";
     private static final String COL4 = "detail";
-    private static final String COL5 = "noti";
+    private static final String COLNoti = "noti";
     private static final String COL6 = "time";
 
     public DbPayHelper(Context context) {
@@ -25,7 +25,7 @@ public class DbPayHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL2 + " TEXT, " + COL3 + " TEXT, "  + COL4 + " TEXT, "  + COL5 + " TEXT, "  + COL6 + " TEXT);";
+                COL2 + " TEXT, " + COL3 + " TEXT, "  + COL4 + " TEXT, "  + COLNoti + " BOOLEAN, "  + COL6 + " TEXT);";
         db.execSQL(createTable);
     }
 
@@ -41,7 +41,7 @@ public class DbPayHelper extends SQLiteOpenHelper {
         values.put(COL2, day);
         values.put(COL3, name);
         values.put(COL4, detail);
-        values.put(COL5, noti);
+        values.put(COLNoti, noti);
         values.put(COL6, time);
         Log.d(TAG, "addData: Adding " +day+ ", "+name+ ", "+detail
                 + ", "+noti+" and "+time+ " to " + TABLE_NAME);
@@ -81,7 +81,15 @@ public class DbPayHelper extends SQLiteOpenHelper {
 
     public Cursor getData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL3 + "," + COL4 + "," + COL5 + "," + COL6 +  "," + COL2 + " FROM " +
+        String query = "SELECT " + COL3 + "," + COL4 + "," + COLNoti + "," + COL6 +  "," + COL2 + " FROM " +
+                TABLE_NAME + " WHERE " + COL1+ " = '" + id + "'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+    public Cursor addNoti(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + COLNoti + " FROM " +
                 TABLE_NAME + " WHERE " + COL1+ " = '" + id + "'";
         Cursor data = db.rawQuery(query, null);
         return data;

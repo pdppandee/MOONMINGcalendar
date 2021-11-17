@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -21,7 +22,9 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
     Button addUserEventButton, selectTimeButton, btnBack;
     DbPayHelper pDatabaseHelper;
     TimePicker timePicker;
+    CheckBox addNotiChkBox;
     int hour, minute;
+    boolean addNotiisChecked;
 
 
 //    private AddUserEventBinding binding;
@@ -34,25 +37,30 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.add_user_event);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        binding = AddUserEventBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
+        //        binding = AddUserEventBinding.inflate(getLayoutInflater());
+        //        setContentView(binding.getRoot());
 
-//        createNotificationChannel();
+        //        createNotificationChannel();
 
-//        binding.openNoti.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-////                scheduleNotification();
-//            }
-//        });
+        //        binding.openNoti.setOnClickListener(new View.OnClickListener() {
+        //            @Override
+        //            public void onClick(View v) {
+        //
+        ////                scheduleNotification();
+        //            }
+        //        });
 
+    //--------------------set FIND VIEW BY ID-------------------
         eventName = findViewById(R.id.eventname);
         eventDetail = findViewById(R.id.eventDetail);
         addUserEventButton = findViewById(R.id.addUserEventButton);
         pDatabaseHelper = new DbPayHelper(this);
         timePicker = findViewById(R.id.timePicker);
-        findViewById(R.id.openNoti).setOnClickListener(this);
+
+        addNotiChkBox = findViewById(R.id.addNotiChkbox);
+        addNotiChkBox.setOnClickListener(this);
+
+        addNotiisChecked = addNotiChkBox.isChecked();
 
         String day = getIntent().getExtras().getString("day");
 
@@ -61,7 +69,7 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 final String name = eventName.getText().toString();
                 final String detail = eventDetail.getText().toString();
-//                String time = selectTimeButton.getText().toString();
+        //     String time = selectTimeButton.getText().toString();
                 String time = String.format(Locale.getDefault(), "%02d:%02d",hour, minute);
                 String noti = "";
 
@@ -69,7 +77,10 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
                     AddData(day,name,detail,noti,time);
                     eventName.setText("");
                     eventDetail.setText("");
-//                    selectTimeButton.setText("เลือกเวลา");
+                    if(addNotiisChecked){
+                        onClick(addNotiChkBox);
+                    }
+        //      selectTimeButton.setText("เลือกเวลา");
                 }else if(eventName.length() != 0 && eventDetail.length() != 0 && time.equals("เลือกเวลา")){
                     toastMessage("กรุณาระบุเวลาด้วยจ้า!");
                 }
@@ -77,6 +88,7 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
                 else {
                     toastMessage("กรุณาใส่ข้อความที่ต้องการ!");
                 }
+
             }
         });
 
@@ -101,6 +113,13 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+//    -----------------------------end of Oncreate -----------------------
+
+    private String makeTimeString(int hour, int minute){
+        return hour + " : " + minute;
+    }
+
+//    ----------------------------- Add data to db -----------------------
     public void AddData(String day,String name,String detail,String noti,String time) {
         boolean insertData = pDatabaseHelper.addData(day,name,detail,noti,time);
 
@@ -111,9 +130,121 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public void addNoti(Boolean noti){
+
+    }
+
     private void toastMessage(String message) {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
+
+//    ------------------------------set noti--------------------------
+    private  int notificationID = 1;
+    AlarmManager alarmManager;
+    PendingIntent alarmIntent;
+
+
+    @Override
+    public void onClick(View v) {
+        eventName = findViewById(R.id.eventname);
+        timePicker = findViewById(R.id.timePicker);
+
+    //        Set noti & message
+        Intent intent = new Intent(getApplicationContext(), Notifications.class);
+        intent.putExtra("notificationID", notificationID);
+        intent.putExtra("message", eventName.getText().toString());
+
+    //        PendingIntent
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(
+                getApplicationContext(),0,intent,
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+
+    //        AlarmManager
+       alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        addNotiisChecked = addNotiChkBox.isChecked();
+
+        if (addNotiisChecked){
+            int hr = timePicker.getCurrentHour();
+            int min = timePicker.getCurrentMinute();
+
+            //        Create TIme
+            Calendar startTime = Calendar.getInstance();
+            startTime.set(Calendar.HOUR_OF_DAY, hr);
+            startTime.set(Calendar.MINUTE,min);
+            startTime.set(Calendar.SECOND, 0);
+            long alarmStartTime = startTime.getTimeInMillis();
+
+            //       Set Alarm
+            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+            Toast.makeText(this,"ตั้งแจ้งเตือน", Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+            alarmManager.cancel(alarmIntent);
+            Toast.makeText(this,"ยกเลิกตั้งแจ้งเตือน", Toast.LENGTH_SHORT).show();
+        }
+
+
+        //        switch (v.getId()){
+        //            case  R.id.addNotiChkbox :
+        //                int hr = timePicker.getCurrentHour();
+        //                int min = timePicker.getCurrentMinute();
+        //
+        ////                Create TIme
+        //                Calendar startTime = Calendar.getInstance();
+        //                startTime.set(Calendar.HOUR_OF_DAY, hr);
+        //                startTime.set(Calendar.MINUTE,min);
+        //                startTime.set(Calendar.SECOND, 0);
+        //                long alarmStartTime = startTime.getTimeInMillis();
+        //
+        ////               Set Alarm
+        //                alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+        //
+        //                Toast.makeText(this,"สำเร็จ", Toast.LENGTH_SHORT).show();
+        //                break;
+        //
+        //
+        //
+        //            case R.id.addUserEventButton:
+        ////                cancle Alarm เดะมาแก้ปุ่มน้า
+        //                alarmManager.cancel(alarmIntent);
+        //                Toast.makeText(this,"อิตาบ้า",Toast.LENGTH_SHORT).show();
+        //                break;
+        //
+        //        }
+    }
+//    private  void  removeNoti(){
+//        alarmManager.cancel(alarmIntent);
+//        Toast.makeText(this,"ยกเลิกตั้งแจ้งเตือน", Toast.LENGTH_SHORT).show();
+//    }
+
+//    private void addNoti() {
+//        addNotiisChecked = addNotiChkBox.isChecked();
+//
+//        if (addNotiisChecked){
+//
+//            Toast.makeText(this,"ตั้งแจ้งเตือน", Toast.LENGTH_SHORT).show();
+//
+//            int hr = timePicker.getCurrentHour();
+//            int min = timePicker.getCurrentMinute();
+//
+//            //        Create TIme
+//            Calendar startTime = Calendar.getInstance();
+//            startTime.set(Calendar.HOUR_OF_DAY, hr);
+//            startTime.set(Calendar.MINUTE,min);
+//            startTime.set(Calendar.SECOND, 0);
+//            long alarmStartTime = startTime.getTimeInMillis();
+//
+//            //       Set Alarm
+//            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+//
+//        }
+//        else {
+//            Toast.makeText(this,"ยกเลิกตั้งแจ้งเตือน", Toast.LENGTH_SHORT).show();
+//        }
+//
+//    }
 // ------------------------------test noti-----------------------------------------------
 //    private void scheduleNotification() {
 //        Intent intent = new Intent(getApplicationContext(), Notifications.class);
@@ -208,56 +339,4 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
 //        timePickerDialog.show();
 //    }
 
-    private String makeTimeString(int hour, int minute){
-        return hour + " : " + minute;
-    }
-
-    private  int notificationID = 1;
-    @Override
-    public void onClick(View v) {
-        eventName = findViewById(R.id.eventname);
-        timePicker = findViewById(R.id.timePicker);
-
-//        Set noti& message
-        Intent intent = new Intent(getApplicationContext(), Notifications.class);
-        intent.putExtra("notificationID", notificationID);
-        intent.putExtra("message", eventName.getText().toString());
-
-//        PendingIntent
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(
-                getApplicationContext(),0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
-
-//        AlarmManager
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-        switch (v.getId()){
-            case  R.id.openNoti:
-                int hr = timePicker.getCurrentHour();
-                int min = timePicker.getCurrentMinute();
-
-//                Create TIme
-                Calendar startTime = Calendar.getInstance();
-                startTime.set(Calendar.HOUR_OF_DAY, hr);
-                startTime.set(Calendar.MINUTE,min);
-               startTime.set(Calendar.SECOND, 0);
-               long alarmStartTime = startTime.getTimeInMillis();
-
-//               Set Alarm
-                alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
-
-                Toast.makeText(this,"สำเร็จ", Toast.LENGTH_SHORT).show();
-                break;
-
-
-
-            case R.id.addUserEventButton:
-//                cancle Alarm เดะมาแก้ปุ่มน้า
-                alarmManager.cancel(alarmIntent);
-                Toast.makeText(this,"อิตาบ้า",Toast.LENGTH_SHORT).show();
-                break;
-
-        }
-
-
-    }
 }

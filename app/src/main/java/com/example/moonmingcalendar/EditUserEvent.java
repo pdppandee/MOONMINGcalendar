@@ -58,14 +58,17 @@ public class EditUserEvent extends AppCompatActivity {
 //        Integer inithour = Integer.parseInt(timearr[0]);
 //        Integer initminute = Integer.parseInt(timearr[1]);
 
+
         initDatePicker();
         dateBtn = findViewById(R.id.editDate);
         dateBtn.setText(data[4]);
+
 
         btnSaveEditEvent = findViewById(R.id.editueSave);
         btnSaveEditEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditUserEvent.this);
                 builder.setMessage("ยืนยันการแก้ไขกิจกรรม").setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
                     @Override
@@ -125,6 +128,7 @@ public class EditUserEvent extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month=month+1;
                 String date = makeDateString(day,month,year);
+                dateBtn.setText(date);
             }
         };
 

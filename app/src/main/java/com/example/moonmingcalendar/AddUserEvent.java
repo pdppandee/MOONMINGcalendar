@@ -26,8 +26,8 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
     TimePicker timePicker;
     CheckBox addNotiChkBox;
     int hour, minute;
-    boolean addNotiisChecked, noti;
-    String eventID;
+    boolean addNotiisChecked, noti = false;
+    String eventID, day;
 
 
 
@@ -39,7 +39,6 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_user_event);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //        binding = AddUserEventBinding.inflate(getLayoutInflater());
         //        setContentView(binding.getRoot());
@@ -67,7 +66,7 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
         addNotiisChecked = addNotiChkBox.isChecked();
 
 
-        String day = getIntent().getExtras().getString("day");
+        day = getIntent().getExtras().getString("day");
 
 
         addUserEventButton.setOnClickListener(new View.OnClickListener() {
@@ -80,13 +79,13 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
 
 
                 if (eventName.length() != 0 && eventDetail.length() != 0) {
-                    AddData(day,name,detail,noti,time);
                     eventName.setText("");
                     eventDetail.setText("");
                     if(addNotiisChecked){
+                        noti = true;
                         toastMessage("ตั้งแจ้งเตือน:-D");
-
                     }
+                    AddData(day,name,detail,noti,time);
                 }else {
                     toastMessage("กรุณาใส่ข้อความที่ต้องการ!");
                 }
@@ -130,32 +129,32 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
 
         if (insertData) {
             toastMessage("เพิ่มกิจรรมเสร็จสิ้นจ้า :-D");
-//            addNoti(eventID,day,name);
-
-//            onClick(GetNoti(eventID));
             System.out.println(eventID);
+            addNoti(eventID,day,name);
         } else {
             toastMessage("เพิ่มกิจรรมไม่สำเร็จ ;-;");
         }
     }
 
-//    public void addNoti(String id, String date, String name){
-//        if(GetNoti(eventID)){
-////            onClick( addNotiisChecked);
-//        }
-//
-//    }
+    public void addNoti(String id, String date, String name){
+        if(GetNoti(date, name)){
+            onClick(addUserEventButton);
+        }
+    }
 
 
 
-    public Boolean GetNoti(String id) {
-        Cursor data = pDatabaseHelper.getEventNoti(id);
+    public Boolean GetNoti(String date,String name) {
+        Cursor data = pDatabaseHelper.getEventNoti(date, name);
         data.moveToFirst();
-        Boolean noti = Boolean.parseBoolean(data.getString(0));
+        Boolean notifi ;
+//        if( data!= null && data.moveToFirst() ) {
+            notifi = Boolean.parseBoolean(data.getString(0));
+//        }
 //        if (noti.equals("true")){
 //            return true;
 //        }
-        return noti;
+        return notifi;
     }
 
     private void toastMessage(String message) {
@@ -170,9 +169,27 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
 
         return id;
     }
+//    get date เอามาทำพรื้อ
+    public String GetDate(String id) {
+        Cursor data = pDatabaseHelper.getData(id);
+        data.moveToFirst();
+        String date = data.getString(0);
+
+        return date;
+    }
+//    get time
+    public String GetTime(String id) {
+        Cursor data = pDatabaseHelper.getData(id);
+        data.moveToFirst();
+        String time = data.getString(0);
+
+        return time;
+    }
 
 
-//    ------------------------------set noti--------------------------
+
+
+    //    ------------------------------set noti--------------------------
     private  int notificationID = 1;
     AlarmManager alarmManager;
     PendingIntent alarmIntent;
@@ -202,9 +219,16 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
 //        addNotiisChecked = addNotiChkBox.isChecked();
 
 
-        if (GetNoti(eventID)){
-            int hr = timePicker.getCurrentHour();
-            int min = timePicker.getCurrentMinute();
+        if (GetNoti(eventName.getText().toString(), day)){
+            String[] ddmmyyy =GetDate(eventID).split("/");;
+            String[] time = GetTime(eventID).split(":");
+            int hr = Integer.parseInt(time[0]);
+            int min = Integer.parseInt(time[1]);
+            System.out.println(hr);
+            System.out.println(min);
+
+//            int hr = timePicker.getCurrentHour();
+//            int min = timePicker.getCurrentMinute();
 
             //        Create TIme
             Calendar startTime = Calendar.getInstance();
@@ -215,6 +239,7 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
 
             //       Set Alarm
             alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+//            System.out.println(GetNoti(eventID));
 
 //            System.out.println(eventName.getText().toString());
 

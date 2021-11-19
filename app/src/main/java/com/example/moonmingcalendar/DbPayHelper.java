@@ -71,6 +71,22 @@ public class DbPayHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor getDate(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + COL2 +  " FROM " +
+                TABLE_NAME + " WHERE " + COL1+ " = '" + id + "'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+    public Cursor getTime(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + COL6 +  " FROM " +
+                TABLE_NAME + " WHERE " + COL1+ " = '" + id + "'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
 
 
     public Cursor getEventID(String day,String name){
@@ -89,10 +105,11 @@ public class DbPayHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor getEventNoti(String id){
+    public Cursor getEventNoti(String date, String name){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + COLNoti + " FROM " +
-                TABLE_NAME + " WHERE " + COL1+ " = '" + id + "'";
+                TABLE_NAME + " WHERE " + COL2 + " = '" + date+ "'" +
+                " AND " + COL3 + " = '" + name + "'";
         Cursor data = db.rawQuery(query, null);
         return data;
     }

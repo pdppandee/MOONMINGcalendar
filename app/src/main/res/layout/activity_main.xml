@@ -61,8 +61,8 @@
 
     <ScrollView
         android:id="@+id/eventlist"
-        android:layout_width="369dp"
-        android:layout_height="191dp"
+        android:layout_width="366dp"
+        android:layout_height="119dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="#B2FAF9F9"

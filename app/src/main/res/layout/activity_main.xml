@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/treewithstar"
+    android:background="@drawable/hand_bg"
     android:padding="20dp">
 
     <TextView
@@ -63,7 +63,6 @@
         android:id="@+id/eventlist"
         android:layout_width="372dp"
         android:layout_height="106dp"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="#B2FAF9F9"
         android:foregroundTint="#B2F6F5F5"

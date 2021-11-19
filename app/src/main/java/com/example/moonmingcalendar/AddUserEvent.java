@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
@@ -139,17 +140,19 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
     private  int notificationID = 1;
     AlarmManager alarmManager;
     PendingIntent alarmIntent;
+    Notifications eventnoti = new Notifications();
 
 
     @Override
+
     public void onClick(View v) {
         eventName = findViewById(R.id.eventname);
         timePicker = findViewById(R.id.timePicker);
 
     //        Set noti & message
         Intent intent = new Intent(getApplicationContext(), Notifications.class);
-        intent.putExtra("notificationID", notificationID);
-        intent.putExtra("message", eventName.getText().toString());
+        intent.putExtra("NotificationID", eventnoti.getNotificationID());
+        intent.putExtra("Message", eventName.getText().toString());
 
     //        PendingIntent
         PendingIntent alarmIntent = PendingIntent.getBroadcast(
@@ -174,7 +177,8 @@ public class AddUserEvent extends AppCompatActivity implements View.OnClickListe
 
             //       Set Alarm
             alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
-            Toast.makeText(this,"ตั้งแจ้งเตือน", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"ตั้งแจ้งเตือน :-D ", Toast.LENGTH_SHORT).show();
+            System.out.println(eventName.getText().toString());
 
         }
         else {

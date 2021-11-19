@@ -254,7 +254,7 @@
                 android:fontFamily="@font/kanit"
                 android:hint="วันไม่ดี"
                 android:textSize="18sp"
-                android:layout_marginStart="70dp"
+                android:layout_marginStart="80dp"
                 >
             </TextView>
         </LinearLayout>

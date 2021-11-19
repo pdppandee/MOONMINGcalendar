@@ -74,7 +74,6 @@ public class ShowMuteluEvent extends AppCompatActivity {
             textBad.setText("เขียว");
         }
 
-        //int dayChong = dayOfYear(day);
 
     }
 

@@ -14,7 +14,7 @@ import java.util.Calendar;
 public class ShowMuteluEvent extends AppCompatActivity {
     Button btnBack;
     TextView textWork,textLove,textMoney,textMercy,textBad,textDate,
-            zodiacGood, zodiacBad; //---------------------------v------------------มป พาร์ทวันชง---------------------------v------------------
+            zodiacGood1, zodiacBad1, zodiacGood2, zodiacBad2; //---------------------------v------------------มป พาร์ทวันชง---------------------------v------------------
     String[] zodiacYear = {"ชวด", "ฉลู", "ขาล", "เถาะ", "มะโรง", "มะเส็ง", "มะเมีย", "มะแม", "วอก", "ระกา", "จอ", "กุน"};
     //---------------------------^------------------มป พาร์ทวันชง----------------------^-----------------------
 
@@ -29,8 +29,10 @@ public class ShowMuteluEvent extends AppCompatActivity {
         textMercy = findViewById(R.id.mercy);
         textBad = findViewById(R.id.bad);
         textDate = findViewById(R.id.date);
-        zodiacGood = findViewById(R.id.zodiacGoodTv);
-        zodiacBad = findViewById(R.id.zodiacBadTv);
+        zodiacGood1 = findViewById(R.id.zodiacGoodTv1);
+        zodiacBad1 = findViewById(R.id.zodiacBadTv1);
+        zodiacGood2 = findViewById(R.id.zodiacGoodTv2);
+        zodiacBad2 = findViewById(R.id.zodiacBadTv2);
         String day = getIntent().getExtras().getString("day");
         textDate.setText(day);
         int dayN = dayOfWeek(day);
@@ -83,21 +85,27 @@ public class ShowMuteluEvent extends AppCompatActivity {
         int modNum = modWanchong(dayChong);
         if (currentYear == 2020) { // มี 365 วัน
             modNum = (modNum + 11) % 12;
-            zodiacGood.setText(zodiacYear[modNum]);
+            zodiacGood1.setText(zodiacYear[modNum]);
+            zodiacGood2.setText(zodiacYear[modNum]);
             modNum = (modNum + 6) % 12;
-            zodiacBad.setText(zodiacYear[modNum]);
+            zodiacBad1.setText(zodiacYear[modNum]);
+            zodiacBad2.setText(zodiacYear[modNum]);
         }
-        if (currentYear == 2021){ // มี 366 วัน
+        else if (currentYear == 2021){ // มี 366 วัน
             modNum = (modNum + 8) % 12;
-            zodiacGood.setText(zodiacYear[modNum]);
+            zodiacGood1.setText(zodiacYear[modNum]);
+            zodiacGood2.setText(zodiacYear[modNum]);
             modNum = (modNum + 6) % 12;
-            zodiacBad.setText(zodiacYear[modNum]);
+            zodiacBad1.setText(zodiacYear[modNum]);
+            zodiacBad2.setText(zodiacYear[modNum]);
         }
         else if (currentYear == 2022){ // มี 365 วัน
             modNum = (modNum + 1) % 12;
-            zodiacGood.setText(zodiacYear[modNum]);
+            zodiacGood1.setText(zodiacYear[modNum]);
+            zodiacGood2.setText(zodiacYear[modNum]);
             modNum = (modNum + 6) % 12;
-            zodiacBad.setText(zodiacYear[modNum]);
+            zodiacBad1.setText(zodiacYear[modNum]);
+            zodiacBad2.setText(zodiacYear[modNum]);
         }
     }
 //---------------------------^------------------มป พาร์ทวันชง----------------^-----------------------------

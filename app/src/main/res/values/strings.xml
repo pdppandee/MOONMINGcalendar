@@ -11,4 +11,7 @@
     <string name="editueBack">กลับ</string>
     <string name="maineventname">TextView</string>
     <string name="maineventdate">TextView</string>
+    <string name="zodiacGoodTitle">วันดีของ</string>
+    <string name="zodiacBadTitle">วันชงของ</string>
+    <string name="zodiacDescription">เมื่อทั้ง 2 ปีกนักษัตรต้องทำงานร่วมกัน ปีนักษัตรที่มีฤกษ์วันดีจะได้เปรียบปีนักษัตรที่มีฤกษ์วันไม่ดี</string>
 </resources>

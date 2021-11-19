@@ -79,5 +79,12 @@ public class ShowMuteluEvent extends AppCompatActivity {
         c.set(Integer.parseInt(dmy[2]), Integer.parseInt(dmy[1])-1, Integer.parseInt(dmy[0]));
         return c.get(Calendar.DAY_OF_WEEK);
     }
+
+    public int dayOfYear(String dmyST){
+        String[] dmy = dmyST.split("/");
+        Calendar c = Calendar.getInstance();
+        c.set(Integer.parseInt(dmy[2]), Integer.parseInt(dmy[1])-1, Integer.parseInt(dmy[0]));
+        return c.get(Calendar.DAY_OF_YEAR);
+    }
 }
 

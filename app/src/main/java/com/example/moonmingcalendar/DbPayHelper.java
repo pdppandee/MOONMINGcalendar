@@ -35,7 +35,7 @@ public class DbPayHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String day,String name,String detail,String noti,String time) {
+    public boolean addData(String day,String name,String detail,Boolean noti,String time) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL2, day);
@@ -89,7 +89,7 @@ public class DbPayHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor addNoti(String id){
+    public Cursor getEventNoti(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + COLNoti + " FROM " +
                 TABLE_NAME + " WHERE " + COL1+ " = '" + id + "'";

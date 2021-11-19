@@ -15,7 +15,7 @@ public class Notifications extends BroadcastReceiver {
     private  static  final Integer notificationID = 0;
     public final String channelID = "eventChannel";
     String titleExtra = "Ayy Yo";
-    private  static final String contentText = "งว่วง";
+
 
     DbPayHelper pDatabaseHelper;
 //    String[] data = GetData(id);
@@ -44,7 +44,11 @@ public class Notifications extends BroadcastReceiver {
 //        notificationManagerCompat.notify(notificationID,notification.build());
 
 
+//https://www.youtube.com/watch?v=F3IFF8A-ewE&t=595s
 
+//        get message get id from intent
+        String content = intent.getStringExtra("Message");
+        String eventid = intent.getStringExtra("NotificationID");
 //         สร้าง channel
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -59,8 +63,8 @@ public class Notifications extends BroadcastReceiver {
 
         NotificationCompat.Builder notification = new NotificationCompat.Builder(context,channelID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
-//                .setContentTitle(intent.getStringExtra(titleExtra))
-                .setContentText("intent.getStringExtra(contentText)")
+//                .setContentTitle(eventid)
+                .setContentText(eventid)
 //                .setContentText(intent.getStringExtra(contentText))
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
@@ -70,27 +74,39 @@ public class Notifications extends BroadcastReceiver {
     }
 
 
-    private String[] GetData(String id) {
-        Cursor cursor = pDatabaseHelper.getData(id);
-        cursor.moveToFirst();
-        String[] data = {cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4)};
-        return data;
+//    private String[] GetData(String id) {
+//        Cursor cursor = pDatabaseHelper.getData(id);
+//        cursor.moveToFirst();
+//        String[] data = {cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4)};
+//        return data;
+//    }
+
+    public String getName(String date) {
+        Cursor data = pDatabaseHelper.getEventListName(date);
+        String name = data.getString(0);
+        return name;
+    }
+
+
+    public String GetID(String date,String name) {
+        Cursor data = pDatabaseHelper.getEventID(date,name);
+        data.moveToFirst();
+        String id = data.getString(0);
+
+        return id;
     }
 
 
 
-    public String getChannelID(){
-
-        return channelID;
-    }
+    public String getChannelID(){ return channelID; }
 
     public String getTitleExtra() {
         return titleExtra;
     }
 
-    public String getContentText() {
-        return contentText;
-    }
+//    public String getContentText() {
+//        return contentText;
+//    }
 
     public Integer getNotificationID() {
         return notificationID;

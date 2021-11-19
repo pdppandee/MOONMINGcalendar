@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         textDate = findViewById(R.id.Date);
         mCalendar = findViewById(R.id.calendarView);
-        //miniEventList = findViewById(R.id.eventList);
+        miniEventList = findViewById(R.id.eventList);
         pDatabaseHelper = new DbPayHelper(this);
 
         mCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     eventListName.add(userEvent.get(i));
                 }
                 ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, eventListName);
-                //miniEventList.setAdapter(arrayAdapter);
+                miniEventList.setAdapter(arrayAdapter);
 
                 btnDetail = findViewById(R.id.btnDetail);
                 btnDetail.setOnClickListener(new View.OnClickListener() {

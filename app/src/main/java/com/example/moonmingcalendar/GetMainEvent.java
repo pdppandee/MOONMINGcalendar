@@ -173,6 +173,9 @@ public class GetMainEvent {
                 eventLst.add(ChineseList.get(j).getName());
             }
         }
+        if (BuddhistHolyDay(dmy)){
+            eventLst.add("วันพระ");
+        }
         return eventLst;
     }
 
@@ -187,6 +190,9 @@ public class GetMainEvent {
             if (dmy[0].equals(ChineseList.get(j).getDay()) && dmy[1].equals(ChineseList.get(j).getMonth()) && dmy[2].equals(ChineseList.get(j).getYear())){
                 eventLst.add(ChineseList.get(j).getDetail());
             }
+        }
+        if (BuddhistHolyDay(dmy)){
+            eventLst.add("วันพระไทย");
         }
 
         return eventLst;
@@ -204,7 +210,33 @@ public class GetMainEvent {
                 eventLst.add("");
             }
         }
+        if (BuddhistHolyDay(dmy)){
+            eventLst.add("");
+        }
         return eventLst;
+    }
+
+    public boolean BuddhistHolyDay(String[] date){
+        int day = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[2]);
+        if(month<=2){
+            month+=12;
+            year-=1;
+        }
+        double A = Math.floor(year/100);
+        double B = 2 - A + Math.floor(A/4);
+        double jd = Math.floor(365.25*(year+4716)) + Math.floor(30.6001 * (month +1)) + day + B - 1524.5;
+        double ans = (((jd-2454000.98958)/29.530588*4000)%4000)/1000;
+        if (ans>3.75){
+            ans=ans-3.75;
+        }
+        if ((ans<0.25) || (ans>=0.75 && ans<1.25) || (ans>=1.75 && ans<2.25) || (ans>=2.75 && ans<3.25)){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 }

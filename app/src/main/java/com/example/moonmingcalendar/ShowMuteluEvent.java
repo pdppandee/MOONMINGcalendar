@@ -80,15 +80,6 @@ public class ShowMuteluEvent extends AppCompatActivity {
 //-------------------------v-------------------มป พาร์ทวันชง----------------------v-----------------------
         int dayChong = dayOfYear(day);
         int currentYear = getYear(day);
-//        if (currentYear == 2020) {
-//
-//        }
-//        else if (currentYear == 2021){
-//
-//        }
-//        else if (currentYear == 2022){
-//
-//        }
         int modNum = modWanchong(dayChong);
 //        if (currentYear == 2020) { // มี 365 วัน
 //            modNum = (modNum + 8) % 12;
@@ -99,15 +90,15 @@ public class ShowMuteluEvent extends AppCompatActivity {
         if (currentYear == 2021){ // มี 366 วัน
             modNum = (modNum + 8) % 12;
             zodiacGood.setText(zodiacYear[modNum]);
-            modNum = (modNum + 2) % 12;
+            modNum = (modNum + 6) % 12;
             zodiacBad.setText(zodiacYear[modNum]);
         }
-//        else if (currentYear == 2022){ // มี 365 วัน
-//            modNum = (modNum) % 12;
-//            zodiacGood.setText(zodiacYear[modNum]);
-//            modNum = (modNum) % 12;
-//            zodiacBad.setText(zodiacYear[modNum]);
-//        }
+        else if (currentYear == 2022){ // มี 365 วัน
+            modNum = (modNum + 1) % 12;
+            zodiacGood.setText(zodiacYear[modNum]);
+            modNum = (modNum + 6) % 12;
+            zodiacBad.setText(zodiacYear[modNum]);
+        }
     }
 //---------------------------^------------------มป พาร์ทวันชง----------------^-----------------------------
 

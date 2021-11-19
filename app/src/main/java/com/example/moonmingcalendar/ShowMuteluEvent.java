@@ -81,12 +81,12 @@ public class ShowMuteluEvent extends AppCompatActivity {
         int dayChong = dayOfYear(day);
         int currentYear = getYear(day);
         int modNum = modWanchong(dayChong);
-//        if (currentYear == 2020) { // มี 365 วัน
-//            modNum = (modNum + 8) % 12;
-//            zodiacGood.setText(zodiacYear[modNum]);
-//            modNum = (modNum + 2) % 12; // 0 1 2 <3> 4 5 6 7 8 9 10 11
-//            zodiacBad.setText(zodiacYear[modNum]);
-//        }
+        if (currentYear == 2020) { // มี 365 วัน
+            modNum = modNum % 12;
+            zodiacGood.setText(zodiacYear[modNum]);
+            modNum = (modNum + 6) % 12;
+            zodiacBad.setText(zodiacYear[modNum]);
+        }
         if (currentYear == 2021){ // มี 366 วัน
             modNum = (modNum + 8) % 12;
             zodiacGood.setText(zodiacYear[modNum]);

@@ -82,7 +82,7 @@ public class ShowMuteluEvent extends AppCompatActivity {
         int currentYear = getYear(day);
         int modNum = modWanchong(dayChong);
         if (currentYear == 2020) { // มี 365 วัน
-            modNum = modNum % 12;
+            modNum = (modNum + 11) % 12;
             zodiacGood.setText(zodiacYear[modNum]);
             modNum = (modNum + 6) % 12;
             zodiacBad.setText(zodiacYear[modNum]);

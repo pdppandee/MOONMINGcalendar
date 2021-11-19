@@ -6,12 +6,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
 public class ShowMuteluEvent extends AppCompatActivity {
     Button btnBack;
     TextView textWork,textLove,textMoney,textMercy,textBad,textDate;
+    String[] zodiacYear = {"ชวด", "ฉลู", "ขาล", "เถาะ", "มะโรง", "มะเส็ง", "มะเมีย", "มะแม", "วอก", "ระกา", "จอ", "กุน"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,8 @@ public class ShowMuteluEvent extends AppCompatActivity {
             textBad.setText("เขียว");
         }
 
+        //int dayChong = dayOfYear(day);
+
     }
 
     public int dayOfWeek(String dmyST) {
@@ -85,6 +90,10 @@ public class ShowMuteluEvent extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         c.set(Integer.parseInt(dmy[2]), Integer.parseInt(dmy[1])-1, Integer.parseInt(dmy[0]));
         return c.get(Calendar.DAY_OF_YEAR);
+    }
+
+    public int modWanchong(Integer doy){
+        return doy%12;
     }
 }
 

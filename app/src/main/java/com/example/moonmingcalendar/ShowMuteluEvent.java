@@ -13,8 +13,10 @@ import java.util.Calendar;
 
 public class ShowMuteluEvent extends AppCompatActivity {
     Button btnBack;
-    TextView textWork,textLove,textMoney,textMercy,textBad,textDate;
+    TextView textWork,textLove,textMoney,textMercy,textBad,textDate,
+            zodiacGood, zodiacBad; //---------------------------v------------------มป พาร์ทวันชง---------------------------v------------------
     String[] zodiacYear = {"ชวด", "ฉลู", "ขาล", "เถาะ", "มะโรง", "มะเส็ง", "มะเมีย", "มะแม", "วอก", "ระกา", "จอ", "กุน"};
+    //---------------------------^------------------มป พาร์ทวันชง----------------------^-----------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class ShowMuteluEvent extends AppCompatActivity {
         textMercy = findViewById(R.id.mercy);
         textBad = findViewById(R.id.bad);
         textDate = findViewById(R.id.date);
+        zodiacGood = findViewById(R.id.zodiacGoodTv);
+        zodiacBad = findViewById(R.id.zodiacBadTv);
         String day = getIntent().getExtras().getString("day");
         textDate.setText(day);
         int dayN = dayOfWeek(day);
@@ -73,9 +77,39 @@ public class ShowMuteluEvent extends AppCompatActivity {
             textMercy.setText("ชมพู");
             textBad.setText("เขียว");
         }
-
-
+//-------------------------v-------------------มป พาร์ทวันชง----------------------v-----------------------
+        int dayChong = dayOfYear(day);
+        int currentYear = getYear(day);
+//        if (currentYear == 2020) {
+//
+//        }
+//        else if (currentYear == 2021){
+//
+//        }
+//        else if (currentYear == 2022){
+//
+//        }
+        int modNum = modWanchong(dayChong);
+//        if (currentYear == 2020) { // มี 365 วัน
+//            modNum = (modNum + 8) % 12;
+//            zodiacGood.setText(zodiacYear[modNum]);
+//            modNum = (modNum + 2) % 12; // 0 1 2 <3> 4 5 6 7 8 9 10 11
+//            zodiacBad.setText(zodiacYear[modNum]);
+//        }
+        if (currentYear == 2021){ // มี 366 วัน
+            modNum = (modNum + 8) % 12;
+            zodiacGood.setText(zodiacYear[modNum]);
+            modNum = (modNum + 2) % 12;
+            zodiacBad.setText(zodiacYear[modNum]);
+        }
+//        else if (currentYear == 2022){ // มี 365 วัน
+//            modNum = (modNum) % 12;
+//            zodiacGood.setText(zodiacYear[modNum]);
+//            modNum = (modNum) % 12;
+//            zodiacBad.setText(zodiacYear[modNum]);
+//        }
     }
+//---------------------------^------------------มป พาร์ทวันชง----------------^-----------------------------
 
     public int dayOfWeek(String dmyST) {
         String[] dmy = dmyST.split("/");
@@ -84,6 +118,7 @@ public class ShowMuteluEvent extends AppCompatActivity {
         return c.get(Calendar.DAY_OF_WEEK);
     }
 
+//---------------------------v------------------มป พาร์ทวันชง----------------------v-----------------------
     public int dayOfYear(String dmyST){
         String[] dmy = dmyST.split("/");
         Calendar c = Calendar.getInstance();
@@ -91,8 +126,16 @@ public class ShowMuteluEvent extends AppCompatActivity {
         return c.get(Calendar.DAY_OF_YEAR);
     }
 
-    public int modWanchong(Integer doy){
-        return doy%12;
+    public int getYear(String dmyST){
+        String[] dmy = dmyST.split("/");
+        Calendar c = Calendar.getInstance();
+        c.set(Integer.parseInt(dmy[2]), Integer.parseInt(dmy[1])-1, Integer.parseInt(dmy[0]));
+        return c.get(Calendar.YEAR); //dmy[2]
     }
+
+    public int modWanchong(Integer doy){
+        return doy % 12;
+    }
+//--------------------------^-------------------มป พาร์ทวันชง------------------------^---------------------
 }
 

@@ -1,6 +1,7 @@
 package com.example.moonmingcalendar;
 
 import android.app.NotificationChannel;
+import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,8 +13,8 @@ import androidx.core.app.NotificationCompat;
 
 public class Notifications extends BroadcastReceiver {
 
-    private  static  final Integer notificationID = 0;
-    public final String channelID = "eventChannel";
+//    private  static  final Integer notificationID = 0;
+    public String channelID = "eventChannel";
     String titleExtra = "Ayy Yo";
 
 
@@ -27,35 +28,30 @@ public class Notifications extends BroadcastReceiver {
         //       call adduserevent when noti is tapped
         Intent intentadduserevent = new Intent(context,AddUserEvent.class);
         intentadduserevent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(context,0, intentadduserevent,0);
-
-
-//        NotificationCompat.Builder notification = new NotificationCompat.Builder(context,channelID)
-//                .setSmallIcon(R.drawable.ic_launcher_background)
-//                .setContentTitle(intent.getStringExtra(titleExtra))
-//                .setContentText(intent.getStringExtra(contentText))
-//                .setAutoCancel(true)
-//                .setDefaults(NotificationCompat.DEFAULT_ALL)
-//                .setPriority(NotificationCompat.PRIORITY_HIGH);
-//                .setContentIntent(pendingIntent);
-
-//      noti manager
-//        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-//        notificationManagerCompat.notify(notificationID,notification.build());
 
 
 //https://www.youtube.com/watch?v=F3IFF8A-ewE&t=595s
 
 //        get message get id from intent
         String content = intent.getStringExtra("Message");
-        String eventid = intent.getStringExtra("NotificationID");
+        String eventid = intent.getStringExtra("NotificationID"); // event channel id
 //         สร้าง channel
+        channelID = eventid;
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            String groupID = "User Event Noti";
+            String groupName = "EventNotification";
+            NotificationChannelGroup group = new NotificationChannelGroup(groupID, groupName);
             int importance = NotificationManager.IMPORTANCE_HIGH;
-            CharSequence channelName = "Event Notification";
+            CharSequence channelName = "Event";
             NotificationChannel channel = new NotificationChannel(channelID,channelName, importance);
+            channel.setGroup(groupID);
+
+
+
+            notificationManager.createNotificationChannelGroup(group);
             notificationManager.createNotificationChannel(channel);
         }
 
@@ -70,16 +66,12 @@ public class Notifications extends BroadcastReceiver {
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
-        notificationManager.notify(notificationID, notification.build());
+        notificationManager.notify(Integer.parseInt(channelID), notification.build());
+
+
     }
 
 
-//    private String[] GetData(String id) {
-//        Cursor cursor = pDatabaseHelper.getData(id);
-//        cursor.moveToFirst();
-//        String[] data = {cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4)};
-//        return data;
-//    }
 
     public String getName(String date) {
         Cursor data = pDatabaseHelper.getEventListName(date);
@@ -96,19 +88,4 @@ public class Notifications extends BroadcastReceiver {
         return id;
     }
 
-
-
-    public String getChannelID(){ return channelID; }
-
-    public String getTitleExtra() {
-        return titleExtra;
-    }
-
-//    public String getContentText() {
-//        return contentText;
-//    }
-
-    public Integer getNotificationID() {
-        return notificationID;
-    }
 }

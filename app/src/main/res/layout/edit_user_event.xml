@@ -7,233 +7,239 @@
     android:background="@drawable/cheese_bg"
     android:padding="20dp">
 
-    <LinearLayout
-        android:id="@+id/LinearLayoutinfo"
+    <ScrollView
+        android:id="@+id/scrolldetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="20dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/LinearLayoutinfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="20dp">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/LinearLayoutinfo"
-                tools:ignore="MissingClass"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/eventname"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="กิจกรรม"
-                    android:fontFamily="@font/kanit"
-                    android:textSize="20dp"
-                    >
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+                    app:layout_constraintTop_toBottomOf="@id/LinearLayoutinfo"
+                    tools:ignore="MissingClass">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:orientation="horizontal">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/eventname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit"
+                        android:hint="กิจกรรม"
+                        android:textSize="20dp"></com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/LinearLayoutinfo"
-                tools:ignore="MissingClass"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/eventDetail"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="รายละเอียด"
+                    app:layout_constraintTop_toBottomOf="@id/LinearLayoutinfo"
+                    tools:ignore="MissingClass">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/eventDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit"
+                        android:hint="รายละเอียด"
+                        android:textSize="20dp"></com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/dateSelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/kanit"
-                    android:textSize="20dp"
-                    >
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:text="วันที่: "
+                    android:textSize="25dp"></TextView>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/editDate"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:fontFamily="@font/kanit"
+                    android:onClick="openDatePicker"
+                    android:text="เลือกวันที่"
+                    app:cornerRadius="20dp"
+                    app:strokeColor="@color/purple_dark"
+                    app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
+                <!--            <DatePicker-->
+                <!--                android:id="@+id/datePicker"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginLeft="40dp"-->
+                <!--                android:calendarViewShown="false"-->
+                <!--                android:datePickerMode="spinner"-->
+                <!--                >-->
+                <!--            </DatePicker>-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/timeSelectTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit"
+                    android:text="เวลา: "
+                    android:textSize="25dp"></TextView>
+
+                <TextView
+                    android:id="@+id/oldTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/kanit"
+                    android:text="TextView"
+                    android:textSize="25dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/setTime"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:fontFamily="@font/kanit"
+                    android:text="เลือกเวลา"
+                    app:cornerRadius="20dp"
+                    app:strokeColor="@color/purple_dark"
+                    app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
+                <!--            <com.google.android.material.button.MaterialButton-->
+                <!--                android:id="@+id/eventTime"-->
+                <!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+                <!--                android:layout_width="150dp"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginLeft="40dp"-->
+                <!--                android:fontFamily="@font/kanit"-->
+                <!--                android:onClick="popTimePicker"-->
+                <!--                android:text="เลือกเวลา"-->
+                <!--                app:cornerRadius="20dp"-->
+                <!--                app:strokeColor="@color/purple_dark"-->
+                <!--                app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>-->
+
+            </LinearLayout>
+
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"></TimePicker>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/addNotiChkbox"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:checked="false"
+                    android:fontFamily="@font/kanit"
+                    android:text="แจ้งเตือน"
+                    app:cornerRadius="20dp"
+                    app:strokeColor="@color/purple_dark"
+                    app:strokeWidth="2dp">
+
+                </androidx.appcompat.widget.AppCompatCheckBox>
+
+            </LinearLayout>
+            <!--        <TimePicker-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="164dp"-->
+            <!--            android:layout_gravity="center"-->
+            <!--            android:layout_marginHorizontal="-30dp"-->
+            <!--            android:layout_weight="1"-->
+            <!--            android:scaleX="0.7"-->
+            <!--            android:scaleY="0.7"-->
+            <!--            android:timePickerMode="spinner">-->
+
+            <!--        </TimePicker>-->
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteX="20dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/editBack"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="@font/kanit"
+                    android:text="กลับ"
+                    app:cornerRadius="20dp"
+                    app:strokeColor="@color/purple_dark"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/editueSave"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="168dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/kanit"
+                    android:text="บันทึก"
+                    app:cornerRadius="20dp"
+                    app:strokeColor="@color/purple_dark"
+                    app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/dateSelect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/kanit"
-                android:text="วันที่: "
-                android:textSize="25dp">
-            </TextView>
+    </ScrollView>
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/editDate"
-                android:onClick="openDatePicker"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:text="เลือกวันที่"
-                android:fontFamily="@font/kanit"
-                app:strokeColor="@color/purple_dark"
-                app:strokeWidth="2dp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                app:cornerRadius="20dp"
-                >
-            </com.google.android.material.button.MaterialButton>
-<!--            <DatePicker-->
-<!--                android:id="@+id/datePicker"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="40dp"-->
-<!--                android:calendarViewShown="false"-->
-<!--                android:datePickerMode="spinner"-->
-<!--                >-->
-<!--            </DatePicker>-->
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/timeSelectTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/kanit"
-                android:text="เวลา: "
-                android:textSize="25dp">
-            </TextView>
-
-            <TextView
-                android:id="@+id/oldTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/kanit"
-                android:layout_marginLeft="20dp"
-                android:text="TextView"
-                android:textSize="25dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/setTime"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:fontFamily="@font/kanit"
-                android:text="เลือกเวลา"
-                app:cornerRadius="20dp"
-                app:strokeColor="@color/purple_dark"
-                app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
-<!--            <com.google.android.material.button.MaterialButton-->
-<!--                android:id="@+id/eventTime"-->
-<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
-<!--                android:layout_width="150dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="40dp"-->
-<!--                android:fontFamily="@font/kanit"-->
-<!--                android:onClick="popTimePicker"-->
-<!--                android:text="เลือกเวลา"-->
-<!--                app:cornerRadius="20dp"-->
-<!--                app:strokeColor="@color/purple_dark"-->
-<!--                app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>-->
-
-        </LinearLayout>
-
-        <TimePicker
-            android:id="@+id/timePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:timePickerMode="spinner"></TimePicker>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/addNotiChkbox"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:fontFamily="@font/kanit"
-                android:text="แจ้งเตือน"
-                app:cornerRadius="20dp"
-                android:layout_gravity="right"
-                app:strokeColor="@color/purple_dark"
-                app:strokeWidth="2dp">
-
-            </androidx.appcompat.widget.AppCompatCheckBox>
-
-        </LinearLayout>
-        <!--        <TimePicker-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="164dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginHorizontal="-30dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:scaleX="0.7"-->
-<!--            android:scaleY="0.7"-->
-<!--            android:timePickerMode="spinner">-->
-
-<!--        </TimePicker>-->
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/LinearLayoutinfo"
-        tools:layout_editor_absoluteX="20dp">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/editueSave"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="168dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:fontFamily="@font/kanit"
-            android:text="บันทึก"
-            app:cornerRadius="20dp"
-            app:strokeColor="@color/purple_dark"
-            app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/editBack"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:fontFamily="@font/kanit"
-            android:text="กลับ"
-            app:cornerRadius="20dp"
-            app:strokeColor="@color/purple_dark"
-            app:strokeWidth="2dp" />
-
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

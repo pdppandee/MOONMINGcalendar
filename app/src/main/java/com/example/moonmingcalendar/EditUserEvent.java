@@ -1,7 +1,9 @@
 package com.example.moonmingcalendar;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,6 +33,9 @@ public class EditUserEvent extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateBtn;
     int hour, minute;
+    boolean addNotiisChecked, noti = false;
+    String  id, newName, newDate, newTime;
+    CheckBox addNotiChkBox;
 
 
     @Override
@@ -38,7 +44,7 @@ public class EditUserEvent extends AppCompatActivity {
         setContentView(R.layout.edit_user_event);
 
         String date = getIntent().getExtras().getString("day");
-        String id = getIntent().getExtras().getString("userID");
+        id = getIntent().getExtras().getString("userID");
         textEventName = findViewById(R.id.eventname);
         pDatabaseHelper = new DbPayHelper(this);
         String[] data = GetData(id);
@@ -47,6 +53,10 @@ public class EditUserEvent extends AppCompatActivity {
         textEventDetail.setText(data[1]);
 //        editDatePicker = findViewById(R.id.datePicker);
         editTimePicker = findViewById(R.id.timePicker);
+
+        //noti
+        addNotiChkBox = findViewById(R.id.addNotiChkbox);
+        addNotiisChecked = addNotiChkBox.isChecked();
 
 //        String[] datearr = data[3].split("/");
 //        Integer initday = Integer.parseInt(datearr[0]);
@@ -87,10 +97,10 @@ public class EditUserEvent extends AppCompatActivity {
                 builder.setMessage("ยืนยันการแก้ไขกิจกรรม").setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String newName = textEventName.getText().toString();
+                        newName = textEventName.getText().toString();
                         String newDetail = textEventDetail.getText().toString();
-                        String newDate = dateBtn.getText().toString();
-                        String newTime = showTime.getText().toString();
+                        newDate = dateBtn.getText().toString();
+                        newTime = showTime.getText().toString();
                         //String newTime = timeButton.getText().toString();
 //                      String newTime = makeTimeString(hour, minute);
                         pDatabaseHelper.updateName(newName,id,data[0]);
@@ -98,6 +108,55 @@ public class EditUserEvent extends AppCompatActivity {
                         pDatabaseHelper.updateTime(newTime,id,data[3]);
                         pDatabaseHelper.updateDate(newDate,id,data[4]);
                         toastMessage("แก้ไขเสร็จสิ้นจ้า :-D");
+                        System.out.println(newTime);
+
+                        System.out.println(addNotiisChecked);
+                        System.out.println(id);
+                        System.out.println(noti);
+
+                        if(addNotiisChecked){
+                            noti = true;
+                            toastMessage("ตั้งแจ้งเตือน:-D");
+                            System.out.println(addNotiisChecked);
+                            System.out.println(id);
+                            System.out.println(noti);
+
+                        }
+                        setUserNotification(newDate,newName);
+
+//                        Intent intent = new Intent(getApplicationContext(), Notifications.class);
+//                        intent.putExtra("NotificationID", id);
+//                        intent.putExtra("Message", newName);
+//                        AlarmManager alarmManager;
+//
+//                        PendingIntent alarmIntent = PendingIntent.getBroadcast(
+//                                getApplicationContext(),0,intent,
+//                                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+//                        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+//
+//                        if (GetNoti(id)){
+//                            String[] time = newTime.split(":");
+//                            int hr = Integer.parseInt(time[0]);
+//                            int min = Integer.parseInt(time[1]);
+//
+//                            System.out.println(id);
+//                            System.out.println(hr);
+//                            System.out.println(min);
+//                            System.out.println(newName);
+//
+//                            //        Create TIme
+//                            Calendar startTime = Calendar.getInstance();
+//                            startTime.set(Calendar.HOUR_OF_DAY, hr);
+//                            startTime.set(Calendar.MINUTE,min);
+//                            startTime.set(Calendar.SECOND, 0);
+//                            long alarmStartTime = startTime.getTimeInMillis();
+//
+//                            //       Set Alarm
+//                            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+//
+//                            System.out.println("yes");
+//                        }
+
                     }
                 }).setNegativeButton("ยกเลิก",null);
                 AlertDialog alert = builder.create();
@@ -200,6 +259,53 @@ public class EditUserEvent extends AppCompatActivity {
 
     private String makeTimeString(int hour, int minute){
         return hour + " : " + minute;
+    }
+
+    public Boolean GetNoti(String id) {
+        Cursor data = pDatabaseHelper.getEventNoti(id);
+        data.moveToFirst();
+        if (data.getString(0).equals("1")){
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public void setUserNotification(String day, String name) {
+        //        Set noti & message
+        System.out.println("setUserNoti "+noti);
+        if (noti == true) {
+            Intent intent = new Intent(getApplicationContext(), Notifications.class);
+            intent.putExtra("NotificationID", id);
+            intent.putExtra("Message", name);
+            AlarmManager alarmManager;
+
+
+            PendingIntent alarmIntent = PendingIntent.getBroadcast(
+                    getApplicationContext(), 0, intent,
+                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+            if (GetNoti(id)) {
+                String[] time = newTime.split(":");
+                int hr = Integer.parseInt(time[0]);
+                int min = Integer.parseInt(time[1]);
+
+                System.out.println(id);
+
+                //        Create TIme
+                Calendar startTime = Calendar.getInstance();
+                startTime.set(Calendar.HOUR_OF_DAY, hr);
+                startTime.set(Calendar.MINUTE, min);
+                startTime.set(Calendar.SECOND, 0);
+                long alarmStartTime = startTime.getTimeInMillis();
+
+                //       Set Alarm
+                alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+//                        }
+            }
+        }
     }
 
 }

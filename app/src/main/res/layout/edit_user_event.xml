@@ -165,6 +165,26 @@
             android:layout_height="wrap_content"
             android:timePickerMode="spinner"></TimePicker>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/addNotiChkbox"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:fontFamily="@font/kanit"
+                android:text="แจ้งเตือน"
+                app:cornerRadius="20dp"
+                android:layout_gravity="right"
+                app:strokeColor="@color/purple_dark"
+                app:strokeWidth="2dp">
+
+            </androidx.appcompat.widget.AppCompatCheckBox>
+
+        </LinearLayout>
         <!--        <TimePicker-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="164dp"-->

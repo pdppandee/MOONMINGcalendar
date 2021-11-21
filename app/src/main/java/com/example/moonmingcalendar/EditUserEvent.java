@@ -60,7 +60,7 @@ public class EditUserEvent extends AppCompatActivity {
         System.out.println(data[2]);
 
 
-        if (data[2].equals("1")){
+        if (data[2].equals("1") || data[2].equals("true")){
             addNotiChkBox.setChecked(true);
             noti=true;
             oldNoti=true;
@@ -135,7 +135,7 @@ public class EditUserEvent extends AppCompatActivity {
                         pDatabaseHelper.updateDetail(newDetail,id,data[1]);
                         pDatabaseHelper.updateTime(newTime,id,data[3]);
                         pDatabaseHelper.updateDate(newDate,id,data[4]);
-                        pDatabaseHelper.updateNoti(noti,id);
+//                        pDatabaseHelper.updateNoti(noti,id);
                         String[] data2 = GetData(id);
                         System.out.println("data2[2]");
                         System.out.println(data2[2]);

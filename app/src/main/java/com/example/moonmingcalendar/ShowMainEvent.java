@@ -70,7 +70,7 @@ public class ShowMainEvent extends AppCompatActivity {
         //        Set noti & message
 
             String[] date = day.split("/");
-            Intent intent = new Intent(getApplicationContext(), Notifications.class);
+            Intent intent = new Intent(getApplicationContext(), NotificationForMainEvent.class);
             intent.putExtra("NotificationID", date[0]);
             intent.putExtra("Message", textMainEventName.getText().toString());
             // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -89,8 +89,8 @@ public class ShowMainEvent extends AppCompatActivity {
 
                 //        Create TIme
                 Calendar startTime = Calendar.getInstance();
-                startTime.set(Calendar.HOUR_OF_DAY, 20);
-                startTime.set(Calendar.MINUTE, 49);
+                startTime.set(Calendar.HOUR_OF_DAY, 23);
+                startTime.set(Calendar.MINUTE, 00);
                 startTime.set(Calendar.SECOND, 0);
 //                startTime.set(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]));
                 System.out.println(startTime);

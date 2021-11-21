@@ -58,147 +58,209 @@
         app:strokeColor="@color/purple_dark"
         app:strokeWidth="2dp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="381dp"
-        android:layout_height="42dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:layout_width="391dp"
+        android:layout_height="405dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="102dp"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/kanit"
-            android:text="วันที่:"
-            android:textSize="26sp" />
-
-        <TextView
-            android:id="@+id/editeventDate"
-            android:layout_width="279dp"
-            android:layout_height="34dp"
-            android:fontFamily="@font/kanit"
-            android:text="@string/ulDate"
-            android:textSize="26sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="381dp"
-        android:layout_height="46dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="102dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/kanit"
-            android:text="กิจกรรม:"
-            android:textSize="25sp" />
+            android:layout_marginTop="20dp"
 
-        <TextView
-            android:id="@+id/eventName"
-            android:layout_width="285dp"
-            android:layout_height="42dp"
-            android:fontFamily="@font/kanit"
-            android:text="@string/eventName"
-            android:textSize="25sp" />
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="381dp"
+                android:layout_height="42dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.024">
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="380dp"
-        android:layout_height="41dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.0">
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="132dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/kanit"
+                    android:text="วันที่:"
+                    android:textColor="@color/purple_dark"
+                    android:textSize="26sp"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity=""/>
 
-        <TextView
-            android:id="@+id/detail"
-            android:layout_width="115dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/kanit"
-            android:text="รายละเอียด:"
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/editeventDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/purple_dark"
+                    android:fontFamily="@font/kanit"
+                    android:text="@string/ulDate"
+                    android:textSize="26sp" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/eventDetail"
-            android:layout_width="278dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/kanit"
-            android:text="TextView"
-            android:textSize="20sp" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="381dp"
+                android:layout_height="46dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.0">
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="381dp"
-        android:layout_height="38dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit"
+                    android:text="กิจกรรม:"
+                    android:textColor="@color/purple_dark"
+                    android:gravity="center_horizontal"
+                    android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="81dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/kanit"
-            android:text="เวลา:"
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/eventName"
+                    android:layout_width="285dp"
+                    android:layout_height="42dp"
+                    android:textColor="@color/purple_dark"
+                    android:fontFamily="@font/kanit"
+                    android:text="@string/eventName"
+                    android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/eventTime"
-            android:layout_width="298dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/kanit"
-            android:text="TextView"
-            android:textSize="20sp" />
+            </LinearLayout>
 
-    </LinearLayout>
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="381dp"
-        android:layout_height="38dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                    app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/noti"
-            android:layout_width="135dp"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/kanit"
-            android:text="การแจ้งเตือน:"
-            android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/detail"
+                        android:layout_width="132dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit"
+                        android:text="รายละเอียด:"
+                        android:textColor="@color/purple_dark"
+                        android:gravity="center_horizontal"
+                        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/eventnoti"
-            android:layout_width="246dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/kanit"
-            android:text="TextView"
-            android:textSize="20sp" />
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-    </LinearLayout>
+                        <TextView
+                            android:id="@+id/eventDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="313dp"
+                            android:fontFamily="@font/kanit"
+                            android:textColor="@color/purple_dark"
+                            android:text="TextView"
+                            android:textSize="20sp" />
+
+                    </ScrollView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+                app:layout_constraintHorizontal_bias="0.043"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="127dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit"
+                    android:text="เวลา:"
+                    android:textColor="@color/purple_dark"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/eventTime"
+                    android:layout_width="169dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/purple_dark"
+                    android:fontFamily="@font/kanit"
+                    android:text="TextView"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="381dp"
+                android:layout_height="38dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+                app:layout_constraintHorizontal_bias="0.043"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+                <TextView
+                    android:id="@+id/noti"
+                    android:layout_width="133dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/kanit"
+                    android:gravity="center_horizontal"
+                    android:text="การแจ้งเตือน:"
+                    android:textColor="@color/purple_dark"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/eventnoti"
+                    android:layout_width="246dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit"
+                    android:textColor="@color/purple_dark"
+                    android:text="TextView"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

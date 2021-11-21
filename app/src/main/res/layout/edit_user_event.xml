@@ -44,6 +44,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/kanit"
+                        android:textColor="@color/purple_dark"
                         android:hint="กิจกรรม"
                         android:textSize="20dp"></com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -68,6 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/kanit"
+                        android:textColor="@color/purple_dark"
                         android:hint="รายละเอียด"
                         android:textSize="20dp"></com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -87,6 +89,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kanit"
                     android:text="วันที่: "
+                    android:textColor="@color/purple_dark"
                     android:textSize="25dp"></TextView>
 
 
@@ -124,6 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/kanit"
+                    android:textColor="@color/purple_dark"
                     android:text="เวลา: "
                     android:textSize="25dp"></TextView>
 
@@ -134,6 +138,7 @@
                     android:layout_marginLeft="20dp"
                     android:fontFamily="@font/kanit"
                     android:text="TextView"
+                    android:textColor="@color/purple_dark"
                     android:textSize="25dp" />
 
                 <com.google.android.material.button.MaterialButton

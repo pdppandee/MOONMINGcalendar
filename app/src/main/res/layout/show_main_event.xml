@@ -43,6 +43,7 @@
                     android:layout_width="368dp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/kanit"
+                    android:textColor="@color/purple_dark"
                     android:text="@string/maineventname"
                     android:textSize="30sp" />
             </LinearLayout>
@@ -64,6 +65,7 @@
                     android:layout_height="579dp"
                     android:fontFamily="@font/kanit"
                     android:text="@string/maineventname"
+                    android:textColor="@color/purple_dark"
                     android:textSize="25sp" />
             </LinearLayout>
         </ScrollView>

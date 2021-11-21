@@ -64,11 +64,12 @@
                 android:layout_marginLeft="30dp"
                 android:fontFamily="@font/kanit"
                 android:text="ดวงสายมู"
+                android:textColor="@color/purple_dark"
                 android:textSize="35dp" />
 
             <TextView
                 android:id="@+id/textMTLdt"
-                android:layout_width="302dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:fontFamily="@font/kanit"
@@ -98,6 +99,7 @@
             <ListView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
+                android:textColor="@color/purple_dark"
                 android:layout_height="397dp"
                 android:fontFamily="@font/kanit" />
         </LinearLayout>

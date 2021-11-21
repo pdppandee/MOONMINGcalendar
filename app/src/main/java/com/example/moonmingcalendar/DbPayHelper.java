@@ -118,8 +118,8 @@ public class DbPayHelper extends SQLiteOpenHelper {
         String query = "UPDATE " + TABLE_NAME + " SET " + COL2 +
                 " = '" + newDate + "' WHERE " + COL1 + " = '" + id + "'" +
                 " AND " + COL2 + " = '" + oldDate + "'";
-        Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting name to " + newDate);
+        Log.d(TAG, "updateDate: query: " + query);
+        Log.d(TAG, "updateDate: Setting date to " + newDate);
         db.execSQL(query);
     }
 
@@ -138,8 +138,8 @@ public class DbPayHelper extends SQLiteOpenHelper {
         String query = "UPDATE " + TABLE_NAME + " SET " + COL4 +
                 " = '" + newDetail + "' WHERE " + COL1 + " = '" + id + "'" +
                 " AND " + COL4 + " = '" + oldDetail + "'";
-        Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting name to " + newDetail);
+        Log.d(TAG, "updateDetail: query: " + query);
+        Log.d(TAG, "updateDetail: Setting detail to " + newDetail);
         db.execSQL(query);
     }
 
@@ -148,8 +148,17 @@ public class DbPayHelper extends SQLiteOpenHelper {
         String query = "UPDATE " + TABLE_NAME + " SET " + COL6 +
                 " = '" + newTime + "' WHERE " + COL1 + " = '" + id + "'" +
                 " AND " + COL6 + " = '" + oldTime + "'";
-        Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting name to " + newTime);
+        Log.d(TAG, "updateTime: query: " + query);
+        Log.d(TAG, "updateTime: Setting time to " + newTime);
+        db.execSQL(query);
+    }
+
+    public void updateNoti(Boolean newNoti, String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_NAME + " SET " + COLNoti +
+                " = '" + newNoti + "' WHERE " + COL1 + " = '" + id + "'" ;
+        Log.d(TAG, "updateNoti: query: " + query);
+        Log.d(TAG, "updateNoti: Setting noti to " + newNoti);
         db.execSQL(query);
     }
 
@@ -157,8 +166,8 @@ public class DbPayHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "DELETE FROM " + TABLE_NAME + " WHERE "
                 + COL1 + " = '" + id + "'" ;
-        Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting name to " + id);
+        Log.d(TAG, "deleteEvent: query: " + query);
+        Log.d(TAG, "deleteID: id: " + id);
         db.execSQL(query);
     }
 

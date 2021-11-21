@@ -33,7 +33,7 @@ public class EditUserEvent extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateBtn;
     int hour, minute;
-    boolean addNotiisChecked, noti = false;
+    boolean addNotiisChecked, noti, oldNoti = false;
     String  id, newName, newDate, newTime;
     CheckBox addNotiChkBox;
 
@@ -56,6 +56,15 @@ public class EditUserEvent extends AppCompatActivity {
 
         //noti
         addNotiChkBox = findViewById(R.id.addNotiChkbox);
+        System.out.println("data[2]");
+        System.out.println(data[2]);
+
+
+        if (data[2].equals("1")){
+            addNotiChkBox.setChecked(true);
+            noti=true;
+            oldNoti=true;
+        }
         addNotiisChecked = addNotiChkBox.isChecked();
 
 //        String[] datearr = data[3].split("/");
@@ -86,7 +95,26 @@ public class EditUserEvent extends AppCompatActivity {
                 showTime.setText(time);
             }
         });
+        addNotiChkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNotiisChecked = addNotiChkBox.isChecked();
+                if(addNotiisChecked){
+                    noti = true;
+                    toastMessage("ตั้งแจ้งเตือน:-D");
+                    System.out.println(addNotiisChecked);
+                    System.out.println(id);
+                    System.out.println(noti);
 
+                }else{
+                    noti = false;
+                    toastMessage("ยกเลิกแจ้งเตือน:-D");
+                    System.out.println(addNotiisChecked);
+                    System.out.println(id);
+                    System.out.println(noti);
+                }
+            }
+        });
 
         btnSaveEditEvent = findViewById(R.id.editueSave);
         btnSaveEditEvent.setOnClickListener(new View.OnClickListener() {
@@ -107,23 +135,14 @@ public class EditUserEvent extends AppCompatActivity {
                         pDatabaseHelper.updateDetail(newDetail,id,data[1]);
                         pDatabaseHelper.updateTime(newTime,id,data[3]);
                         pDatabaseHelper.updateDate(newDate,id,data[4]);
+                        pDatabaseHelper.updateNoti(noti,id);
+                        String[] data2 = GetData(id);
+                        System.out.println("data2[2]");
+                        System.out.println(data2[2]);
+
+                        setUserNotification(id);
+
                         toastMessage("แก้ไขเสร็จสิ้นจ้า :-D");
-                        System.out.println(newTime);
-
-                        System.out.println(addNotiisChecked);
-                        System.out.println(id);
-                        System.out.println(noti);
-
-                        if(addNotiisChecked){
-                            noti = true;
-                            toastMessage("ตั้งแจ้งเตือน:-D");
-                            System.out.println(addNotiisChecked);
-                            System.out.println(id);
-                            System.out.println(noti);
-
-                        }
-                        setUserNotification(newDate,newName);
-
 
                     }
                 }).setNegativeButton("ยกเลิก",null);
@@ -164,6 +183,7 @@ public class EditUserEvent extends AppCompatActivity {
         });
     }
 //    -----------------------------------------------------------------------
+
 
 
     private void initDatePicker() {
@@ -240,13 +260,13 @@ public class EditUserEvent extends AppCompatActivity {
 
 
 
-    public void setUserNotification(String day, String name) {
+    public void setUserNotification(String id) {
         //        Set noti & message
         System.out.println("setUserNoti "+noti);
 
             Intent intent = new Intent(getApplicationContext(), Notifications.class);
             intent.putExtra("NotificationID", id);
-            intent.putExtra("Message", name);
+            intent.putExtra("Message", newName);
             AlarmManager alarmManager;
 
 

@@ -36,7 +36,9 @@ public class ShowUserEvent extends AppCompatActivity {
         textTime.setText(data[3]);
         textDate.setText(data[4]);
         textNoti = findViewById(R.id.eventnoti);
-        if (data[2].equals("1")){
+        System.out.println("noti");
+        System.out.println(data[2]);
+        if (data[2].equals("1") || data[2].equals("true")){
             textNoti.setText("เปิด");
         }else{
             textNoti.setText("ปิด");

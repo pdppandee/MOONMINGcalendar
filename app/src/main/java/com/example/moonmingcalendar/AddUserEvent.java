@@ -27,7 +27,7 @@ public class AddUserEvent extends AppCompatActivity{
     CheckBox addNotiChkBox;
     int hour, minute;
     boolean addNotiisChecked, noti = false;
-    String  id;
+    String  id, day;
 
 
     @Override
@@ -45,7 +45,7 @@ public class AddUserEvent extends AppCompatActivity{
         addNotiChkBox = findViewById(R.id.addNotiChkbox);
         addNotiisChecked = addNotiChkBox.isChecked();
 
-        String day = getIntent().getExtras().getString("day");
+        day = getIntent().getExtras().getString("day");
 
         addUserEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,10 +58,7 @@ public class AddUserEvent extends AppCompatActivity{
                     eventName.setText("");
                     eventDetail.setText("");
 
-                    if(addNotiisChecked = true) {
-                        noti = true;
-                        toastMessage("ตั้งแจ้งเตือน:-D");
-                    }
+                    setCheckbox(addNotiisChecked);
                         AddData(day, name, detail, noti, time);
                         setUserNotification(day, name);
 
@@ -147,11 +144,13 @@ public class AddUserEvent extends AppCompatActivity{
             Intent intent = new Intent(getApplicationContext(), Notifications.class);
             intent.putExtra("NotificationID", id);
             intent.putExtra("Message", name);
+           // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
             AlarmManager alarmManager;
 
 
             PendingIntent alarmIntent = PendingIntent.getBroadcast(
-                    getApplicationContext(), 0, intent,
+                    getApplicationContext(), Integer.parseInt(id), intent,
                     PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
             alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
@@ -173,6 +172,21 @@ public class AddUserEvent extends AppCompatActivity{
                 alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
 //                        }
             }
+        }
+    }
+
+    private void setCheckbox(boolean ischecked){
+
+
+        if (ischecked) {
+            noti = true;
+            System.out.println(ischecked);
+            Toast.makeText(getApplicationContext(), "ตั้งค่าแจ้งเตือน:-D", Toast.LENGTH_SHORT).show();
+
+
+        }else {
+            System.out.println(ischecked);
+            Toast.makeText(getApplicationContext(), "ยกเลิกแจ้งเตือน:-D", Toast.LENGTH_SHORT).show();
         }
     }
 

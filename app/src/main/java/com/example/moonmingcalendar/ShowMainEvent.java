@@ -1,18 +1,24 @@
 package com.example.moonmingcalendar;
 
-import static java.lang.Math.floor;
-
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ShowMainEvent extends AppCompatActivity {
 
     TextView textMainEventName, textMainEventDate, textMainEventDetail;
-    String lunarPhase;
+    String lunarPhase, day;
+    CheckBox addNotiChkBox;
+    Boolean ischecked, noti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +28,7 @@ public class ShowMainEvent extends AppCompatActivity {
         textMainEventDetail = findViewById(R.id.maineventdetail);
         textMainEventDate = findViewById(R.id.maineventdete);
 
-        String day = getIntent().getExtras().getString("day");
+        day = getIntent().getExtras().getString("day");
         int position = getIntent().getExtras().getInt("position");
         GetMainEvent showEvent = new GetMainEvent(day);
 
@@ -32,6 +38,69 @@ public class ShowMainEvent extends AppCompatActivity {
         textMainEventName.setText(eventName);
         textMainEventDetail.setText(eventDetail);
         textMainEventDate.setText(day);
+
+        addNotiChkBox = findViewById(R.id.addNotiChkbox);
+        System.out.println(ischecked);
+
+
+        addNotiChkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               ischecked = addNotiChkBox.isChecked();
+               setCheckbox(ischecked);
+            }
+        });
+    }
+
+    private void setCheckbox(boolean ischecked){
+        if (ischecked) {
+            noti = true;
+            System.out.println(ischecked);
+            setUserNotification(day);
+            Toast.makeText(getApplicationContext(), "ตั้งค่าแจ้งเตือน:-D", Toast.LENGTH_SHORT).show();
+
+
+        }else {
+            System.out.println(ischecked);
+            Toast.makeText(getApplicationContext(), "ยกเลิกแจ้งเตือน:-D", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void setUserNotification(String day) {
+        //        Set noti & message
+
+            String[] date = day.split("/");
+            Intent intent = new Intent(getApplicationContext(), Notifications.class);
+            intent.putExtra("NotificationID", date[0]);
+            intent.putExtra("Message", textMainEventName.getText().toString());
+            // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+            AlarmManager alarmManager;
+
+
+            PendingIntent alarmIntent = PendingIntent.getBroadcast(
+                    getApplicationContext(), 1, intent,
+                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+            if (noti) {
+//                int hr = timePicker.getCurrentHour();
+//                int min = timePicker.getCurrentMinute();
+
+                //        Create TIme
+                Calendar startTime = Calendar.getInstance();
+                startTime.set(Calendar.HOUR_OF_DAY, 20);
+                startTime.set(Calendar.MINUTE, 49);
+                startTime.set(Calendar.SECOND, 0);
+//                startTime.set(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]));
+                System.out.println(startTime);
+                long alarmStartTime = startTime.getTimeInMillis();
+                System.out.println(alarmStartTime + " alarmStartTime");
+                //       Set Alarm
+                alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+                System.out.println("hihi");
+            }
+        }
     }
 
 //    public void lunarPhaseCal(){
@@ -152,4 +221,4 @@ public class ShowMainEvent extends AppCompatActivity {
 
 //    }
 
-}
+

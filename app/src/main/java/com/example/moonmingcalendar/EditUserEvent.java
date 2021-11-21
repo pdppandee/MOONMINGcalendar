@@ -124,38 +124,6 @@ public class EditUserEvent extends AppCompatActivity {
                         }
                         setUserNotification(newDate,newName);
 
-//                        Intent intent = new Intent(getApplicationContext(), Notifications.class);
-//                        intent.putExtra("NotificationID", id);
-//                        intent.putExtra("Message", newName);
-//                        AlarmManager alarmManager;
-//
-//                        PendingIntent alarmIntent = PendingIntent.getBroadcast(
-//                                getApplicationContext(),0,intent,
-//                                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-//                        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-//
-//                        if (GetNoti(id)){
-//                            String[] time = newTime.split(":");
-//                            int hr = Integer.parseInt(time[0]);
-//                            int min = Integer.parseInt(time[1]);
-//
-//                            System.out.println(id);
-//                            System.out.println(hr);
-//                            System.out.println(min);
-//                            System.out.println(newName);
-//
-//                            //        Create TIme
-//                            Calendar startTime = Calendar.getInstance();
-//                            startTime.set(Calendar.HOUR_OF_DAY, hr);
-//                            startTime.set(Calendar.MINUTE,min);
-//                            startTime.set(Calendar.SECOND, 0);
-//                            long alarmStartTime = startTime.getTimeInMillis();
-//
-//                            //       Set Alarm
-//                            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
-//
-//                            System.out.println("yes");
-//                        }
 
                     }
                 }).setNegativeButton("ยกเลิก",null);
@@ -275,7 +243,7 @@ public class EditUserEvent extends AppCompatActivity {
     public void setUserNotification(String day, String name) {
         //        Set noti & message
         System.out.println("setUserNoti "+noti);
-        if (noti == true) {
+
             Intent intent = new Intent(getApplicationContext(), Notifications.class);
             intent.putExtra("NotificationID", id);
             intent.putExtra("Message", name);
@@ -283,7 +251,7 @@ public class EditUserEvent extends AppCompatActivity {
 
 
             PendingIntent alarmIntent = PendingIntent.getBroadcast(
-                    getApplicationContext(), 0, intent,
+                    getApplicationContext(), Integer.parseInt(id), intent,
                     PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
             alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
@@ -303,8 +271,7 @@ public class EditUserEvent extends AppCompatActivity {
 
                 //       Set Alarm
                 alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
-//                        }
-            }
+
         }
     }
 

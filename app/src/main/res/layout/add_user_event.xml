@@ -8,6 +8,7 @@
     android:background="@drawable/cheese_bg"
     android:padding="20dp">
 
+
     <LinearLayout
         android:id="@+id/LinearLayoutinfo"
         android:layout_width="match_parent"
@@ -110,8 +111,7 @@
                 android:layout_gravity="right"
                 app:strokeColor="@color/purple_dark"
                 app:strokeWidth="2dp"
-                android:onClick="popTimePicker">
-
+               >
             </androidx.appcompat.widget.AppCompatCheckBox>
         </LinearLayout>
 

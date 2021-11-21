@@ -105,11 +105,10 @@ public class DbPayHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor getEventNoti(String date, String name){
+    public Cursor getEventNoti(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT " + COLNoti + " FROM " +
-                TABLE_NAME + " WHERE " + COL2 + " = '" + date+ "'" +
-                " AND " + COL3 + " = '" + name + "'";
+                TABLE_NAME + " WHERE " + COL1 + " = '" + id + "'";
         Cursor data = db.rawQuery(query, null);
         return data;
     }

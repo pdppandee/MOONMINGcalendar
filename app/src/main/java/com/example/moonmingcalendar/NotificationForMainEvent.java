@@ -11,9 +11,9 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-public class Notifications extends BroadcastReceiver {
+public class NotificationForMainEvent extends BroadcastReceiver {
 
-//    private  static  final Integer notificationID = 0;
+    //    private  static  final Integer notificationID = 0;
     public String channelID = "eventChannel";
     String titleExtra = "Ayy Yo";
 
@@ -35,17 +35,17 @@ public class Notifications extends BroadcastReceiver {
 //        get message get id from intent
         String content = intent.getStringExtra("Message");
         String eventid = intent.getStringExtra("NotificationID"); // event channel id
-//         สร้าง channel
         channelID = eventid;
+//         สร้าง channel
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            String groupID = "User Event Noti";
-            String groupName = "EventNotification";
+            String groupID = "Main Event Noti";
+            String groupName = "MainEventNotification";
             NotificationChannelGroup group = new NotificationChannelGroup(groupID, groupName);
             int importance = NotificationManager.IMPORTANCE_HIGH;
-            CharSequence channelName = "Event";
+            CharSequence channelName = "MainEvent";
             NotificationChannel channel = new NotificationChannel(channelID,channelName, importance);
             channel.setGroup(groupID);
 
@@ -57,15 +57,15 @@ public class Notifications extends BroadcastReceiver {
 
         NotificationCompat.Builder notification = new NotificationCompat.Builder(context,channelID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
-//                .setContentTitle(eventid)
                 .setContentText(content)
-//                .setContentText(intent.getStringExtra(contentText))
                 .setAutoCancel(true)
-//                .setChannelId(channelID)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
+        System.out.println("dai mai la");
+
         notificationManager.notify(Integer.parseInt(channelID), notification.build());
+        System.out.println("notify");
 
 
     }

@@ -58,10 +58,11 @@ public class AddUserEvent extends AppCompatActivity{
                     eventName.setText("");
                     eventDetail.setText("");
 
-                    setCheckbox(addNotiisChecked);
+//                    setCheckbox(addNotiisChecked);
                         AddData(day, name, detail, noti, time);
                         setUserNotification(day, name);
-
+                    noti = GetNoti(id);
+                    System.out.println("add on click check noti "+ noti);
                 }else {
                     toastMessage("กรุณาใส่ข้อความที่ต้องการ!");
                 }
@@ -85,6 +86,14 @@ public class AddUserEvent extends AppCompatActivity{
                 Intent showeventlist = new Intent(AddUserEvent.this, ShowEventList.class);
                 showeventlist.putExtra("day",day);
                 startActivity(showeventlist);
+            }
+        });
+
+        addNotiChkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNotiisChecked = addNotiChkBox.isChecked();
+                setCheckbox(addNotiisChecked);
             }
         });
     }
@@ -139,7 +148,7 @@ public class AddUserEvent extends AppCompatActivity{
 
     public void setUserNotification(String day, String name) {
         //        Set noti & message
-        if (noti = true) {
+
             id = GetID(day, name);
             Intent intent = new Intent(getApplicationContext(), Notifications.class);
             intent.putExtra("NotificationID", id);
@@ -159,6 +168,8 @@ public class AddUserEvent extends AppCompatActivity{
                 int hr = Integer.parseInt(time2[0]);
                 int min = Integer.parseInt(time2[1]);
 
+//                String[] date = day.split("/");
+
                 System.out.println(id);
 
                 //        Create TIme
@@ -166,27 +177,40 @@ public class AddUserEvent extends AppCompatActivity{
                 startTime.set(Calendar.HOUR_OF_DAY, hr);
                 startTime.set(Calendar.MINUTE, min);
                 startTime.set(Calendar.SECOND, 0);
+//                startTime.set(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]));
+
+//                String date = getIntent().getExtras().getString("day");
+//                String[] datearr = date.split("/");
+//                Integer dayy = Integer.parseInt(datearr[0]);
+//                Integer month = Integer.parseInt(datearr[1]);
+//                Integer year = Integer.parseInt(datearr[2]);
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.set(year, month, dayy, hr, min);
+
                 long alarmStartTime = startTime.getTimeInMillis();
 
                 //       Set Alarm
                 alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
-//                        }
-            }
+
+
         }
     }
 
+
+
+
     private void setCheckbox(boolean ischecked){
 
-
+        System.out.println("setchkbox1"+ ischecked);
         if (ischecked) {
             noti = true;
-            System.out.println(ischecked);
+            System.out.println("setchk"+ ischecked);
             Toast.makeText(getApplicationContext(), "ตั้งค่าแจ้งเตือน:-D", Toast.LENGTH_SHORT).show();
 
 
         }else {
             System.out.println(ischecked);
-            Toast.makeText(getApplicationContext(), "ยกเลิกแจ้งเตือน:-D", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "ยกเลิกแจ้งเตือน:-D", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -56,7 +56,7 @@ public class Notifications extends BroadcastReceiver {
 
 
         NotificationCompat.Builder notification = new NotificationCompat.Builder(context,channelID)
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.drawable.iconmoonming)
 //                .setContentTitle(eventid)
                 .setContentText(content)
 //                .setContentText(intent.getStringExtra(contentText))

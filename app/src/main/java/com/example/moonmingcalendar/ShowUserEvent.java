@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ShowUserEvent extends AppCompatActivity {
     Button btnUlBack,btnUlEdit,btnUlDelete;
-    TextView textEventName,textDate, textEventDetail, textTime;
+    TextView textEventName,textDate, textEventDetail, textTime, textNoti;
     DbPayHelper pDatabaseHelper;
 
     @Override
@@ -35,6 +35,12 @@ public class ShowUserEvent extends AppCompatActivity {
         textTime = findViewById(R.id.eventTime);
         textTime.setText(data[3]);
         textDate.setText(data[4]);
+        textNoti = findViewById(R.id.eventnoti);
+        if (data[2].equals("1")){
+            textNoti.setText("เปิด");
+        }else{
+            textNoti.setText("ปิด");
+        }
 
         btnUlBack = findViewById(R.id.ueBack);
         btnUlBack.setOnClickListener(new View.OnClickListener() {
